@@ -145,7 +145,7 @@ public class PlayerMovement : MonoBehaviour
         lastVerticalVelocity = rb.velocity;
 
 
-        if (Input.GetMouseButton(1))
+        if (Input.GetKey(KeyCode.LeftShift))
         {
             Time.timeScale = Mathf.Lerp(Time.timeScale, 0.03f, 0.1f);
             Time.fixedDeltaTime = 0.02F * Time.timeScale;

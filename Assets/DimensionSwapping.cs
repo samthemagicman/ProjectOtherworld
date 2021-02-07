@@ -69,7 +69,7 @@ public class DimensionSwapping : MonoBehaviour
         lensDistortion.intensity.value = Mathf.Lerp(0f, -0.3f, perc);
 
         bool changed = false;
-        if (Input.GetKey(KeyCode.E))
+        if (Input.GetKey(KeyCode.LeftShift))
         {
             changed = true;
             lerpSpeed = Mathf.Abs(lerpSpeed);
@@ -78,7 +78,7 @@ public class DimensionSwapping : MonoBehaviour
             lerpSpeed = -Mathf.Abs(lerpSpeed);
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             changed = true;
             if (currentDimension == DimensionFilter.Dimension.One)
