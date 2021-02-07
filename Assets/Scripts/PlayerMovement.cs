@@ -143,18 +143,6 @@ public class PlayerMovement : MonoBehaviour
             Invoke("SetJumpedOffWallToFalse", 0.15f);
         }
         lastVerticalVelocity = rb.velocity;
-
-
-        if (Input.GetMouseButton(1))
-        {
-            Time.timeScale = Mathf.Lerp(Time.timeScale, 0.03f, 0.1f);
-            Time.fixedDeltaTime = 0.02F * Time.timeScale;
-        }
-        else
-        {
-            Time.timeScale = Mathf.Lerp(Time.timeScale, 1f, 0.12f);
-            Time.fixedDeltaTime = 0.02F * Time.timeScale;
-        }
     }
 
     void SetJumpedOffWallToFalse()
