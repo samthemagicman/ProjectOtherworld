@@ -29157,7 +29157,8 @@ MonoBehaviour:
   player: {fileID: 1028194987}
   dimension2Camera: {fileID: 0}
   dimensionPreviewMaterial: {fileID: 2100000, guid: d2a392561817ec84983a7d1d36f86e5b, type: 2}
-  screenDimensionPreviewMaterial: {fileID: 2100000, guid: 8f6f98e79188af1429d1ab7b66927607, type: 2}
+  firstDimensionPreviewMaterial: {fileID: 2100000, guid: 168ad8a18b118dd4da8705068b05aa62, type: 2}
+  screenDimensionPreviewMaterial: {fileID: 2100000, guid: f26cf8633ce5ac44f851d91e6e58d99f, type: 2}
   dimensionPreviewVolume: {fileID: 1788896583}
 --- !u!4 &1474096681
 Transform:
