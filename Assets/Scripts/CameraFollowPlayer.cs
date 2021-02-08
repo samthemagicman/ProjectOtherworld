@@ -14,7 +14,7 @@ public class CameraFollowPlayer : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         if (player != null)
         {
@@ -24,7 +24,8 @@ public class CameraFollowPlayer : MonoBehaviour
                 transform.position = player.transform.position + new Vector3(0, 0, -15 - player.transform.position.y);
             }
             Vector3 targetPosition = new Vector3(player.transform.position.x, player.transform.position.y, -15);
-            transform.position = Vector3.Lerp(transform.position, targetPosition, smoothTime);
+            //transform.position = Vector3.Lerp(transform.position, targetPosition, smoothTime);
+            transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, 0.025f, 1000f, Time.deltaTime / Time.timeScale);
         } else
         {
             player = GameObject.FindGameObjectWithTag("Player");
