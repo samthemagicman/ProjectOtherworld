@@ -21,8 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: apearing block
-  m_Shader: {fileID: -6465566751694194690, guid: 032378cf13792c04c906a608cf3ed002,
-    type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 4e5214e868aa3444cb83d611d3ae8616, type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -46,7 +45,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 10307, guid: 0000000000000000f000000000000000, type: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -66,6 +65,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_5687A5BB: 0
+    - Vector1_D3B2DDA1: 0.433537
+    - Vector1_D8E200DE: 0.3
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
