@@ -6,17 +6,18 @@ public class Respawn : MonoBehaviour
 {
     public GameObject playerPrefab;
     GameObject player;
-
+    public Vector2 spawnPoint;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        spawnPoint = player.transform.position;
         player.GetComponent<PlayerDeathHandler>().onDied.AddListener(() => Invoke("OnPlayerDied", 1));
     }
 
     void OnPlayerDied()
     {
-        player = Instantiate(playerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        player = Instantiate(playerPrefab, spawnPoint, Quaternion.identity);
         player.GetComponent<PlayerDeathHandler>().onDied.AddListener(() => Invoke("OnPlayerDied", 1));
     }
 }
