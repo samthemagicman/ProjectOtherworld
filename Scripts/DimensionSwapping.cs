@@ -77,23 +77,28 @@ public class DimensionSwapping : MonoBehaviour
             lerpSpeed = -Mathf.Abs(lerpSpeed);
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetButtonUp("PreviewDimension"))
         {
             changed = true;
-            if (currentDimension == DimensionFilter.Dimension.One)
-            {
-                currentDimension = DimensionFilter.Dimension.Two;
-            }
-            else
-            {
-                currentDimension = DimensionFilter.Dimension.One;
-            }
+            SwapDimension();
         }
         if (changed)
         {
             UpdateAllMaterials();
         }
 
+    }
+
+    void SwapDimension()
+    {
+        if (currentDimension == DimensionFilter.Dimension.One)
+        {
+            currentDimension = DimensionFilter.Dimension.Two;
+        }
+        else
+        {
+            currentDimension = DimensionFilter.Dimension.One;
+        }
     }
 
     void UpdateAllMaterials()
