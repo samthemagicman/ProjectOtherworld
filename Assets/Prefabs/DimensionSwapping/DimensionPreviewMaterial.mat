@@ -25,7 +25,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - CircleSize: -0.07
-    - InnerColorCircleSize: -0.3
+    - InnerColorCircleSize: -0.29999998
     - SaturatedCircleSize: -0.62999994
     - Vector1_1BA4C549: 1
     - Vector1_7DF70CE5: 0.3

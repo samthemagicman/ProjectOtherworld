@@ -8,7 +8,7 @@ public class Slomo : MonoBehaviour
     {
         if (Input.GetButton("Slomo"))
         {
-            Time.timeScale = Mathf.Lerp(Time.timeScale, 0.03f, 0.1f);
+            Time.timeScale = Mathf.Lerp(Time.timeScale, 0.3f, 0.1f);
             Time.fixedDeltaTime = 0.02F * Time.timeScale;
         }
         else
