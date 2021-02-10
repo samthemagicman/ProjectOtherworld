@@ -5,7 +5,7 @@ using UnityEditor;
 
 public class DimensionPreview : EditorWindow
 {
-    private const string MENU_NAME = "Dimension/Dimension Preview";
+    private const string MENU_NAME = "Custom Tools/Dimension Preview";
 
     public static bool IsEnabled
     {
