@@ -56,6 +56,7 @@
     <Compile Include="Assets\2D_Destruction\Unity-delaunay\geom\LineSegment.cs" />
     <Compile Include="Assets\Scripts\CameraFollowPlayer.cs" />
     <Compile Include="Assets\Scripts\SwingingArrow.cs" />
+    <Compile Include="Assets\checkpoint.cs" />
     <Compile Include="Assets\Slomo.cs" />
     <Compile Include="Assets\2D_Destruction\Unity-delaunay\geom\Winding.cs" />
     <Compile Include="Assets\2D_Destruction\Unity-delaunay\Delaunay\Voronoi.cs" />
@@ -92,7 +93,6 @@
     <Compile Include="Assets\2D_Destruction\Unity-delaunay\Delaunay\EdgeList.cs" />
     <Compile Include="Assets\2D_Destruction\Unity-delaunay\Delaunay\Vertex.cs" />
     <Compile Include="Assets\Prefabs\Player\PlayerDeathHandler.cs" />
-    <Compile Include="Assets\checkpoint.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Nature_pixel_art_assets\pixel_snapping_README.txt" />
