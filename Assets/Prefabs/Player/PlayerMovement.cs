@@ -49,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
 
         bool isTouchingAnyWall = IsTouchingLeftWall() || IsTouchingRightWall();
         bool isGrounded = IsGrounded();
-        if (isGrounded) mayJump = wallJumpCoyoteTime;
+        if (isGrounded) mayJump = jumpCoyoteTime;
         if (isTouchingAnyWall) mayWallJump = wallJumpCoyoteTime;
 
         isMovingTowardsWall = IsMovingTowardsWall(moveHorizontalRaw);
@@ -130,7 +130,7 @@ public class PlayerMovement : MonoBehaviour
 
         UpdateParticles(moveHorizontalRaw);
         UpdateAnimation(moveHorizontal);
-
+        Debug.Log((mayJump," : ", mayWallJump));
         mayJump -= Time.deltaTime / Time.timeScale;
         mayWallJump -= Time.deltaTime / Time.timeScale;
         lastVerticalVelocity = rb.velocity;
