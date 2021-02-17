@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System.Text.RegularExpressions;
+
+#pragma warning disable
+
 public class GridSnapping : EditorWindow
 {
     private const string MENU_NAME = "Custom Tools/GridSnapping";
@@ -59,14 +62,17 @@ public class GridSnapping : EditorWindow
 
     static void OnSelectionChange()
     {
-        GameObject obj = Selection.gameObjects[0];
-        transform = obj.transform;
-        renderer = obj.GetComponent<SpriteRenderer>();
-        collider = obj.GetComponent<BoxCollider2D>();
-        if (renderer)
+        if (Selection.gameObjects.Length > 0)
         {
-            lastSize = renderer.size;
-            lastPosition = transform.position;
+            GameObject obj = Selection.gameObjects[0];
+            transform = obj.transform;
+            renderer = obj.GetComponent<SpriteRenderer>();
+            collider = obj.GetComponent<BoxCollider2D>();
+            if (renderer)
+            {
+                lastSize = renderer.size;
+                lastPosition = transform.position;
+            }
         }
     }
 

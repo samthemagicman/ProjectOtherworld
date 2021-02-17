@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+
+#pragma warning disable
+
 public class DimensionFilter : MonoBehaviour
 {
     public enum Dimension { One, Two }

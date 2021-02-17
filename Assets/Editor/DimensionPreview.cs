@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+#pragma warning disable
+
 public class DimensionPreview : EditorWindow
 {
     private const string MENU_NAME = "Custom Tools/Dimension Preview";
