@@ -264,19 +264,19 @@ public class PlayerMovement : MonoBehaviour
 
     bool IsGrounded() {
         //return Physics2D.Raycast(transform.position, -Vector2.up, distToGround + 0.1f).collider != null;
-        return Physics2D.BoxCast(transform.position, new Vector2(1.9f, 0.05f), 0, -Vector2.up, 0).collider != null;
+        return Physics2D.BoxCast(transform.position, new Vector2(1.9f, 0.05f), 0, -Vector2.up, 0, ~LayerMask.NameToLayer("Hitbox")).collider != null;
     }
 
     bool IsTouchingRightWall()
     {
         //return Physics2D.Raycast(transform.position, -Vector2.up, distToGround + 0.1f).collider != null;
-        return Physics2D.BoxCast(transform.position + new Vector3(1, 1, 0), new Vector2(0.05f, 1.8f), 0, Vector2.right, 0).collider != null;
+        return Physics2D.BoxCast(transform.position + new Vector3(1, 1, 0), new Vector2(0.05f, 1.8f), 0, Vector2.right, 0, ~LayerMask.NameToLayer("Hitbox")).collider != null;
     }
 
     bool IsTouchingLeftWall()
     {
         //return Physics2D.Raycast(transform.position, -Vector2.up, distToGround + 0.1f).collider != null;
-        return Physics2D.BoxCast(transform.position + new Vector3(-1, 1, 0), new Vector2(0.05f, 1.8f), 0, Vector2.right, 0).collider != null;
+        return Physics2D.BoxCast(transform.position + new Vector3(-1, 1, 0), new Vector2(0.05f, 1.8f), 0, Vector2.right, 0, ~LayerMask.NameToLayer("Hitbox")).collider != null;
     }
 
     bool IsTouchingAnyWall()

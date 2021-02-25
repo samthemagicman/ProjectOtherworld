@@ -17,8 +17,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Hitbox
+  - KillBlock
   - Ground
   - Postprocessing
   - WarpingCamera

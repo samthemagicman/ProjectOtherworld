@@ -14,11 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SimpleSelectedItems:
     m_Keys:
+    - Assets/Editor/GridSnapping.cs
     - Assets/Prefabs/DimensionSwapping/DimensionPreviewMaterial.mat
+    - Assets/Prefabs/Player/PlayerMovement.cs
     - Assets/Scenes/TestScene2.unity
+    - Assets/Scripts/KillPlayerOnTouch.cs
+    - ProjectSettings/Physics2DSettings.asset
+    - ProjectSettings/TagManager.asset
     - 
-    m_Values: 010101
-  RevisionSummary: Improved Player controls
+    m_Values: 0000000000000000
+  RevisionSummary: 
   ChangesSearchValue: 
   SelectedHistoryRevision: 
   HistoryPageNumber: 0

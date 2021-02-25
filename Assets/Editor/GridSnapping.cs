@@ -138,6 +138,9 @@ public class GridSnapping : EditorWindow
             renderer.size = new Vector2(Mathf.Round(renderer.size.x / sizeGrid) * sizeGrid, Mathf.Round(renderer.size.y / sizeGrid) * sizeGrid);
             newSize = renderer.size;
             Vector2 sizeDeltaAfterChange = newSize - lastSize;
+
+            Debug.Log(sizeDelta);
+
             if (sizeDelta.magnitude > 0)
             {
                 transform.position = new Vector3(lastPosition.x + sizeDeltaAfterChange.x / 2, lastPosition.y - sizeDeltaAfterChange.y / 2, transform.position.z);
