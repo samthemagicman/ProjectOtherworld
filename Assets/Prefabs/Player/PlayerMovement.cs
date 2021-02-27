@@ -24,6 +24,9 @@ public class PlayerMovement : MonoBehaviour
     [InspectorName("Coyote Time")]
     public float wallJumpCoyoteTime = 0.2f;
 
+    [Tooltip("The max distance from the last platform that the player is allowed to be from to coyote jump")]
+    public float maxCoyoteJumpDistance = 2f;
+
     [InspectorName("Move Delay after Jump")]
     [Tooltip("The time it takes before you can control your character again after a wall jump")]
     public float wallJumpMoveDelay = 0.15f;
@@ -49,6 +52,9 @@ public class PlayerMovement : MonoBehaviour
     float mayWallJump = 0;
 
     float movingAwayFromWallStamp = 0;
+    float startedMovingTimeStamp = 0;
+
+    Vector2 lastGroundedPosition;
 
     private void Start()
     {
@@ -71,7 +77,13 @@ public class PlayerMovement : MonoBehaviour
         bool isTouchingAnyWall = IsTouchingAnyWall();
         bool isGrounded = IsGrounded();
         bool isOnWall = isTouchingAnyWall && !isGrounded;
-        if (isGrounded) mayJump = jumpCoyoteTime;
+
+        if (isGrounded)
+        {
+            lastGroundedPosition = transform.position;
+            mayJump = jumpCoyoteTime;
+        }
+
         if (isTouchingAnyWall) mayWallJump = wallJumpCoyoteTime;
 
         isMovingTowardsWall = IsMovingTowardsWall(moveHorizontalRaw);
@@ -83,6 +95,15 @@ public class PlayerMovement : MonoBehaviour
         } else if (!isMovingAwayFromWall)
         {
             movingAwayFromWallStamp = 0;
+        }
+
+        if (Mathf.Abs(moveHorizontalRaw) > 0)
+        {
+            startedMovingTimeStamp += Time.deltaTime;
+        }
+        else if (!isMovingAwayFromWall)
+        {
+            startedMovingTimeStamp = 0;
         }
 
         #region Handle walking and moving in air
@@ -107,7 +128,7 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
 
-            if (isOnWall && movingAwayFromWallStamp < wallUnstickTime)
+            if (isOnWall && movingAwayFromWallStamp < wallUnstickTime) // on wall
             {
                 wantedVelocity *= new Vector2(0, 1);
             }
@@ -117,7 +138,7 @@ public class PlayerMovement : MonoBehaviour
         #endregion
 
         #region Jump
-        if (mayJump > 0 && moveVerticalRaw > 0)// && !isTouchingAnyWall)
+        if (mayJump > 0 && moveVerticalRaw > 0 && Vector2.Distance(lastGroundedPosition, transform.position) < maxCoyoteJumpDistance)// && !isTouchingAnyWall)
         {
             rb.velocity = new Vector2(rb.velocity.x, moveVerticalRaw * jumpHeight);//rb.velocity * new Vector2(1, 0) + (new Vector2(0, moveVerticalRaw) * jumpHeight);
             mayJump = 0;
