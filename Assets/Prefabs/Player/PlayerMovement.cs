@@ -47,8 +47,9 @@ public class PlayerMovement : MonoBehaviour
 
     Vector2 lastVerticalVelocity = new Vector2(0, 0);
 
+    float jumpKeyPressedStamp = 0;
     bool isMovingTowardsWall = false;
-    bool jumpKeyWasDown = false;
+    bool wallJumpKeyPressed = false;
     bool didJumpOffWallRecently = false;
 
     float mayJump = 0; 
@@ -140,11 +141,11 @@ public class PlayerMovement : MonoBehaviour
         }
         #endregion
 
-        Debug.Log(mayJump); 
         #region Jump
-        if (mayJump > 0 && moveVerticalRaw > 0 && Vector2.Distance(lastGroundedPosition, transform.position) < maxCoyoteJumpDistance)// && !isTouchingAnyWall)
+        if ((mayJump > 0 && jumpKeyPressedStamp > 0 && Vector2.Distance(lastGroundedPosition, transform.position) < maxCoyoteJumpDistance)
+            || isGrounded && jumpKeyPressedStamp > 0)// && !isTouchingAnyWall)
         {
-            rb.velocity = new Vector2(rb.velocity.x, moveVerticalRaw * jumpHeight);//rb.velocity * new Vector2(1, 0) + (new Vector2(0, moveVerticalRaw) * jumpHeight);
+            rb.velocity = new Vector2(rb.velocity.x, jumpHeight);//rb.velocity * new Vector2(1, 0) + (new Vector2(0, moveVerticalRaw) * jumpHeight);
             mayJump = 0;
         }
         #endregion
@@ -175,7 +176,7 @@ public class PlayerMovement : MonoBehaviour
         #endregion
 
         #region Wall jumping
-        if (mayWallJump > 0 && jumpKeyWasDown && !isGrounded) // Wall jump
+        if (mayWallJump > 0 && wallJumpKeyPressed && !isGrounded) // Wall jump
         {
             var wallJumpXVelocity = IsTouchingLeftWall() == true ? wallJumpVelocity.x : -wallJumpVelocity.x;
             if (mayWallJump != wallJumpCoyoteTime)
@@ -184,7 +185,7 @@ public class PlayerMovement : MonoBehaviour
             }
             
             rb.velocity = new Vector2(wallJumpXVelocity, wallJumpVelocity.y);
-            jumpKeyWasDown = false;
+            wallJumpKeyPressed = false;
             didJumpOffWallRecently = true;
             Invoke("SetJumpedOffWallToFalse", wallJumpMoveDelay);
             mayWallJump = 0;
@@ -194,6 +195,7 @@ public class PlayerMovement : MonoBehaviour
         UpdateParticles(moveHorizontalRaw);
         UpdateAnimation(moveHorizontal);
 
+        jumpKeyPressedStamp -= Time.deltaTime / Time.timeScale;
         mayJump -= Time.deltaTime / Time.timeScale;
         mayWallJump -= Time.deltaTime / Time.timeScale;
         lastVerticalVelocity = rb.velocity;
@@ -284,7 +286,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void LateUpdate()
     {
-        if ((IsTouchingAnyWall() || mayWallJump > 0) && Input.GetButtonDown("Vertical")) jumpKeyWasDown = true;
+        if ((IsTouchingAnyWall() || mayWallJump > 0) && Input.GetButtonDown("Vertical")) wallJumpKeyPressed = true;
+        if (Input.GetButtonDown("Vertical")) jumpKeyPressedStamp = 0.2f; ;
+        
     }
 
     bool IsGrounded() {
