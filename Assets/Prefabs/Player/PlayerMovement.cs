@@ -7,10 +7,16 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public int walkSpeed = 20;
+    [Tooltip("The lerp value to move to wanted velocity each frame")]
+    public float velocityLerpValue = 0.4f;
+    public LayerMask ignoreRaycastLayers;
 
     [Header("Jump Settings")]
     public float jumpCoyoteTime = 0.1f;
     public int jumpHeight = 50;
+
+    [Tooltip("The max distance from the last platform that the player is allowed to be from to coyote jump")]
+    public float maxCoyoteJumpDistance = 2f;
 
     [Header("Grabity Settings")]
     public float maxFallSpeed = 100;
@@ -23,9 +29,6 @@ public class PlayerMovement : MonoBehaviour
 
     [InspectorName("Coyote Time")]
     public float wallJumpCoyoteTime = 0.2f;
-
-    [Tooltip("The max distance from the last platform that the player is allowed to be from to coyote jump")]
-    public float maxCoyoteJumpDistance = 2f;
 
     [InspectorName("Move Delay after Jump")]
     [Tooltip("The time it takes before you can control your character again after a wall jump")]
@@ -133,10 +136,11 @@ public class PlayerMovement : MonoBehaviour
                 wantedVelocity *= new Vector2(0, 1);
             }
 
-            rb.velocity = Vector2.Lerp(rb.velocity, wantedVelocity, 0.4f);
+            rb.velocity = Vector2.Lerp(rb.velocity, wantedVelocity, velocityLerpValue);
         }
         #endregion
 
+        Debug.Log(mayJump); 
         #region Jump
         if (mayJump > 0 && moveVerticalRaw > 0 && Vector2.Distance(lastGroundedPosition, transform.position) < maxCoyoteJumpDistance)// && !isTouchingAnyWall)
         {
@@ -285,19 +289,19 @@ public class PlayerMovement : MonoBehaviour
 
     bool IsGrounded() {
         //return Physics2D.Raycast(transform.position, -Vector2.up, distToGround + 0.1f).collider != null;
-        return Physics2D.BoxCast(transform.position, new Vector2(1.9f, 0.05f), 0, -Vector2.up, 0, ~LayerMask.NameToLayer("Hitbox")).collider != null;
+        return Physics2D.BoxCast(transform.position, new Vector2(1.9f, 0.05f), 0, -Vector2.up, 0, ~ignoreRaycastLayers).collider != null;
     }
 
     bool IsTouchingRightWall()
     {
         //return Physics2D.Raycast(transform.position, -Vector2.up, distToGround + 0.1f).collider != null;
-        return Physics2D.BoxCast(transform.position + new Vector3(1, 1, 0), new Vector2(0.05f, 1.8f), 0, Vector2.right, 0, ~LayerMask.NameToLayer("Hitbox")).collider != null;
+        return Physics2D.BoxCast(transform.position + new Vector3(1, 1, 0), new Vector2(0.05f, 1.8f), 0, Vector2.right, 0, ~ignoreRaycastLayers).collider != null;
     }
 
     bool IsTouchingLeftWall()
     {
         //return Physics2D.Raycast(transform.position, -Vector2.up, distToGround + 0.1f).collider != null;
-        return Physics2D.BoxCast(transform.position + new Vector3(-1, 1, 0), new Vector2(0.05f, 1.8f), 0, Vector2.right, 0, ~LayerMask.NameToLayer("Hitbox")).collider != null;
+        return Physics2D.BoxCast(transform.position + new Vector3(-1, 1, 0), new Vector2(0.05f, 1.8f), 0, Vector2.right, 0, ~ignoreRaycastLayers).collider != null;
     }
 
     bool IsTouchingAnyWall()

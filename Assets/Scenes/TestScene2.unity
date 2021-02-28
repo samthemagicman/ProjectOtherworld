@@ -28845,6 +28845,10 @@ PrefabInstance:
       propertyPath: maxCoyoteJumpDistance
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4572557801684133970, guid: ff9efa1e18c72b448bf23c06542eabe5, type: 3}
+      propertyPath: ignoreRaycastLayers.m_Bits
+      value: 196
+      objectReference: {fileID: 0}
     - target: {fileID: 4572557801684133971, guid: ff9efa1e18c72b448bf23c06542eabe5, type: 3}
       propertyPath: m_RootOrder
       value: 2
