@@ -16,13 +16,24 @@ MonoBehaviour:
     m_Keys:
     - Assets/Editor/GridSnapping.cs
     - Assets/Prefabs/DimensionSwapping/DimensionPreviewMaterial.mat
+    - Assets/Prefabs/Player/Player.prefab
     - Assets/Prefabs/Player/PlayerMovement.cs
+    - Assets/Prefabs/Respawn.meta
+    - Assets/Prefabs/Respawn/Checkpoint.cs
+    - Assets/Prefabs/Respawn/Checkpoint.cs.meta
+    - Assets/Prefabs/Respawn/Checkpoint.prefab
+    - Assets/Prefabs/Respawn/Checkpoint.prefab.meta
+    - Assets/Prefabs/Respawn/Handler.cs
+    - Assets/Prefabs/Respawn/Handler.cs.meta
+    - Assets/Prefabs/Respawn/Handler.prefab
+    - Assets/Prefabs/Respawn/Handler.prefab.meta
     - Assets/Scenes/TestScene2.unity
     - Assets/Scripts/KillPlayerOnTouch.cs
+    - Assets/Scripts/Respawn.meta
     - ProjectSettings/Physics2DSettings.asset
     - ProjectSettings/TagManager.asset
     - 
-    m_Values: 0000000000000000
+    m_Values: 00000000000000000000000000000000000000
   RevisionSummary: 
   ChangesSearchValue: 
   SelectedHistoryRevision: 
