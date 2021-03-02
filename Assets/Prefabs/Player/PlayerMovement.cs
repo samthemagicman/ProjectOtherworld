@@ -58,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
     float movingAwayFromWallStamp = 0;
     float startedMovingTimeStamp = 0;
 
-    Vector2 lastGroundedPosition;
+    public static Vector2 lastGroundedPosition;
 
     private void Start()
     {
