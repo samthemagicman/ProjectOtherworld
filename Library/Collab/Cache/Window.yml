@@ -14,8 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SimpleSelectedItems:
     m_Keys:
+    - Assets/Attack.cs
+    - Assets/Attack.cs.meta
+    - Assets/AttackHitbox.prefab
+    - Assets/AttackHitbox.prefab.meta
+    - Assets/DummyDamage.anim
+    - Assets/DummyDamage.anim.meta
     - Assets/Editor/GridSnapping.cs
-    - Assets/Prefabs/DimensionSwapping/DimensionPreviewMaterial.mat
+    - Assets/Prefabs/Player/Attack.meta
+    - Assets/Prefabs/Player/Attack/AttackDebugVisual.prefab
+    - Assets/Prefabs/Player/Attack/AttackDebugVisual.prefab.meta
     - Assets/Prefabs/Player/Player.prefab
     - Assets/Prefabs/Player/PlayerMovement.cs
     - Assets/Prefabs/Respawn.meta
@@ -28,12 +36,22 @@ MonoBehaviour:
     - Assets/Prefabs/Respawn/Handler.prefab
     - Assets/Prefabs/Respawn/Handler.prefab.meta
     - Assets/Scenes/TestScene2.unity
+    - Assets/Scripts/Enemy.cs
+    - Assets/Scripts/Enemy.cs.meta
+    - Assets/Scripts/Interface.meta
+    - Assets/Scripts/Interface/IDamageable.cs
+    - Assets/Scripts/Interface/IDamageable.cs.meta
     - Assets/Scripts/KillPlayerOnTouch.cs
     - Assets/Scripts/Respawn.meta
+    - Assets/Sprites/dummy.png
+    - Assets/Sprites/dummy.png.meta
+    - Assets/dummy.controller
+    - Assets/dummy.controller.meta
+    - ProjectSettings/InputManager.asset
     - ProjectSettings/Physics2DSettings.asset
     - ProjectSettings/TagManager.asset
     - 
-    m_Values: 00000000000000000000000000000000000000
+    m_Values: 00000000000000000000000000000000000000000000000000000000000000000000000000
   RevisionSummary: 
   ChangesSearchValue: 
   SelectedHistoryRevision: 

@@ -286,8 +286,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void LateUpdate()
     {
-        if ((IsTouchingAnyWall() || mayWallJump > 0) && Input.GetButtonDown("Vertical")) wallJumpKeyPressed = true;
-        if (Input.GetButtonDown("Vertical")) jumpKeyPressedStamp = 0.2f; ;
+        if ((IsTouchingAnyWall() || mayWallJump > 0) && Input.GetButtonDown("Jump")) wallJumpKeyPressed = true;
+        if (Input.GetButtonDown("Jump")) jumpKeyPressedStamp = 0.2f; ;
         
     }
 

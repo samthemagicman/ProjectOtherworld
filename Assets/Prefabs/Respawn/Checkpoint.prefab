@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1971348477591933597}
   - component: {fileID: 1971348477591933594}
   m_Layer: 11
-  m_Name: RespawnCheckpoint
+  m_Name: Checkpoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8433df7d955af2a40bfd05d790886085, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  checkpointType: 0
   ignoreLayers:
     serializedVersion: 2
     m_Bits: 2112
@@ -115,7 +116,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 40119a0ac8214c242acd0a2f14078e17, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.74509805, g: 0.32156864, b: 0.33333334, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

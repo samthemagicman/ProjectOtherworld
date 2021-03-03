@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 846245431338492479}
   - component: {fileID: 846245431338492476}
   m_Layer: 0
-  m_Name: RespawnHandler
+  m_Name: Handler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

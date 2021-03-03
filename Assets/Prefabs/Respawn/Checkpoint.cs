@@ -30,6 +30,17 @@ namespace Player.Respawn
             RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, Mathf.Infinity, ~ignoreLayers, -Mathf.Infinity, Mathf.Infinity);
             respawnPosition = hit.point;
         }
+        private void OnValidate()
+        {
+            if (checkpointType == CheckpointType.CheckpointPosition)
+            {
+                GetComponent<SpriteRenderer>().color = new Color32(85, 82, 190, 255);
+            }
+            else
+            {
+                GetComponent<SpriteRenderer>().color = new Color32(190, 82, 85, 255);
+            }
+        }
     }
 
 }
