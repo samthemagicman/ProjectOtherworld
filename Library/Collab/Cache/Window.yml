@@ -26,6 +26,10 @@ MonoBehaviour:
     - Assets/FlyingMovement2.cs
     - Assets/FlyingMovement2.cs.meta
     - Assets/Parrot.meta
+    - Assets/Parrot/Attacking.anim
+    - Assets/Parrot/Attacking.anim.meta
+    - Assets/Parrot/AttackingLeft.anim
+    - Assets/Parrot/AttackingLeft.anim.meta
     - Assets/Parrot/Damaged.anim
     - Assets/Parrot/Damaged.anim.meta
     - Assets/Parrot/Flying.anim
@@ -76,7 +80,7 @@ MonoBehaviour:
     - ProjectSettings/Physics2DSettings.asset
     - ProjectSettings/TagManager.asset
     - 
-    m_Values: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+    m_Values: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   RevisionSummary: 
   ChangesSearchValue: 
   SelectedHistoryRevision: 

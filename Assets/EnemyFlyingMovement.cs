@@ -76,6 +76,11 @@ public class EnemyFlyingMovement : MonoBehaviour
         }
     }
 
+    private void LateUpdate()
+    {
+        animator.SetBool("Flipped", renderer.flipX);
+    }
+
     void SetKnockbackToFalse()
     {
         knockback = false;
@@ -83,13 +88,14 @@ public class EnemyFlyingMovement : MonoBehaviour
 
     void SetAttackingToFalse()
     {
+        animator.SetBool("Attacking", false);
         attacking = false;
-
         Invoke("SetAttackingToTrue", Random.Range(2, 5));
     }
 
     void SetAttackingToTrue()
     {
+        animator.SetBool("Attacking", true);
         attacking = true;
         Invoke("SetAttackingToFalse", 3f);
     }

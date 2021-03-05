@@ -247,6 +247,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 4
+  onDamaged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!95 &26201419
 Animator:
   serializedVersion: 3
@@ -29390,6 +29393,7 @@ GameObject:
   - component: {fileID: 1174867799}
   - component: {fileID: 1174867802}
   - component: {fileID: 1174867801}
+  - component: {fileID: 1174867803}
   m_Layer: 0
   m_Name: parrot_0
   m_TagString: Untagged
@@ -29494,6 +29498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerDetectionRadius: 25
+  speed: 15
 --- !u!114 &1174867800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29507,6 +29512,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 4
+  onDamaged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!50 &1174867801
 Rigidbody2D:
   serializedVersion: 4
@@ -29554,6 +29562,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4, y: 3.45}
   m_EdgeRadius: 0
+--- !u!114 &1174867803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1174867795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03bc2009a7d9e15408797ce5a316c005, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dimension: 0
+  startingMaterial: {fileID: 0}
 --- !u!1 &1185624043
 GameObject:
   m_ObjectHideFlags: 0
