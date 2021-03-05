@@ -21,6 +21,24 @@ MonoBehaviour:
     - Assets/DummyDamage.anim
     - Assets/DummyDamage.anim.meta
     - Assets/Editor/GridSnapping.cs
+    - Assets/EnemyFlyingMovement.cs
+    - Assets/EnemyFlyingMovement.cs.meta
+    - Assets/FlyingMovement2.cs
+    - Assets/FlyingMovement2.cs.meta
+    - Assets/Parrot.meta
+    - Assets/Parrot/Damaged.anim
+    - Assets/Parrot/Damaged.anim.meta
+    - Assets/Parrot/Flying.anim
+    - Assets/Parrot/Flying.anim.meta
+    - Assets/Parrot/MovingLeft.anim
+    - Assets/Parrot/MovingLeft.anim.meta
+    - Assets/Parrot/MovingRight.anim
+    - Assets/Parrot/MovingRight.anim.meta
+    - Assets/Parrot/parrot.png
+    - Assets/Parrot/parrot.png.meta
+    - Assets/Parrot/parrot_0.controller
+    - Assets/Parrot/parrot_0.controller.meta
+    - Assets/Prefabs/DimensionSwapping/DimensionPreviewMaterial.mat
     - Assets/Prefabs/Player/Attack.meta
     - Assets/Prefabs/Player/Attack/AttackDebugVisual.prefab
     - Assets/Prefabs/Player/Attack/AttackDebugVisual.prefab.meta
@@ -47,11 +65,18 @@ MonoBehaviour:
     - Assets/Sprites/dummy.png.meta
     - Assets/dummy.controller
     - Assets/dummy.controller.meta
+    - Assets/parrot.meta
+    - Assets/parrot/ParrotAnimation.anim
+    - Assets/parrot/ParrotAnimation.anim.meta
+    - Assets/parrot/parrot.png
+    - Assets/parrot/parrot.png.meta
+    - Assets/parrot/parrot_0.controller
+    - Assets/parrot/parrot_0.controller.meta
     - ProjectSettings/InputManager.asset
     - ProjectSettings/Physics2DSettings.asset
     - ProjectSettings/TagManager.asset
     - 
-    m_Values: 00000000000000000000000000000000000000000000000000000000000000000000000000
+    m_Values: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   RevisionSummary: 
   ChangesSearchValue: 
   SelectedHistoryRevision: 

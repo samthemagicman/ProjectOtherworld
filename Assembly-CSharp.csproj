@@ -64,6 +64,7 @@
     <Compile Include="Assets\ThirdPartyPackages\2D_Destruction\Unity-delaunay\geom\Circle.cs" />
     <Compile Include="Assets\Scripts\RopeScripts\SwingingArrow.cs" />
     <Compile Include="Assets\ThirdPartyPackages\2D_Destruction\Unity-delaunay\Delaunay\LR.cs" />
+    <Compile Include="Assets\Scripts\Interface\IDamageable.cs" />
     <Compile Include="Assets\ThirdPartyPackages\2D_Destruction\Unity-delaunay\Delaunay\Vertex.cs" />
     <Compile Include="Assets\ThirdPartyPackages\2D_Destruction\Unity-delaunay\Delaunay\Voronoi.cs" />
     <Compile Include="Assets\ThirdPartyPackages\2D_Destruction\Unity-delaunay\Delaunay\DelaunayHelpers.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="Assets\ThirdPartyPackages\2D_Destruction\Scripts\Explodable.cs" />
     <Compile Include="Assets\ThirdPartyPackages\2D_Destruction\Unity-delaunay\utils\IDisposable.cs" />
     <Compile Include="Assets\Prefabs\Player\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\RopeScripts\RopeCreator.cs" />
     <Compile Include="Assets\ThirdPartyPackages\2D_Destruction\Unity-delaunay\Delaunay\ICoord.cs" />
     <Compile Include="Assets\ThirdPartyPackages\2D_Destruction\Scripts\ClipperHelper.cs" />
@@ -97,8 +99,8 @@
     <Compile Include="Assets\ThirdPartyPackages\2D_Destruction\Scripts\ExplodableFragments.cs" />
     <Compile Include="Assets\ThirdPartyPackages\2D_Destruction\Unity-delaunay\Delaunay\SiteList.cs" />
     <Compile Include="Assets\Scripts\DimensionSwapping.cs" />
-    <Compile Include="Assets\Scripts\Interface\IDamageable.cs" />
-    <Compile Include="Assets\Scripts\Enemy.cs" />
+    <Compile Include="Assets\FlyingMovement2.cs" />
+    <Compile Include="Assets\EnemyFlyingMovement.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\ThirdPartyPackages\Nature_pixel_art_assets\pixel_snapping_README.txt" />
