@@ -16,6 +16,8 @@ MonoBehaviour:
     m_Keys:
     - Assets/Attack.cs
     - Assets/Attack.cs.meta
+    - Assets/AttackHitbox.cs
+    - Assets/AttackHitbox.cs.meta
     - Assets/AttackHitbox.prefab
     - Assets/AttackHitbox.prefab.meta
     - Assets/DummyDamage.anim
@@ -23,6 +25,8 @@ MonoBehaviour:
     - Assets/Editor/GridSnapping.cs
     - Assets/EnemyFlyingMovement.cs
     - Assets/EnemyFlyingMovement.cs.meta
+    - Assets/EnemyGroundMovement.cs
+    - Assets/EnemyGroundMovement.cs.meta
     - Assets/FlyingMovement2.cs
     - Assets/FlyingMovement2.cs.meta
     - Assets/Parrot.meta
@@ -34,6 +38,8 @@ MonoBehaviour:
     - Assets/Parrot/Damaged.anim.meta
     - Assets/Parrot/Flying.anim
     - Assets/Parrot/Flying.anim.meta
+    - Assets/Parrot/FlyingEnemy.prefab
+    - Assets/Parrot/FlyingEnemy.prefab.meta
     - Assets/Parrot/MovingLeft.anim
     - Assets/Parrot/MovingLeft.anim.meta
     - Assets/Parrot/MovingRight.anim
@@ -67,20 +73,174 @@ MonoBehaviour:
     - Assets/Scripts/Respawn.meta
     - Assets/Sprites/dummy.png
     - Assets/Sprites/dummy.png.meta
+    - Assets/codeandweb.com.meta
+    - Assets/codeandweb.com/Editor.meta
+    - Assets/codeandweb.com/Editor/SettingsTexturePackerImporter.txt
+    - Assets/codeandweb.com/Editor/SettingsTexturePackerImporter.txt.meta
+    - Assets/codeandweb.com/Editor/TexturePackerImporter.dll
+    - Assets/codeandweb.com/Editor/TexturePackerImporter.dll.meta
+    - Assets/codeandweb.com/Editor/UIImageSetSizeAndPivot.cs
+    - Assets/codeandweb.com/Editor/UIImageSetSizeAndPivot.cs.meta
+    - Assets/codeandweb.com/Example.meta
+    - Assets/codeandweb.com/Example/Normals.sip
+    - Assets/codeandweb.com/Example/Normals.sip.meta
+    - Assets/codeandweb.com/Example/SpriteSheet.meta
+    - Assets/codeandweb.com/Example/SpriteSheet.tps
+    - Assets/codeandweb.com/Example/SpriteSheet.tps.meta
+    - Assets/codeandweb.com/Example/SpriteSheet/sprites.mat
+    - Assets/codeandweb.com/Example/SpriteSheet/sprites.mat.meta
+    - Assets/codeandweb.com/Example/SpriteSheet/sprites.png
+    - Assets/codeandweb.com/Example/SpriteSheet/sprites.png.meta
+    - Assets/codeandweb.com/Example/SpriteSheet/sprites.tpsheet
+    - Assets/codeandweb.com/Example/SpriteSheet/sprites.tpsheet.meta
+    - Assets/codeandweb.com/Example/SpriteSheet/sprites_n.png
+    - Assets/codeandweb.com/Example/SpriteSheet/sprites_n.png.meta
+    - Assets/codeandweb.com/Example/Sprites.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/turn.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/turn/0001.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/turn/0001.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/turn/0001_n.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/turn/0001_n.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/turn/0002.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/turn/0002.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/turn/0002_n.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/turn/0002_n.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/turn/0003.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/turn/0003.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/turn/0003_n.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/turn/0003_n.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/turn/0004.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/turn/0004.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/turn/0004_n.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/turn/0004_n.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/turn/0005.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/turn/0005.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/turn/0005_n.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/turn/0005_n.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/turn/0006.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/turn/0006.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/turn/0006_n.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/turn/0006_n.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/turn/0007.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/turn/0007.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/turn/0007_n.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/turn/0007_n.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/turn/0008.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/turn/0008.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/turn/0008_n.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/turn/0008_n.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/turn/0009.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/turn/0009.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/turn/0009_n.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/turn/0009_n.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/turn/0010.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/turn/0010.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/turn/0010_n.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/turn/0010_n.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/turn/0011.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/turn/0011.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/turn/0011_n.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/turn/0011_n.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/turn/0012.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/turn/0012.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/turn/0012_n.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/turn/0012_n.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0001.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0001.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0001_n.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0001_n.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0002.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0002.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0002_n.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0002_n.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0003.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0003.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0003_n.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0003_n.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0004.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0004.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0004_n.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0004_n.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0005.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0005.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0005_n.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0005_n.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0006.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0006.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0006_n.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0006_n.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0007.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0007.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0007_n.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0007_n.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0008.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0008.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0008_n.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0008_n.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0009.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0009.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0009_n.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0009_n.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0010.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0010.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0010_n.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0010_n.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0011.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0011.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0011_n.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0011_n.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0012.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0012.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0012_n.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0012_n.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0013.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0013.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0013_n.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0013_n.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0014.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0014.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0014_n.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0014_n.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0015.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0015.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0015_n.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0015_n.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0016.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0016.png.meta
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0016_n.png
+    - Assets/codeandweb.com/Example/Sprites/capguy/walk/0016_n.png.meta
+    - Assets/codeandweb.com/Readme.txt
+    - Assets/codeandweb.com/Readme.txt.meta
     - Assets/dummy.controller
     - Assets/dummy.controller.meta
-    - Assets/parrot.meta
-    - Assets/parrot/ParrotAnimation.anim
-    - Assets/parrot/ParrotAnimation.anim.meta
-    - Assets/parrot/parrot.png
-    - Assets/parrot/parrot.png.meta
-    - Assets/parrot/parrot_0.controller
-    - Assets/parrot/parrot_0.controller.meta
+    - Assets/enemy 1.png
+    - Assets/enemy 1.png.meta
+    - Assets/enemy.meta
+    - Assets/enemy.png
+    - Assets/enemy.png.meta
+    - Assets/enemy/Enemy.png
+    - Assets/enemy/Enemy.png.meta
+    - Assets/enemy/Hurt.anim
+    - Assets/enemy/Hurt.anim.meta
+    - Assets/enemy/Jump.anim
+    - Assets/enemy/Jump.anim.meta
+    - Assets/enemy/PunchLeft.anim
+    - Assets/enemy/PunchLeft.anim.meta
+    - Assets/enemy/PunchRight.anim
+    - Assets/enemy/PunchRight.anim.meta
+    - Assets/enemy/Shrek.controller
+    - Assets/enemy/Shrek.controller.meta
+    - Assets/enemy/Stand.anim
+    - Assets/enemy/Stand.anim.meta
+    - Assets/enemy/Walking.anim
+    - Assets/enemy/Walking.anim.meta
     - ProjectSettings/InputManager.asset
     - ProjectSettings/Physics2DSettings.asset
     - ProjectSettings/TagManager.asset
     - 
-    m_Values: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+    m_Values: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   RevisionSummary: 
   ChangesSearchValue: 
   SelectedHistoryRevision: 

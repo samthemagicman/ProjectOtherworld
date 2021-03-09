@@ -89,21 +89,23 @@ namespace Player
         {
             
             Vector3 v = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-            if (v.x > 0)
-            {
-                return AttackDirection.Right;
-            } else if (v.x < 0)
-            {
-                return AttackDirection.Left;
-            } else if (v.y > 0)
+
+            if (v.y > 0)
             {
                 return AttackDirection.Up;
-            } else if (v.y < -0)
+            }
+            else if (v.y < -0)
             {
                 return AttackDirection.Down;
             }
-
-            else return lastDirection;
+            else if (v.x > 0)
+            {
+                return AttackDirection.Right;
+            }
+            else if (v.x < 0)
+            {
+                return AttackDirection.Left;
+            } else return lastDirection;
         }
 
         public RaycastHit2D[] BoxCast(Vector2 origin, Vector2 size, float angle, Vector2 direction, float distance, int mask)
@@ -115,7 +117,7 @@ namespace Player
                 GameObject vis = Instantiate(attackDebugVisualization);
                 vis.transform.localScale = size + new Vector2(Mathf.Abs(direction.x), Mathf.Abs(direction.y)) * distance;
                 vis.transform.position = new Vector3(origin.x, origin.y) + new Vector3(direction.x * ((vis.transform.localScale.x - size.x) / 2), direction.y * ((vis.transform.localScale.y - size.y) / 2));
-                Destroy(vis, 2);
+                Destroy(vis, 0.2f);
             }
 
             //Setting up the points to draw the cast

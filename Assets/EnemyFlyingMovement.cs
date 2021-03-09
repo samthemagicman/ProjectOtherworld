@@ -108,6 +108,7 @@ public class EnemyFlyingMovement : MonoBehaviour
             return;
         }
 
+
         if (player != null)
         {
             Vector3 playerPosition = player.transform.position;

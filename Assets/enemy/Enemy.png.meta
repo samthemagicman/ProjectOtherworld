@@ -1,0 +1,2316 @@
+fileFormatVersion: 2
+guid: b11a4108e193ab84b98288f04b250a99
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6046828384441935014
+    second: Hurt-0
+  - first:
+      213: 3171830376706374202
+    second: Hurt-1
+  - first:
+      213: 426029363106915954
+    second: Hurt-2
+  - first:
+      213: -8244448249418124512
+    second: Hurt-3
+  - first:
+      213: -7255270115856209132
+    second: Hurt-4
+  - first:
+      213: -7388854507455844185
+    second: Hurt-5
+  - first:
+      213: -194962463301509155
+    second: Hurt-6
+  - first:
+      213: -3958949632100629169
+    second: Hurt-7
+  - first:
+      213: -1243529707916305903
+    second: Jump-0
+  - first:
+      213: -8234176134230134083
+    second: Jump-1
+  - first:
+      213: -2841757803248233459
+    second: Jump-2
+  - first:
+      213: -3588185368936792009
+    second: Jump-3
+  - first:
+      213: 6623258944664142850
+    second: Jump-4
+  - first:
+      213: 8097105759310328448
+    second: Jump-5
+  - first:
+      213: 7953928946964098586
+    second: Jump-6
+  - first:
+      213: -4497205108647159820
+    second: Jump-7
+  - first:
+      213: -7867535232763747514
+    second: Jump-8
+  - first:
+      213: -4709316176980820602
+    second: Jump-9
+  - first:
+      213: -2880469239224568183
+    second: PunchLeft-0
+  - first:
+      213: -2719369917010341246
+    second: PunchLeft-1
+  - first:
+      213: -7658594975036867613
+    second: PunchLeft-2
+  - first:
+      213: -6442950129255636598
+    second: PunchLeft-3
+  - first:
+      213: -8593734724196846658
+    second: PunchLeft-4
+  - first:
+      213: 6625240397833351406
+    second: PunchLeft-5
+  - first:
+      213: 4295627836967986451
+    second: PunchLeft-6
+  - first:
+      213: -329702006413517025
+    second: PunchRight-0
+  - first:
+      213: -8219965403765828632
+    second: PunchRight-1
+  - first:
+      213: -8755861022030410012
+    second: PunchRight-2
+  - first:
+      213: 8687572241889185095
+    second: PunchRight-3
+  - first:
+      213: -3615872636010453572
+    second: PunchRight-4
+  - first:
+      213: 5497600201458863582
+    second: PunchRight-5
+  - first:
+      213: 8814281064824429825
+    second: PunchRight-6
+  - first:
+      213: -2186648398525983557
+    second: Scratching-0
+  - first:
+      213: -7543878308630493836
+    second: Scratching-1
+  - first:
+      213: -2301319206321142908
+    second: Scratching-2
+  - first:
+      213: 8531943559233864227
+    second: Scratching-3
+  - first:
+      213: -535009874739888890
+    second: Scratching-4
+  - first:
+      213: -5460631550488488655
+    second: Scratching-5
+  - first:
+      213: 7947082650444628890
+    second: Scratching-6
+  - first:
+      213: -6734365031998319294
+    second: Scratching-7
+  - first:
+      213: -6541238692260630512
+    second: Scratching-8
+  - first:
+      213: 9105340279270950130
+    second: Scratching-9
+  - first:
+      213: -4796489142766583695
+    second: Scratching-10
+  - first:
+      213: -712963375473077976
+    second: Scratching-11
+  - first:
+      213: 5058691058272584332
+    second: Scratching-12
+  - first:
+      213: -7236501295994123906
+    second: Scratching-13
+  - first:
+      213: -7526330415163636783
+    second: Scratching-14
+  - first:
+      213: 7674370826787702633
+    second: Scratching-15
+  - first:
+      213: 2229008297370517995
+    second: Scratching-16
+  - first:
+      213: 3909870729631975144
+    second: Scratching-17
+  - first:
+      213: -1500163286739945489
+    second: Scratching-18
+  - first:
+      213: -3259037081856954787
+    second: Scratching-19
+  - first:
+      213: 3183167227714354217
+    second: Scratching-20
+  - first:
+      213: 463824931264412706
+    second: Scratching-21
+  - first:
+      213: 2830790900504394429
+    second: Scratching-22
+  - first:
+      213: -3750200124333181157
+    second: Scratching-23
+  - first:
+      213: 7008075732172461974
+    second: Scratching-24
+  - first:
+      213: -1834872388152948770
+    second: Scratching-25
+  - first:
+      213: 4816392002845346303
+    second: Scratching-26
+  - first:
+      213: 875313191369162361
+    second: Scratching-27
+  - first:
+      213: 7755770066045230523
+    second: Scratching-28
+  - first:
+      213: -5492366971228036057
+    second: Stand-0
+  - first:
+      213: -4578081927612686526
+    second: Stand-1
+  - first:
+      213: -1091076655097950267
+    second: Stand-2
+  - first:
+      213: 7531669495712403126
+    second: Stand-3
+  - first:
+      213: -5160718976899879557
+    second: Stand-4
+  - first:
+      213: -8240360766385670766
+    second: Stand-5
+  - first:
+      213: -6674186871458358226
+    second: Stand-6
+  - first:
+      213: 707561503989093976
+    second: Stand-7
+  - first:
+      213: 1160517840806083638
+    second: Stand-8
+  - first:
+      213: 9169914373404022196
+    second: Stand-9
+  - first:
+      213: 58183784277406196
+    second: Stand-10
+  - first:
+      213: 1279556662190106391
+    second: Stand-11
+  - first:
+      213: 8214838894066054117
+    second: Stand-12
+  - first:
+      213: -6731906761360325722
+    second: Stand-13
+  - first:
+      213: 7674285890430174214
+    second: Stand-14
+  - first:
+      213: -3152959863624704647
+    second: Walking-0
+  - first:
+      213: -1938024694107876135
+    second: Walking-1
+  - first:
+      213: 2666562779663746937
+    second: Walking-2
+  - first:
+      213: 794965404833770418
+    second: Walking-3
+  - first:
+      213: 6302989128332363937
+    second: Walking-4
+  - first:
+      213: -5608216735604973442
+    second: Walking-5
+  - first:
+      213: -9071641772613651427
+    second: Walking-6
+  - first:
+      213: 5423913710849326533
+    second: Walking-7
+  - first:
+      213: 4716757747811492498
+    second: Walking-8
+  - first:
+      213: -6630337151108377496
+    second: Walking-9
+  - first:
+      213: -2026972920317562541
+    second: Walking-10
+  - first:
+      213: -8323271072412980575
+    second: Walking-11
+  - first:
+      213: 805395462899306929
+    second: Walking-12
+  - first:
+      213: -4999971139939251669
+    second: Walking-13
+  - first:
+      213: -1260031037287540164
+    second: Walking-14
+  - first:
+      213: -6396626054380583508
+    second: Walking-15
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Hurt-0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 78
+        width: 24
+        height: 50
+      alignment: 9
+      pivot: {x: 0.5833334, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5bd69f2f99551ca0800000000000000
+      internalID: -6046828384441935014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hurt-1
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 78
+        width: 27
+        height: 50
+      alignment: 9
+      pivot: {x: 0.6296296, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3a706b2cea940c20800000000000000
+      internalID: 3171830376706374202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hurt-2
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 78
+        width: 31
+        height: 50
+      alignment: 9
+      pivot: {x: 0.54838705, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 276afd3d27f89e500800000000000000
+      internalID: 426029363106915954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hurt-3
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 77
+        width: 28
+        height: 51
+      alignment: 9
+      pivot: {x: 0.60714287, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02377548ff5d59d80800000000000000
+      internalID: -8244448249418124512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hurt-4
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 76
+        width: 24
+        height: 52
+      alignment: 9
+      pivot: {x: 0.625, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41b22ea054a105b90800000000000000
+      internalID: -7255270115856209132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hurt-5
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 76
+        width: 22
+        height: 52
+      alignment: 9
+      pivot: {x: 0.6363636, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a0fc0a29f3857990800000000000000
+      internalID: -7388854507455844185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hurt-6
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 77
+        width: 19
+        height: 51
+      alignment: 9
+      pivot: {x: 0.57894737, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ddfd06e2caa5b4df0800000000000000
+      internalID: -194962463301509155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hurt-7
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 78
+        width: 22
+        height: 50
+      alignment: 9
+      pivot: {x: 0.54545456, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f458af6f84cfe09c0800000000000000
+      internalID: -3958949632100629169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jump-0
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 80
+        width: 26
+        height: 48
+      alignment: 9
+      pivot: {x: 0.53846157, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11ad004b1581ebee0800000000000000
+      internalID: -1243529707916305903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jump-1
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 83
+        width: 29
+        height: 45
+      alignment: 9
+      pivot: {x: 0.55172414, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db2b635be645abd80800000000000000
+      internalID: -8234176134230134083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jump-2
+      rect:
+        serializedVersion: 2
+        x: 430
+        y: 75
+        width: 34
+        height: 53
+      alignment: 9
+      pivot: {x: 0.5588235, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d04d1bf855c0098d0800000000000000
+      internalID: -2841757803248233459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jump-3
+      rect:
+        serializedVersion: 2
+        x: 473
+        y: 77
+        width: 37
+        height: 51
+      alignment: 9
+      pivot: {x: 0.5405406, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 730c4400b64343ec0800000000000000
+      internalID: -3588185368936792009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jump-4
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 77
+        width: 39
+        height: 51
+      alignment: 9
+      pivot: {x: 0.5641026, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 204822c2bea8aeb50800000000000000
+      internalID: 6623258944664142850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jump-5
+      rect:
+        serializedVersion: 2
+        x: 559
+        y: 77
+        width: 41
+        height: 51
+      alignment: 9
+      pivot: {x: 0.58536583, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 082367ca9c2be5070800000000000000
+      internalID: 8097105759310328448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jump-6
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 82
+        width: 37
+        height: 46
+      alignment: 9
+      pivot: {x: 0.5945946, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1eed7c4c38026e60800000000000000
+      internalID: 7953928946964098586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jump-7
+      rect:
+        serializedVersion: 2
+        x: 645
+        y: 84
+        width: 31
+        height: 44
+      alignment: 9
+      pivot: {x: 0.58064514, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f79309e7c7b691c0800000000000000
+      internalID: -4497205108647159820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jump-8
+      rect:
+        serializedVersion: 2
+        x: 688
+        y: 81
+        width: 23
+        height: 47
+      alignment: 9
+      pivot: {x: 0.5217391, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6432f39c366e0d290800000000000000
+      internalID: -7867535232763747514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jump-9
+      rect:
+        serializedVersion: 2
+        x: 731
+        y: 78
+        width: 22
+        height: 50
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68dbe0853e525aeb0800000000000000
+      internalID: -4709316176980820602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PunchLeft-0
+      rect:
+        serializedVersion: 2
+        x: 774
+        y: 81
+        width: 28
+        height: 47
+      alignment: 9
+      pivot: {x: 0.42857146, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98674910d748608d0800000000000000
+      internalID: -2880469239224568183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PunchLeft-1
+      rect:
+        serializedVersion: 2
+        x: 817
+        y: 81
+        width: 25
+        height: 47
+      alignment: 9
+      pivot: {x: 0.44, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28217b3e77bd24ad0800000000000000
+      internalID: -2719369917010341246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PunchLeft-2
+      rect:
+        serializedVersion: 2
+        x: 860
+        y: 86
+        width: 43
+        height: 42
+      alignment: 9
+      pivot: {x: 0.25581396, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ebf55a727437b590800000000000000
+      internalID: -7658594975036867613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PunchLeft-3
+      rect:
+        serializedVersion: 2
+        x: 903
+        y: 84
+        width: 36
+        height: 44
+      alignment: 9
+      pivot: {x: 0.3611111, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8129206efa0696a0800000000000000
+      internalID: -6442950129255636598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PunchLeft-4
+      rect:
+        serializedVersion: 2
+        x: 946
+        y: 82
+        width: 34
+        height: 46
+      alignment: 9
+      pivot: {x: 0.47058824, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb3be46cccbecb880800000000000000
+      internalID: -8593734724196846658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PunchLeft-5
+      rect:
+        serializedVersion: 2
+        x: 989
+        y: 81
+        width: 29
+        height: 47
+      alignment: 9
+      pivot: {x: 0.55172414, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee0bc603a0591fb50800000000000000
+      internalID: 6625240397833351406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PunchLeft-6
+      rect:
+        serializedVersion: 2
+        x: 1032
+        y: 78
+        width: 22
+        height: 50
+      alignment: 9
+      pivot: {x: 0.5, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 315a1cd22c22d9b30800000000000000
+      internalID: 4295627836967986451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PunchRight-0
+      rect:
+        serializedVersion: 2
+        x: 1075
+        y: 81
+        width: 29
+        height: 47
+      alignment: 9
+      pivot: {x: 0.55172414, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1f1df1a5c9ac6bf0800000000000000
+      internalID: -329702006413517025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PunchRight-1
+      rect:
+        serializedVersion: 2
+        x: 1118
+        y: 81
+        width: 24
+        height: 47
+      alignment: 9
+      pivot: {x: 0.45833334, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e3998a3401dced80800000000000000
+      internalID: -8219965403765828632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PunchRight-2
+      rect:
+        serializedVersion: 2
+        x: 1161
+        y: 82
+        width: 42
+        height: 46
+      alignment: 9
+      pivot: {x: 0.1904762, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ee403f7aceec7680800000000000000
+      internalID: -8755861022030410012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PunchRight-3
+      rect:
+        serializedVersion: 2
+        x: 1204
+        y: 83
+        width: 29
+        height: 45
+      alignment: 9
+      pivot: {x: 0.2413793, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74d495edce4709870800000000000000
+      internalID: 8687572241889185095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PunchRight-4
+      rect:
+        serializedVersion: 2
+        x: 1247
+        y: 82
+        width: 23
+        height: 46
+      alignment: 9
+      pivot: {x: 0.43478262, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb5aa89cef6d1ddc0800000000000000
+      internalID: -3615872636010453572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PunchRight-5
+      rect:
+        serializedVersion: 2
+        x: 1290
+        y: 80
+        width: 30
+        height: 48
+      alignment: 9
+      pivot: {x: 0.53333336, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: edd421571466b4c40800000000000000
+      internalID: 5497600201458863582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PunchRight-6
+      rect:
+        serializedVersion: 2
+        x: 1333
+        y: 78
+        width: 22
+        height: 50
+      alignment: 9
+      pivot: {x: 0.5, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10ddf4baded925a70800000000000000
+      internalID: 8814281064824429825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Scratching-0
+      rect:
+        serializedVersion: 2
+        x: 1376
+        y: 77
+        width: 28
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb49e2dedd677a1e0800000000000000
+      internalID: -2186648398525983557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Scratching-1
+      rect:
+        serializedVersion: 2
+        x: 1419
+        y: 77
+        width: 30
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4750e41c5a2ce4790800000000000000
+      internalID: -7543878308630493836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Scratching-2
+      rect:
+        serializedVersion: 2
+        x: 1462
+        y: 77
+        width: 29
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 483c170ff521010e0800000000000000
+      internalID: -2301319206321142908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Scratching-3
+      rect:
+        serializedVersion: 2
+        x: 1505
+        y: 77
+        width: 29
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32201d3867d876670800000000000000
+      internalID: 8531943559233864227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Scratching-4
+      rect:
+        serializedVersion: 2
+        x: 1548
+        y: 77
+        width: 30
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60d7dc08a534398f0800000000000000
+      internalID: -535009874739888890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Scratching-5
+      rect:
+        serializedVersion: 2
+        x: 1591
+        y: 77
+        width: 31
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 135d7d75980f734b0800000000000000
+      internalID: -5460631550488488655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Scratching-6
+      rect:
+        serializedVersion: 2
+        x: 1634
+        y: 77
+        width: 30
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a930c6ca095b94e60800000000000000
+      internalID: 7947082650444628890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Scratching-7
+      rect:
+        serializedVersion: 2
+        x: 1677
+        y: 77
+        width: 31
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2459deffeaaba82a0800000000000000
+      internalID: -6734365031998319294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Scratching-8
+      rect:
+        serializedVersion: 2
+        x: 1720
+        y: 77
+        width: 31
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 010b3ccf01ad835a0800000000000000
+      internalID: -6541238692260630512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Scratching-9
+      rect:
+        serializedVersion: 2
+        x: 1763
+        y: 77
+        width: 32
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f44009edbaac5e70800000000000000
+      internalID: 9105340279270950130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Scratching-10
+      rect:
+        serializedVersion: 2
+        x: 1806
+        y: 77
+        width: 32
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 170416c99827f6db0800000000000000
+      internalID: -4796489142766583695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Scratching-11
+      rect:
+        serializedVersion: 2
+        x: 1849
+        y: 77
+        width: 33
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8215013669b0b16f0800000000000000
+      internalID: -712963375473077976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Scratching-12
+      rect:
+        serializedVersion: 2
+        x: 1892
+        y: 77
+        width: 29
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8248c427b4143640800000000000000
+      internalID: 5058691058272584332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Scratching-13
+      rect:
+        serializedVersion: 2
+        x: 1935
+        y: 77
+        width: 24
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e79cd937968c29b90800000000000000
+      internalID: -7236501295994123906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Scratching-14
+      rect:
+        serializedVersion: 2
+        x: 1978
+        y: 78
+        width: 25
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d304f51d5a1d8790800000000000000
+      internalID: -7526330415163636783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Scratching-15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 25
+        width: 33
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9674d4d3b97d08a60800000000000000
+      internalID: 7674370826787702633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Scratching-16
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 25
+        width: 34
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be10b269c370fee10800000000000000
+      internalID: 2229008297370517995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Scratching-17
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 25
+        width: 34
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e6496596b6a24630800000000000000
+      internalID: 3909870729631975144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Scratching-18
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 25
+        width: 33
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe778cc50795e2be0800000000000000
+      internalID: -1500163286739945489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Scratching-19
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 25
+        width: 34
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5e271a8a0395c2d0800000000000000
+      internalID: -3259037081856954787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Scratching-20
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 25
+        width: 35
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92c349c7ab1ec2c20800000000000000
+      internalID: 3183167227714354217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Scratching-21
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 25
+        width: 35
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22c3cf94156df6600800000000000000
+      internalID: 463824931264412706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Scratching-22
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 25
+        width: 36
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbaf8f9635df84720800000000000000
+      internalID: 2830790900504394429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Scratching-23
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 25
+        width: 38
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b17be783bdc94fbc0800000000000000
+      internalID: -3750200124333181157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Scratching-24
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 25
+        width: 34
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 697dc2f7fbfa14160800000000000000
+      internalID: 7008075732172461974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Scratching-25
+      rect:
+        serializedVersion: 2
+        x: 430
+        y: 25
+        width: 32
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed788f7d8493986e0800000000000000
+      internalID: -1834872388152948770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Scratching-26
+      rect:
+        serializedVersion: 2
+        x: 473
+        y: 25
+        width: 22
+        height: 50
+      alignment: 9
+      pivot: {x: 0.5909091, y: 0.48}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff901ac120347d240800000000000000
+      internalID: 4816392002845346303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Scratching-27
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 25
+        width: 22
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97eb5ceb5bcb52c00800000000000000
+      internalID: 875313191369162361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Scratching-28
+      rect:
+        serializedVersion: 2
+        x: 559
+        y: 26
+        width: 37
+        height: 49
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bbddb3288c702ab60800000000000000
+      internalID: 7755770066045230523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stand-0
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 25
+        width: 22
+        height: 50
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7246dd7e65137c3b0800000000000000
+      internalID: -5492366971228036057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stand-1
+      rect:
+        serializedVersion: 2
+        x: 645
+        y: 25
+        width: 22
+        height: 50
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24f92081eb26770c0800000000000000
+      internalID: -4578081927612686526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stand-2
+      rect:
+        serializedVersion: 2
+        x: 688
+        y: 25
+        width: 22
+        height: 50
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5cf4a2e1097bbd0f0800000000000000
+      internalID: -1091076655097950267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stand-3
+      rect:
+        serializedVersion: 2
+        x: 731
+        y: 25
+        width: 22
+        height: 50
+      alignment: 9
+      pivot: {x: 0.5, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6be4599708dd58860800000000000000
+      internalID: 7531669495712403126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stand-4
+      rect:
+        serializedVersion: 2
+        x: 774
+        y: 25
+        width: 22
+        height: 50
+      alignment: 9
+      pivot: {x: 0.5, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7de344ee617168b0800000000000000
+      internalID: -5160718976899879557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stand-5
+      rect:
+        serializedVersion: 2
+        x: 817
+        y: 25
+        width: 22
+        height: 50
+      alignment: 9
+      pivot: {x: 0.5, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2953482da8b54ad80800000000000000
+      internalID: -8240360766385670766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stand-6
+      rect:
+        serializedVersion: 2
+        x: 860
+        y: 26
+        width: 22
+        height: 49
+      alignment: 9
+      pivot: {x: 0.5, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2c162ad6668063a0800000000000000
+      internalID: -6674186871458358226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stand-7
+      rect:
+        serializedVersion: 2
+        x: 903
+        y: 26
+        width: 22
+        height: 49
+      alignment: 9
+      pivot: {x: 0.5, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 856d2066073c1d900800000000000000
+      internalID: 707561503989093976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stand-8
+      rect:
+        serializedVersion: 2
+        x: 946
+        y: 26
+        width: 23
+        height: 49
+      alignment: 9
+      pivot: {x: 0.47826087, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63cffb8d3dcfa1010800000000000000
+      internalID: 1160517840806083638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stand-9
+      rect:
+        serializedVersion: 2
+        x: 989
+        y: 26
+        width: 23
+        height: 49
+      alignment: 9
+      pivot: {x: 0.47826087, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b5de7fc984124f70800000000000000
+      internalID: 9169914373404022196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stand-10
+      rect:
+        serializedVersion: 2
+        x: 1032
+        y: 26
+        width: 23
+        height: 49
+      alignment: 9
+      pivot: {x: 0.47826087, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f1fa81f7d5bec000800000000000000
+      internalID: 58183784277406196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stand-11
+      rect:
+        serializedVersion: 2
+        x: 1075
+        y: 26
+        width: 23
+        height: 49
+      alignment: 9
+      pivot: {x: 0.47826087, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71763df3106e1c110800000000000000
+      internalID: 1279556662190106391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stand-12
+      rect:
+        serializedVersion: 2
+        x: 1118
+        y: 26
+        width: 23
+        height: 49
+      alignment: 9
+      pivot: {x: 0.47826087, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e3bed73378f00270800000000000000
+      internalID: 8214838894066054117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stand-13
+      rect:
+        serializedVersion: 2
+        x: 1161
+        y: 25
+        width: 23
+        height: 50
+      alignment: 9
+      pivot: {x: 0.47826087, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a3411cb7767392a0800000000000000
+      internalID: -6731906761360325722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stand-14
+      rect:
+        serializedVersion: 2
+        x: 1204
+        y: 25
+        width: 22
+        height: 50
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60402e37b5a808a60800000000000000
+      internalID: 7674285890430174214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walking-0
+      rect:
+        serializedVersion: 2
+        x: 1247
+        y: 25
+        width: 23
+        height: 50
+      alignment: 9
+      pivot: {x: 0.47826087, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97dd59985bf6e34d0800000000000000
+      internalID: -3152959863624704647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walking-1
+      rect:
+        serializedVersion: 2
+        x: 1290
+        y: 25
+        width: 22
+        height: 50
+      alignment: 9
+      pivot: {x: 0.5, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d4d3cd0fc0ca15e0800000000000000
+      internalID: -1938024694107876135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walking-2
+      rect:
+        serializedVersion: 2
+        x: 1333
+        y: 26
+        width: 27
+        height: 49
+      alignment: 9
+      pivot: {x: 0.5185185, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 977c22558b8810520800000000000000
+      internalID: 2666562779663746937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walking-3
+      rect:
+        serializedVersion: 2
+        x: 1376
+        y: 27
+        width: 35
+        height: 48
+      alignment: 9
+      pivot: {x: 0.51428574, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2bb67d3e2d8480b00800000000000000
+      internalID: 794965404833770418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walking-4
+      rect:
+        serializedVersion: 2
+        x: 1419
+        y: 28
+        width: 37
+        height: 47
+      alignment: 9
+      pivot: {x: 0.5405406, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a84661b737b87750800000000000000
+      internalID: 6302989128332363937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walking-5
+      rect:
+        serializedVersion: 2
+        x: 1462
+        y: 28
+        width: 39
+        height: 47
+      alignment: 9
+      pivot: {x: 0.53846157, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e706dd2b79c9b22b0800000000000000
+      internalID: -5608216735604973442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walking-6
+      rect:
+        serializedVersion: 2
+        x: 1505
+        y: 27
+        width: 31
+        height: 48
+      alignment: 9
+      pivot: {x: 0.58064514, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d14b4c51fdd0b1280800000000000000
+      internalID: -9071641772613651427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walking-7
+      rect:
+        serializedVersion: 2
+        x: 1548
+        y: 26
+        width: 24
+        height: 49
+      alignment: 9
+      pivot: {x: 0.5416667, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5cd7b8b68cc954b40800000000000000
+      internalID: 5423913710849326533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walking-8
+      rect:
+        serializedVersion: 2
+        x: 1591
+        y: 25
+        width: 22
+        height: 50
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29220e16e2a457140800000000000000
+      internalID: 4716757747811492498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walking-9
+      rect:
+        serializedVersion: 2
+        x: 1634
+        y: 25
+        width: 24
+        height: 50
+      alignment: 9
+      pivot: {x: 0.5416667, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8641c177d7f4cf3a0800000000000000
+      internalID: -6630337151108377496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walking-10
+      rect:
+        serializedVersion: 2
+        x: 1677
+        y: 26
+        width: 29
+        height: 49
+      alignment: 9
+      pivot: {x: 0.51724136, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 351b22b4edebed3e0800000000000000
+      internalID: -2026972920317562541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walking-11
+      rect:
+        serializedVersion: 2
+        x: 1720
+        y: 27
+        width: 35
+        height: 48
+      alignment: 9
+      pivot: {x: 0.51428574, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1aa2a87ee0dcd7c80800000000000000
+      internalID: -8323271072412980575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walking-12
+      rect:
+        serializedVersion: 2
+        x: 1763
+        y: 28
+        width: 36
+        height: 47
+      alignment: 9
+      pivot: {x: 0.5277778, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b113d508e65d2b00800000000000000
+      internalID: 805395462899306929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walking-13
+      rect:
+        serializedVersion: 2
+        x: 1806
+        y: 28
+        width: 37
+        height: 47
+      alignment: 9
+      pivot: {x: 0.5405406, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2a47bc3db88c9ab0800000000000000
+      internalID: -4999971139939251669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walking-14
+      rect:
+        serializedVersion: 2
+        x: 1849
+        y: 27
+        width: 34
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5882353, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3a52809278738ee0800000000000000
+      internalID: -1260031037287540164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walking-15
+      rect:
+        serializedVersion: 2
+        x: 1892
+        y: 26
+        width: 24
+        height: 49
+      alignment: 9
+      pivot: {x: 0.5, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca503ab8e7e9a37a0800000000000000
+      internalID: -6396626054380583508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: b7bccc93ddcbc4c43a97f0c20cdd05fe
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

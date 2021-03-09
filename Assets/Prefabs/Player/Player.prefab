@@ -5093,7 +5093,7 @@ MonoBehaviour:
   attackDebugVisualization: {fileID: 2247854002199177527, guid: c09b2fe7e6b7dcf46983c370b19435cb, type: 3}
   ignoreLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
   attackHitbox: {fileID: 413676368936272718, guid: 0c2b0729da341f441bd41feeae1f807f, type: 3}
 --- !u!1 &4572557802025454759
 GameObject:

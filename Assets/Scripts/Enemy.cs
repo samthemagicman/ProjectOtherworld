@@ -19,12 +19,13 @@ public class Enemy : MonoBehaviour, IDamageable
     public void damage(int amount)
     {
         health -= amount;
-        animator.SetTrigger("Damage");
         onDamaged.Invoke();
-        /*
+
+        animator.SetTrigger("Damage");
+
         if (health == 0)
         {
             Destroy(this.gameObject);
-        }*/
+        }
     }
 }
