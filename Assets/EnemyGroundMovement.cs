@@ -6,7 +6,7 @@ public class EnemyGroundMovement : MonoBehaviour
 {
     private enum Direction { Left, Right }
     Direction currentDirection = Direction.Right;
-    private enum States { Idle, Walking, Attacking, Damaged }
+    private enum States { Idle, Walking, Attacking, Knockback }
     private States currentState = States.Idle;
 
     public AttackHitbox attackHitbox;
@@ -14,7 +14,7 @@ public class EnemyGroundMovement : MonoBehaviour
     public float playerDetectionRadius = 25;
     public float walkSpeed = 8;
     public float runSpeed = 15;
-    public float lungeSpeed = 50;
+    public float lungeSpeed = 40;
 
     public float edgeDetectionDistance = 5;
     public LayerMask edgeDetectionIgnoreLayers;
@@ -29,12 +29,10 @@ public class EnemyGroundMovement : MonoBehaviour
     Rigidbody2D rb;
     CircleCollider2D circleCollider;
 
-    bool knockback = false;
-    bool attacking = false;
+    float lastAttack = 0;
 
     bool lunging = false;
 
-    bool punching = false;
     bool leftPunch;
 
     // Start is called before the first frame update
@@ -47,8 +45,7 @@ public class EnemyGroundMovement : MonoBehaviour
 
         enemyHandler.onDamaged.AddListener(() =>
         {
-            knockback = true;
-            currentState = States.Damaged;
+            currentState = States.Knockback;
 
             if (player)
             {
@@ -84,9 +81,13 @@ public class EnemyGroundMovement : MonoBehaviour
 
     void onPlayerHit(GameObject player)
     {
-        if (currentState == States.Attacking)
+        if (lunging)
         {
             //player.GetComponent<Rigidbody2D>().velocity = (new Vector2((transform.position.normalized.x - player.transform.position.normalized.x) * 500, 30));
+            float xVel = transform.position.x < player.transform.position.x ? 1 : -1;
+            player.GetComponent<PlayerMovement>().Fling(new Vector2(xVel * 30, 30), 0.35f);
+            rb.velocity = new Vector2(-xVel, 0) * 30;
+            currentState = States.Knockback;
         }
     }
 
@@ -102,12 +103,14 @@ public class EnemyGroundMovement : MonoBehaviour
         if (currentState == States.Walking)
         {
             animator.SetFloat("AbsoluteHorizontalVelocity", Mathf.Abs(rb.velocity.x) / runSpeed);
+        } else if (currentState == States.Idle)
+        {
+            animator.SetFloat("AbsoluteHorizontalVelocity", 0);
         }
     }
 
     void SetKnockbackToFalse()
     {
-        knockback = false;
         lunging = false;
         currentState = States.Idle;
     }
@@ -115,14 +118,12 @@ public class EnemyGroundMovement : MonoBehaviour
     void SetAttackingToFalse()
     {
         //animator.SetBool("Attacking", false);
-        attacking = false;
         //Invoke("SetAttackingToTrue", Random.Range(2, 5));
     }
 
     void SetAttackingToTrue()
     {
         //animator.SetBool("Attacking", true);
-        attacking = true;
         //Invoke("SetAttackingToFalse", 3f);
     }
 
@@ -140,13 +141,12 @@ public class EnemyGroundMovement : MonoBehaviour
 
     void SetPunchingToFalse()
     {
-        punching = false;
     }
 
     private void Punch()
     {
         currentState = States.Attacking;
-        punching = true;
+
         Invoke("SetPunchingToFalse", 0.7f);
         if (leftPunch)
         {
@@ -203,6 +203,7 @@ public class EnemyGroundMovement : MonoBehaviour
             Vector3 playerPosition = player.transform.position;
 
             Vector3 directionToPlayer = (playerPosition - transform.position).normalized;
+            Vector3 wantedXPosition = playerPosition - directionToPlayer * 5;
 
             if (directionToPlayer.x > 0)
             {
@@ -213,14 +214,22 @@ public class EnemyGroundMovement : MonoBehaviour
                 SwapFacingDirectionTo(Direction.Left);
             }
 
-            if (Mathf.Abs(transform.position.x - player.transform.position.x) < 8)
+            directionToPlayer = (playerPosition - transform.position - directionToPlayer * 7).normalized;
+
+            if (Mathf.Abs(transform.position.x - player.transform.position.x) < 9 && Time.realtimeSinceStartup - lastAttack > 1.5f)
             {
+                lastAttack = Time.realtimeSinceStartup;
                 Punch();
             }
-            else
+            else if (Mathf.Abs(transform.position.x - player.transform.position.x) > 8)
             {
                 rb.velocity = Vector3.Lerp(rb.velocity, new Vector3(directionToPlayer.x * runSpeed, rb.velocity.y), 0.08f);
                 currentState = States.Walking;
+            } else
+            {
+                rb.velocity = new Vector2(0, rb.velocity.y);
+                currentState = States.Idle;
+
             }
         } else
         {
@@ -251,7 +260,7 @@ public class EnemyGroundMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (currentState == States.Damaged)
+        if (currentState == States.Knockback)
         {
             bool willFallOffEdge = WillFallOffEdge(Direction.Left) || WillFallOffEdge(Direction.Right);
 

@@ -51,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
     bool isMovingTowardsWall = false;
     bool wallJumpKeyPressed = false;
     bool didJumpOffWallRecently = false;
+    bool isBeingFlung = false;
 
     float mayJump = 0; 
     float mayWallJump = 0;
@@ -111,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         #region Handle walking and moving in air
-        if (!didJumpOffWallRecently) //If they just jumped off a wall, they can't control their character
+        if (!isBeingFlung) //if (!didJumpOffWallRecently) //If they just jumped off a wall, they can't control their character
         {
             Vector2 wantedVelocity;
             if (isGrounded)
@@ -187,7 +188,9 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(wallJumpXVelocity, wallJumpVelocity.y);
             wallJumpKeyPressed = false;
             didJumpOffWallRecently = true;
+            isBeingFlung = true;
             Invoke("SetJumpedOffWallToFalse", wallJumpMoveDelay);
+            Invoke("SetBeingFlungToFalse", wallJumpMoveDelay);
             mayWallJump = 0;
         }
         #endregion
@@ -228,6 +231,13 @@ public class PlayerMovement : MonoBehaviour
         {
             return false;
         }
+    }
+
+    public void Fling(Vector2 velocity, float time)
+    {
+        isBeingFlung = true;
+        rb.velocity = velocity;
+        Invoke("SetBeingFlungToFalse", time);
     }
 
     void UpdateAnimation(float moveHorizontal)
@@ -282,6 +292,11 @@ public class PlayerMovement : MonoBehaviour
     void SetJumpedOffWallToFalse()
     {
         didJumpOffWallRecently = false;
+    }
+
+    void SetBeingFlungToFalse()
+    {
+        isBeingFlung = false;
     }
 
     private void LateUpdate()

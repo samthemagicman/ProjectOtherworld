@@ -28987,6 +28987,36 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
+--- !u!1 &882716709
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 882716710}
+  m_Layer: 0
+  m_Name: PlayerDetection
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &882716710
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 882716709}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1565216982}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &966775754
 GameObject:
   m_ObjectHideFlags: 0
@@ -30318,10 +30348,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1565216979}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 30.8, y: 60.9, z: -0.41}
+  m_LocalPosition: {x: 54.5, y: 54.8, z: -0.41}
   m_LocalScale: {x: 7.6209216, y: 7.6209216, z: 7.6209216}
   m_Children:
   - {fileID: 1798426042}
+  - {fileID: 882716710}
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -30341,6 +30372,7 @@ MonoBehaviour:
   playerDetectionRadius: 25
   walkSpeed: 8
   runSpeed: 15
+  lungeSpeed: 50
   edgeDetectionDistance: 1.5
   edgeDetectionIgnoreLayers:
     serializedVersion: 2
