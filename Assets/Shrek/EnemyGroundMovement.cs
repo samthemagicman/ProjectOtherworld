@@ -81,15 +81,15 @@ public class EnemyGroundMovement : MonoBehaviour
 
     void onPlayerHit(GameObject player)
     {
-        if (lunging)
-        {
+        //if (lunging)
+        //{
             //player.GetComponent<Rigidbody2D>().velocity = (new Vector2((transform.position.normalized.x - player.transform.position.normalized.x) * 500, 30));
             float xVel = transform.position.x < player.transform.position.x ? 1 : -1;
             player.GetComponent<PlayerMovement>().Fling(new Vector2(xVel * 30, 30), 0.35f);
             player.GetComponent<PlayerHealth>().Damage(1);
             rb.velocity = new Vector2(-xVel, 0) * 30;
             currentState = States.Knockback;
-        }
+        //}
     }
 
     void Update()
