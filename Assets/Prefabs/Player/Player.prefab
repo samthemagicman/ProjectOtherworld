@@ -4947,6 +4947,7 @@ GameObject:
   - component: {fileID: 4572557801684133968}
   - component: {fileID: 4572557801684133970}
   - component: {fileID: 637157008}
+  - component: {fileID: 4780788292515881869}
   - component: {fileID: 1028194999}
   - component: {fileID: 1028194988}
   - component: {fileID: 216432777576549674}
@@ -5038,6 +5039,18 @@ MonoBehaviour:
   onDied:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4780788292515881869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4572557801684133966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5353675e305320a4fa3fb1d6d632b098, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!70 &1028194999
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -5252,8 +5265,8 @@ MonoBehaviour:
   - {fileID: 4572557801562239260}
   - {fileID: 4572557802507917192}
   m_Bounds:
-    m_Center: {x: 0, y: -0.000000059604645, z: 0}
-    m_Extent: {x: 1, y: 0.9999999, z: 0}
+    m_Center: {x: 0.000000059604645, y: 0, z: 0}
+    m_Extent: {x: 1, y: 0.99999994, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!95 &4572557802371348571

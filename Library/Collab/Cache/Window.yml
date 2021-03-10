@@ -23,12 +23,6 @@ MonoBehaviour:
     - Assets/DummyDamage.anim
     - Assets/DummyDamage.anim.meta
     - Assets/Editor/GridSnapping.cs
-    - Assets/EnemyFlyingMovement.cs
-    - Assets/EnemyFlyingMovement.cs.meta
-    - Assets/EnemyGroundMovement.cs
-    - Assets/EnemyGroundMovement.cs.meta
-    - Assets/FlyingMovement2.cs
-    - Assets/FlyingMovement2.cs.meta
     - Assets/Parrot.meta
     - Assets/Parrot/Attacking.anim
     - Assets/Parrot/Attacking.anim.meta
@@ -36,6 +30,8 @@ MonoBehaviour:
     - Assets/Parrot/AttackingLeft.anim.meta
     - Assets/Parrot/Damaged.anim
     - Assets/Parrot/Damaged.anim.meta
+    - Assets/Parrot/EnemyFlyingMovement.cs
+    - Assets/Parrot/EnemyFlyingMovement.cs.meta
     - Assets/Parrot/Flying.anim
     - Assets/Parrot/Flying.anim.meta
     - Assets/Parrot/FlyingEnemy.prefab
@@ -48,11 +44,15 @@ MonoBehaviour:
     - Assets/Parrot/parrot.png.meta
     - Assets/Parrot/parrot_0.controller
     - Assets/Parrot/parrot_0.controller.meta
+    - Assets/PlayerHealthUI.cs
+    - Assets/PlayerHealthUI.cs.meta
     - Assets/Prefabs/DimensionSwapping/DimensionPreviewMaterial.mat
     - Assets/Prefabs/Player/Attack.meta
     - Assets/Prefabs/Player/Attack/AttackDebugVisual.prefab
     - Assets/Prefabs/Player/Attack/AttackDebugVisual.prefab.meta
     - Assets/Prefabs/Player/Player.prefab
+    - Assets/Prefabs/Player/PlayerHealth.cs
+    - Assets/Prefabs/Player/PlayerHealth.cs.meta
     - Assets/Prefabs/Player/PlayerMovement.cs
     - Assets/Prefabs/Respawn.meta
     - Assets/Prefabs/Respawn/Checkpoint.cs
@@ -71,6 +71,33 @@ MonoBehaviour:
     - Assets/Scripts/Interface/IDamageable.cs.meta
     - Assets/Scripts/KillPlayerOnTouch.cs
     - Assets/Scripts/Respawn.meta
+    - Assets/Shield.png
+    - Assets/Shield.png.meta
+    - Assets/Shrek.meta
+    - Assets/Shrek/Enemy.png
+    - Assets/Shrek/Enemy.png.meta
+    - Assets/Shrek/EnemyGroundMovement.cs
+    - Assets/Shrek/EnemyGroundMovement.cs.meta
+    - Assets/Shrek/Hurt.anim
+    - Assets/Shrek/Hurt.anim.meta
+    - Assets/Shrek/Jump.anim
+    - Assets/Shrek/Jump.anim.meta
+    - Assets/Shrek/PunchLeft.anim
+    - Assets/Shrek/PunchLeft.anim.meta
+    - Assets/Shrek/PunchRight.anim
+    - Assets/Shrek/PunchRight.anim.meta
+    - Assets/Shrek/Shrek.controller
+    - Assets/Shrek/Shrek.controller.meta
+    - Assets/Shrek/Shrek.png
+    - Assets/Shrek/Shrek.png.meta
+    - Assets/Shrek/Shrek.prefab
+    - Assets/Shrek/Shrek.prefab.meta
+    - Assets/Shrek/Stand.anim
+    - Assets/Shrek/Stand.anim.meta
+    - Assets/Shrek/Walking.anim
+    - Assets/Shrek/Walking.anim.meta
+    - Assets/Shrek/enemy 1.png
+    - Assets/Shrek/enemy 1.png.meta
     - Assets/Sprites/dummy.png
     - Assets/Sprites/dummy.png.meta
     - Assets/codeandweb.com.meta
@@ -215,32 +242,11 @@ MonoBehaviour:
     - Assets/codeandweb.com/Readme.txt.meta
     - Assets/dummy.controller
     - Assets/dummy.controller.meta
-    - Assets/enemy 1.png
-    - Assets/enemy 1.png.meta
-    - Assets/enemy.meta
-    - Assets/enemy.png
-    - Assets/enemy.png.meta
-    - Assets/enemy/Enemy.png
-    - Assets/enemy/Enemy.png.meta
-    - Assets/enemy/Hurt.anim
-    - Assets/enemy/Hurt.anim.meta
-    - Assets/enemy/Jump.anim
-    - Assets/enemy/Jump.anim.meta
-    - Assets/enemy/PunchLeft.anim
-    - Assets/enemy/PunchLeft.anim.meta
-    - Assets/enemy/PunchRight.anim
-    - Assets/enemy/PunchRight.anim.meta
-    - Assets/enemy/Shrek.controller
-    - Assets/enemy/Shrek.controller.meta
-    - Assets/enemy/Stand.anim
-    - Assets/enemy/Stand.anim.meta
-    - Assets/enemy/Walking.anim
-    - Assets/enemy/Walking.anim.meta
     - ProjectSettings/InputManager.asset
     - ProjectSettings/Physics2DSettings.asset
     - ProjectSettings/TagManager.asset
     - 
-    m_Values: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+    m_Values: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   RevisionSummary: 
   ChangesSearchValue: 
   SelectedHistoryRevision: 

@@ -58,7 +58,7 @@
   <ItemGroup>
     <Compile Include="Assets\Prefabs\Player\Slomo.cs" />
     <Compile Include="Assets\Prefabs\Respawn\Checkpoint.cs" />
-    <Compile Include="Assets\EnemyFlyingMovement.cs" />
+    <Compile Include="Assets\Parrot\EnemyFlyingMovement.cs" />
     <Compile Include="Assets\ThirdPartyPackages\2D_Destruction\Unity-delaunay\geom\Polygon.cs" />
     <Compile Include="Assets\Scripts\RopeScripts\RopeBridge.cs" />
     <Compile Include="Assets\ThirdPartyPackages\2D_Destruction\Scripts\SpriteExploder.cs" />
@@ -82,7 +82,7 @@
     <Compile Include="Assets\ThirdPartyPackages\2D_Destruction\Unity-delaunay\Delaunay\ICoord.cs" />
     <Compile Include="Assets\ThirdPartyPackages\2D_Destruction\Scripts\ClipperHelper.cs" />
     <Compile Include="Assets\ThirdPartyPackages\2D_Destruction\Unity-delaunay\geom\Winding.cs" />
-    <Compile Include="Assets\EnemyGroundMovement.cs" />
+    <Compile Include="Assets\Shrek\EnemyGroundMovement.cs" />
     <Compile Include="Assets\ThirdPartyPackages\2D_Destruction\Scripts\ExplodableAddon.cs" />
     <Compile Include="Assets\Scripts\KillPlayerOnTouch.cs" />
     <Compile Include="Assets\ThirdPartyPackages\2D_Destruction\Unity-delaunay\Delaunay\Halfedge.cs" />
@@ -99,10 +99,11 @@
     <Compile Include="Assets\Prefabs\Respawn\Handler.cs" />
     <Compile Include="Assets\ThirdPartyPackages\2D_Destruction\clipper_library\clipper.cs" />
     <Compile Include="Assets\Prefabs\Player\PlayerDeathHandler.cs" />
-    <Compile Include="Assets\FlyingMovement2.cs" />
     <Compile Include="Assets\ThirdPartyPackages\2D_Destruction\Scripts\ExplodableFragments.cs" />
     <Compile Include="Assets\ThirdPartyPackages\2D_Destruction\Unity-delaunay\Delaunay\SiteList.cs" />
     <Compile Include="Assets\Scripts\DimensionSwapping.cs" />
+    <Compile Include="Assets\Prefabs\Player\PlayerHealth.cs" />
+    <Compile Include="Assets\PlayerHealthUI.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\codeandweb.com\Readme.txt" />
