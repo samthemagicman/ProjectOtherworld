@@ -46,6 +46,33 @@ MonoBehaviour:
     - Assets/Parrot/parrot_0.controller.meta
     - Assets/PlayerHealthUI.cs
     - Assets/PlayerHealthUI.cs.meta
+    - Assets/Plugins.meta
+    - Assets/Plugins/GitHub.meta
+    - Assets/Plugins/GitHub/Editor.meta
+    - Assets/Plugins/GitHub/Editor/GitHub.Api.45.dll.mdb
+    - Assets/Plugins/GitHub/Editor/GitHub.Api.45.dll.mdb.meta
+    - Assets/Plugins/GitHub/Editor/GitHub.Api.45.pdb
+    - Assets/Plugins/GitHub/Editor/GitHub.Api.45.pdb.meta
+    - Assets/Plugins/GitHub/Editor/GitHub.Api.dll.mdb
+    - Assets/Plugins/GitHub/Editor/GitHub.Api.dll.mdb.meta
+    - Assets/Plugins/GitHub/Editor/GitHub.Api.pdb
+    - Assets/Plugins/GitHub/Editor/GitHub.Api.pdb.meta
+    - Assets/Plugins/GitHub/Editor/GitHub.Logging.dll.mdb
+    - Assets/Plugins/GitHub/Editor/GitHub.Logging.dll.mdb.meta
+    - Assets/Plugins/GitHub/Editor/GitHub.Logging.pdb
+    - Assets/Plugins/GitHub/Editor/GitHub.Logging.pdb.meta
+    - Assets/Plugins/GitHub/Editor/GitHub.Unity.45.dll.mdb
+    - Assets/Plugins/GitHub/Editor/GitHub.Unity.45.dll.mdb.meta
+    - Assets/Plugins/GitHub/Editor/GitHub.Unity.45.pdb
+    - Assets/Plugins/GitHub/Editor/GitHub.Unity.45.pdb.meta
+    - Assets/Plugins/GitHub/Editor/GitHub.Unity.dll.mdb
+    - Assets/Plugins/GitHub/Editor/GitHub.Unity.dll.mdb.meta
+    - Assets/Plugins/GitHub/Editor/GitHub.Unity.pdb
+    - Assets/Plugins/GitHub/Editor/GitHub.Unity.pdb.meta
+    - Assets/Plugins/GitHub/Editor/GitHub.UnityShim.dll.mdb
+    - Assets/Plugins/GitHub/Editor/GitHub.UnityShim.dll.mdb.meta
+    - Assets/Plugins/GitHub/Editor/GitHub.UnityShim.pdb
+    - Assets/Plugins/GitHub/Editor/GitHub.UnityShim.pdb.meta
     - Assets/Prefabs/DimensionSwapping/DimensionPreviewMaterial.mat
     - Assets/Prefabs/Player/Attack.meta
     - Assets/Prefabs/Player/Attack/AttackDebugVisual.prefab
@@ -246,7 +273,7 @@ MonoBehaviour:
     - ProjectSettings/Physics2DSettings.asset
     - ProjectSettings/TagManager.asset
     - 
-    m_Values: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+    m_Values: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   RevisionSummary: 
   ChangesSearchValue: 
   SelectedHistoryRevision: 
