@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
@@ -13,16 +13,22 @@ public class GridSnapping : EditorWindow
 
     public static Vector2 lastSize;
     public static Vector3 lastPosition;
+    public static float gridSize = 1;
+    public static float resizeGridSize = 1;
+    public static bool snappingEnabled = true;
+    public static EditorInfo selectionInfo;
     public static SpriteRenderer renderer;
     public static BoxCollider2D collider;
     public static Transform transform;
-    public static float gridSize = 1;
-    public static float resizeGridSize = 1;
-    public static bool snappingEnabled = false;
+    public static GameObject selection;
+    public static DimensionFilter dfilter;
+    private static bool autoGetFromSelection;
 
-
-    public static string x = "1";
-    public static string y = "1";
+    public static string posSnap = "1";
+    public static string sizeSnap = "2";
+    public static string colSizeOffset = "0"; 
+    private static bool noWindow = true;
+    
 
     public static bool IsEnabled
     {
@@ -64,10 +70,16 @@ public class GridSnapping : EditorWindow
     {
         if (Selection.gameObjects.Length > 0)
         {
-            GameObject obj = Selection.gameObjects[0];
-            transform = obj.transform;
-            renderer = obj.GetComponent<SpriteRenderer>();
-            collider = obj.GetComponent<BoxCollider2D>();
+            selection = Selection.gameObjects[0];
+            transform = selection.transform;
+            renderer = selection.GetComponent<SpriteRenderer>();
+            collider = selection.GetComponent<BoxCollider2D>();
+            selectionInfo = selection.GetComponent<EditorInfo>();
+            dfilter = selection.GetComponent<DimensionFilter>();
+            if (autoGetFromSelection)
+            {
+                GetFromSelection();
+            }
             if (renderer)
             {
                 lastSize = renderer.size;
@@ -76,56 +88,105 @@ public class GridSnapping : EditorWindow
         }
     }
 
-    private void OnGUI()
-    {
-    }
 
     private static void OnScene(SceneView sceneview)
     {
-
-        Rect rect = new Rect(10, 10, 150, 100);
+        Rect rect = new Rect(10, 10, 150, 300);
         if (Menu.GetChecked(OTHER_MENU))
         {
-            rect = new Rect(10, 100, 150, 100);
-        } 
-        GUILayout.BeginArea(rect);
-        if (snappingEnabled)
-        {
-            if (GUILayout.Button("Disable Snapping"))
-            {
-                snappingEnabled = false;
-            }
-        } else
-        {
-            if (GUILayout.Button("Enable Snapping"))
-            {
-                snappingEnabled = true;
-            }
+            rect = new Rect(10, 100, 150, 350);
         }
+        GUILayout.BeginArea(rect);
+        snappingEnabled = GUILayout.Toggle(snappingEnabled, "Tile Snapping");
 
         GUILayout.Label("Position:");
-        x = GUILayout.TextField(x, 30);
+        posSnap = GUILayout.TextField(posSnap, 30);
 
         GUILayout.Label("Size:");
-        y = GUILayout.TextField(y, 30);
+        sizeSnap = GUILayout.TextField(sizeSnap, 30);
 
+        GUILayout.Label("Collider Size Offset");
+        colSizeOffset = GUILayout.TextField(colSizeOffset, 30);
 
+        autoGetFromSelection = GUILayout.Toggle(autoGetFromSelection, "Auto get from selection");
+        if (selectionInfo)
+        {
+            if (GUILayout.Button("Get from selection") || autoGetFromSelection)
+            {
+                GetFromSelection();
+            }
+        }
+        // GUILayout.Toggle(show tools)
+
+        // lock z and rotation
+        //push into next layer
+        //pull into last layer
+        // fix z and rotation
+        //add/remove colider
+        if (collider)
+        {
+            if (GUILayout.Button("Remove Collider"))
+            {
+                DestroyImmediate(collider);
+            }
+        }else if (GUILayout.Button("Add Collider"))
+        {
+            selection.AddComponent<BoxCollider2D>();
+        }
+        //add/remove dimension filter
+        GUILayout.Label("Dimension Controls");
+        GUILayout.Label($"Dimension: {(dfilter ? dfilter.dimension.ToString() : "Both")}" );
+        if (dfilter)
+        {
+            if (GUILayout.Button("Remove DFilter"))
+            {
+                DestroyImmediate(dfilter);
+            }
+        }
+        else if (GUILayout.Button("Add DFilter"))
+        {
+            selection.AddComponent<DimensionFilter>();
+            OnSelectionChange();
+        }
+        //swap dimension filter 
+        if (dfilter)
+        {
+            if(GUILayout.Button("Swap Dimension"))
+            {
+                if(dfilter.dimension == DimensionFilter.Dimension.One)
+                {
+                    dfilter.dimension = DimensionFilter.Dimension.Two;
+                }else if(dfilter.dimension == DimensionFilter.Dimension.Two)
+                {
+                    dfilter.dimension = DimensionFilter.Dimension.One;
+                    //need to refresh dimension view in editor
+                }
+            }
+        }
         GUILayout.EndArea();
+        noWindow = false;
 
-        if (x.Length == 0)
+        
+        if (posSnap.Length == 0)
         {
-            x = "0.1";
+            posSnap = "0.1";
         }
-        if (y.Length == 0)
+        if (sizeSnap.Length == 0)
         {
-            y = "0.1";
+            sizeSnap = "0.1";
+        }
+        if (colSizeOffset.Length == 0)
+        {
+            colSizeOffset = "0.1";
         }
 
-        x = Regex.Replace(x, "[^0-9.]", "");
-        y = Regex.Replace(y, "[^0-9.]", "");
 
-        float posGrid = float.Parse(x);
-        float sizeGrid = float.Parse(y);
+        posSnap = Regex.Replace(posSnap, "[^0-9.]", "");
+        sizeSnap = Regex.Replace(sizeSnap, "[^0-9.]", "");
+        colSizeOffset = Regex.Replace(colSizeOffset, "[^0-9.]", "");
+        float posGrid = float.Parse(posSnap);
+        float sizeGrid = float.Parse(sizeSnap);
+        float colliderOffset = float.Parse(colSizeOffset);
 
 
         if (renderer && snappingEnabled)
@@ -134,13 +195,10 @@ public class GridSnapping : EditorWindow
             Vector2 newSize = renderer.size;
             Vector2 sizeDelta = newSize - lastSize;
             Vector3 positionDelta = newPosition - lastPosition;
-            //transform.position = new Vector3(Mathf.Round(transform.position.x / gridSize) * gridSize, Mathf.Round((transform.position.y - (sizeDelta.y - positionDelta.y)) / gridSize) * gridSize, Mathf.Round(transform.position.z / gridSize) * gridSize);
+            
             renderer.size = new Vector2(Mathf.Round(renderer.size.x / sizeGrid) * sizeGrid, Mathf.Round(renderer.size.y / sizeGrid) * sizeGrid);
             newSize = renderer.size;
             Vector2 sizeDeltaAfterChange = newSize - lastSize;
-
-            Debug.Log(sizeDelta);
-
             if (sizeDelta.magnitude > 0)
             {
                 transform.position = new Vector3(lastPosition.x + sizeDeltaAfterChange.x / 2, lastPosition.y - sizeDeltaAfterChange.y / 2, transform.position.z);
@@ -149,15 +207,29 @@ public class GridSnapping : EditorWindow
             {
                 transform.position = new Vector3(Mathf.Round(transform.position.x / posGrid) * posGrid, Mathf.Round(transform.position.y / posGrid) * posGrid, Mathf.Round(transform.position.z / posGrid) * posGrid);
             }
-
             if (collider)
             {
-                collider.size = renderer.size;
+                collider.size = new Vector2(renderer.size.x - colliderOffset, renderer.size.y - colliderOffset); 
             }
-
             lastPosition = transform.position;
             lastSize = renderer.size;
         }
 
+    }
+    private static void GetFromSelection()
+    {
+        if (selectionInfo)
+        {
+            posSnap = selectionInfo.posGridSnapping.ToString();
+            sizeSnap = selectionInfo.sizeGridSnapping.ToString();
+            colSizeOffset = selectionInfo.colliderSizeOffset.ToString();
+        }
+        else
+        {
+            posSnap = "1";
+            sizeSnap = "2";
+            colSizeOffset = "0";
+        }
+       
     }
 }
