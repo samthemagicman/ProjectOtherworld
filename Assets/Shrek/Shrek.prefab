@@ -56,8 +56,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1802028623565117823}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0.22, z: 0}
+  m_LocalScale: {x: 0.39, y: 0.57, z: 1}
   m_Children: []
   m_Father: {fileID: 1802028624272278544}
   m_RootOrder: 0
@@ -189,7 +189,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0, y: 0}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -274,13 +274,13 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
     oldSize: {x: 0.22, y: 0.5}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 0, y: 0}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.22, y: 0.5}
+  m_Size: {x: 0.22, y: 0.48}
   m_EdgeRadius: 0
 --- !u!114 &1802028624272278556
 MonoBehaviour:
@@ -294,7 +294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 203973cc433a2704c8c07c4214957eac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 53
+  _health: 5
   onDamaged:
     m_PersistentCalls:
       m_Calls: []

@@ -89,6 +89,7 @@ public class EnemyGroundMovement : MonoBehaviour
             player.GetComponent<PlayerHealth>().Damage(1);
             rb.velocity = new Vector2(-xVel, 0) * 30;
             currentState = States.Knockback;
+            Invoke("SetKnockbackToFalse", 0.3f);
         //}
     }
 
