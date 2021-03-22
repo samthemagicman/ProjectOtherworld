@@ -6,6 +6,7 @@ public class EnemyFlyingMovement : MonoBehaviour
 {
     public float playerDetectionRadius = 25;
     public float speed = 15;
+    public AttackHitbox attackHitbox;
 
     Enemy enemyHandler;
 
@@ -43,6 +44,19 @@ public class EnemyFlyingMovement : MonoBehaviour
         circleCollider.radius = playerDetectionRadius;
 
         SetAttackingToFalse();
+        attackHitbox.onPlayerHit.AddListener(onPlayerHit);
+    }
+
+    void onPlayerHit(GameObject player)
+    {
+        //if (lunging)
+        //{
+        //player.GetComponent<Rigidbody2D>().velocity = (new Vector2((transform.position.normalized.x - player.transform.position.normalized.x) * 500, 30));
+            float xVel = transform.position.x < player.transform.position.x ? 1 : -1;
+            player.GetComponent<PlayerMovement>().Fling(new Vector2(xVel * 30, 30), 0.35f);
+            player.GetComponent<PlayerHealth>().Damage(1);
+            rb.velocity = new Vector2(-xVel, 0) * 30;
+        //}
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
