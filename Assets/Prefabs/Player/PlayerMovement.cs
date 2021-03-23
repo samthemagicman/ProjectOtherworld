@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    #region Public Variables
     public int walkSpeed = 20;
     [Tooltip("The lerp value to move to wanted velocity each frame")]
     public float velocityLerpValue = 0.4f;
@@ -38,13 +39,16 @@ public class PlayerMovement : MonoBehaviour
     public float wallUnstickTime = 0.05f;
 
     public Vector2 wallJumpVelocity = new Vector2(20f, 40f);
+    #endregion
 
+    #region Component References
     Rigidbody2D rb;
     Animator playerParentAnimator; // This is the animator that handles stretch/squad
     Animator animator; // This is the actual player's animation
-    new SpriteRenderer renderer;
     ParticleSystem particles;
+    #endregion
 
+    #region Runtime Variables
     Vector2 lastVerticalVelocity = new Vector2(0, 0);
 
     float jumpKeyPressedStamp = 0;
@@ -60,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
     float startedMovingTimeStamp = 0;
 
     public static Vector2 lastGroundedPosition;
+    #endregion
 
     private void Start()
     {
@@ -69,15 +74,14 @@ public class PlayerMovement : MonoBehaviour
         Animator[] animators = GetComponentsInChildren<Animator>();
         playerParentAnimator = animators[0];
         animator = animators[1];
-        renderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     void FixedUpdate()
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveHorizontalRaw = Input.GetAxisRaw("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
-        float moveVerticalRaw = Input.GetAxisRaw("Vertical");
+        //float moveVertical = Input.GetAxis("Vertical");
+        //float moveVerticalRaw = Input.GetAxisRaw("Vertical");
 
         bool isTouchingAnyWall = IsTouchingAnyWall();
         bool isGrounded = IsGrounded();
@@ -152,6 +156,7 @@ public class PlayerMovement : MonoBehaviour
         #endregion
 
         #region Gravity and wall sliding
+        //If player is touching a wall, and they're not moving towards it
         if (isTouchingAnyWall && !isMovingTowardsWall)
         {
             // If they're touching a wall, they're not moving towards it, and they're going UP the wall, then fake some friction (slow them down sliding up the wall)
@@ -177,6 +182,7 @@ public class PlayerMovement : MonoBehaviour
         #endregion
 
         #region Wall jumping
+        //If the player can wall jump, the wall jump key is pressed, and the player is not grounded, then wall jump
         if (mayWallJump > 0 && wallJumpKeyPressed && !isGrounded) // Wall jump
         {
             var wallJumpXVelocity = IsTouchingLeftWall() == true ? wallJumpVelocity.x : -wallJumpVelocity.x;
@@ -184,13 +190,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 wallJumpXVelocity = moveHorizontalRaw > 0 == true ? wallJumpVelocity.x : -wallJumpVelocity.x;
             }
-            
-            rb.velocity = new Vector2(wallJumpXVelocity, wallJumpVelocity.y);
-            wallJumpKeyPressed = false;
-            didJumpOffWallRecently = true;
-            isBeingFlung = true;
-            Invoke("SetJumpedOffWallToFalse", wallJumpMoveDelay);
-            Invoke("SetBeingFlungToFalse", wallJumpMoveDelay);
+            StartCoroutine( WallJump(new Vector2(wallJumpXVelocity, wallJumpVelocity.y)) );
             mayWallJump = 0;
         }
         #endregion
@@ -202,6 +202,24 @@ public class PlayerMovement : MonoBehaviour
         mayJump -= Time.deltaTime / Time.timeScale;
         mayWallJump -= Time.deltaTime / Time.timeScale;
         lastVerticalVelocity = rb.velocity;
+    }
+    private void LateUpdate()
+    {
+        if ((IsTouchingAnyWall() || mayWallJump > 0) && Input.GetButtonDown("Jump")) wallJumpKeyPressed = true;
+        if (Input.GetButtonDown("Jump")) jumpKeyPressedStamp = 0.2f; ;
+
+    }
+
+    #region Wall Jumping
+    IEnumerator WallJump(Vector2 velocity)
+    {
+        wallJumpKeyPressed = false;
+        didJumpOffWallRecently = true;
+        Fling(velocity, wallJumpMoveDelay);
+
+        yield return new WaitForSeconds(wallJumpMoveDelay);
+        didJumpOffWallRecently = false;
+        yield return null;
     }
 
     bool IsMovingTowardsWall(float moveHorizontalRaw)
@@ -218,7 +236,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-
     bool IsMovingAwayFromWall(float moveHorizontalRaw)
     {
         if ((IsTouchingLeftWall() && moveHorizontalRaw > 0) ||
@@ -233,13 +250,25 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void Fling(Vector2 velocity, float time)
+    bool IsTouchingRightWall()
     {
-        isBeingFlung = true;
-        rb.velocity = velocity;
-        Invoke("SetBeingFlungToFalse", time);
+        //return Physics2D.Raycast(transform.position, -Vector2.up, distToGround + 0.1f).collider != null;
+        return Physics2D.BoxCast(transform.position + new Vector3(1, 1, 0), new Vector2(0.05f, 1.8f), 0, Vector2.right, 0, ~ignoreRaycastLayers).collider != null;
     }
 
+    bool IsTouchingLeftWall()
+    {
+        //return Physics2D.Raycast(transform.position, -Vector2.up, distToGround + 0.1f).collider != null;
+        return Physics2D.BoxCast(transform.position + new Vector3(-1, 1, 0), new Vector2(0.05f, 1.8f), 0, Vector2.right, 0, ~ignoreRaycastLayers).collider != null;
+    }
+
+    bool IsTouchingAnyWall()
+    {
+        return IsTouchingRightWall() || IsTouchingLeftWall();
+    }
+    #endregion
+
+    #region Animation and effects
     void UpdateAnimation(float moveHorizontal)
     {
         bool isGrounded = IsGrounded();
@@ -288,22 +317,23 @@ public class PlayerMovement : MonoBehaviour
             shape.position = new Vector3(-1.3f, -0.9f, 5);
         }
     }
+    #endregion
 
-    void SetJumpedOffWallToFalse()
+    //<summary>Private coroutine method for flinging</summary>
+    private IEnumerator _Fling(Vector2 velocity, float time)
     {
-        didJumpOffWallRecently = false;
-    }
 
-    void SetBeingFlungToFalse()
-    {
+        isBeingFlung = true;
+        rb.velocity = velocity;
+        yield return new WaitForSeconds(time);
         isBeingFlung = false;
+        yield return null;
     }
 
-    private void LateUpdate()
+    //<summary>Public Fling method for flinging/knockback on the player</summary>
+    public void Fling(Vector2 velocity, float time)
     {
-        if ((IsTouchingAnyWall() || mayWallJump > 0) && Input.GetButtonDown("Jump")) wallJumpKeyPressed = true;
-        if (Input.GetButtonDown("Jump")) jumpKeyPressedStamp = 0.2f; ;
-        
+        StartCoroutine(_Fling(velocity, time));
     }
 
     bool IsGrounded() {
@@ -311,22 +341,7 @@ public class PlayerMovement : MonoBehaviour
         return Physics2D.BoxCast(transform.position, new Vector2(1.9f, 0.05f), 0, -Vector2.up, 0, ~ignoreRaycastLayers).collider != null;
     }
 
-    bool IsTouchingRightWall()
-    {
-        //return Physics2D.Raycast(transform.position, -Vector2.up, distToGround + 0.1f).collider != null;
-        return Physics2D.BoxCast(transform.position + new Vector3(1, 1, 0), new Vector2(0.05f, 1.8f), 0, Vector2.right, 0, ~ignoreRaycastLayers).collider != null;
-    }
 
-    bool IsTouchingLeftWall()
-    {
-        //return Physics2D.Raycast(transform.position, -Vector2.up, distToGround + 0.1f).collider != null;
-        return Physics2D.BoxCast(transform.position + new Vector3(-1, 1, 0), new Vector2(0.05f, 1.8f), 0, Vector2.right, 0, ~ignoreRaycastLayers).collider != null;
-    }
-
-    bool IsTouchingAnyWall()
-    {
-        return IsTouchingRightWall() || IsTouchingLeftWall();
-    }
 
     //Draw some little gizmos to see the colliders for Grounded, Left and Right wall
     void OnDrawGizmosSelected()
@@ -343,4 +358,5 @@ public class PlayerMovement : MonoBehaviour
         Gizmos.color = new Color(0, 0, 1, 0.5f);
         Gizmos.DrawCube(transform.position + new Vector3(-1, 1, 0), new Vector2(0.05f, 1.8f));
     }
+
 }
