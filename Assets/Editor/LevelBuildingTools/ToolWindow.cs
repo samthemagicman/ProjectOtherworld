@@ -19,6 +19,8 @@ public class ToolWindow : EditorWindow
 
     GameObject lastTarget = null;
 
+    int currentDimensionPreview = 0;
+
     // Add menu item named "My Window" to the Window menu
     [MenuItem("Window/Level Building Tool")]
     public static void ShowWindow()
@@ -46,7 +48,8 @@ public class ToolWindow : EditorWindow
             selectedObjectDimension = dimensionFilter.dimension;
         }
 
-        GUILayout.Label("Base Settings", EditorStyles.boldLabel);
+        #region Dimension Selecting
+        GUILayout.Label("Object Dimension", EditorStyles.boldLabel);
 
         EditorGUILayout.BeginHorizontal();
 
@@ -77,8 +80,43 @@ public class ToolWindow : EditorWindow
             selectedObjectDimension = DimensionFilter.Dimension.Two;
         }
         GUI.enabled = true;
+        EditorGUILayout.EndHorizontal();
+        #endregion
+
+        #region Dimension Viewing Selection
+        GUILayout.Label("Dimension Viewing", EditorStyles.boldLabel);
+
+        EditorGUILayout.BeginHorizontal();
+
+        if (currentDimensionPreview == 0) GUI.enabled = false;
+        if (GUILayout.Button("None"))
+        {
+            ShowAllDimensionObjects(true);
+            currentDimensionPreview = 0;
+        }
+        GUI.enabled = true;
+
+        if (currentDimensionPreview == 1) GUI.enabled = false;
+        if (GUILayout.Button("Dimension 1"))
+        {
+            ShowDimension2(false);
+            ShowDimension1(true);
+            currentDimensionPreview = 1;
+        }
+        GUI.enabled = true;
+
+        if (currentDimensionPreview == 2) GUI.enabled = false;
+        if (GUILayout.Button("Dimension 2"))
+        {
+            ShowDimension1(false);
+            ShowDimension2(true);
+            currentDimensionPreview = 2;
+
+        }
+        GUI.enabled = true;
 
         EditorGUILayout.EndHorizontal();
+        #endregion
 
         GUI.enabled = true;
 
@@ -120,10 +158,10 @@ public class ToolWindow : EditorWindow
                     new Vector3(position.x + renderer.size.x/2, position.y + renderer.size.y/2, 0),   // Top Right
                     new Vector3(position.x - renderer.size.x/2, position.y + renderer.size.y/2, 0)    // Top Left
                 };
-                if (dim.dimension == DimensionFilter.Dimension.One)
+                if (dim.dimension == DimensionFilter.Dimension.One && (currentDimensionPreview == 0 || currentDimensionPreview == 1))
                 {
                     Handles.DrawSolidRectangleWithOutline(rectangleCorners, dimension1Color, outlineColor);
-                } else
+                } else if  (dim.dimension == DimensionFilter.Dimension.Two && (currentDimensionPreview == 0 || currentDimensionPreview == 2))
                 {
                     Handles.DrawSolidRectangleWithOutline(rectangleCorners, dimension2Color, outlineColor);
                 }
@@ -132,4 +170,52 @@ public class ToolWindow : EditorWindow
         }
     }
 
+
+    static void ShowAllDimensionObjects(bool show)
+    {
+        DimensionFilter[] dimensions = Resources.FindObjectsOfTypeAll(typeof(DimensionFilter)) as DimensionFilter[];
+        foreach (DimensionFilter dim in dimensions)
+        {
+            if (show)
+            {
+                SceneVisibilityManager.instance.Show(dim.gameObject, true);
+            }
+            else
+            {
+                SceneVisibilityManager.instance.Hide(dim.gameObject, true);
+            }
+        }
+    }
+
+    static void ShowDimension1(bool show)
+    {
+        DimensionFilter[] dimensions = Resources.FindObjectsOfTypeAll(typeof(DimensionFilter)) as DimensionFilter[];
+        foreach (DimensionFilter dim in dimensions)
+        {
+            if (show && dim.dimension == DimensionFilter.Dimension.One)
+            {
+                SceneVisibilityManager.instance.Show(dim.gameObject, true);
+            }
+            else
+            {
+                SceneVisibilityManager.instance.Hide(dim.gameObject, true);
+            }
+        }
+    }
+
+    static void ShowDimension2(bool show)
+    {
+        DimensionFilter[] dimensions = Resources.FindObjectsOfTypeAll(typeof(DimensionFilter)) as DimensionFilter[];
+        foreach (DimensionFilter dim in dimensions)
+        {
+            if (show && dim.dimension == DimensionFilter.Dimension.Two)
+            {
+                SceneVisibilityManager.instance.Show(dim.gameObject, true);
+            }
+            else
+            {
+                SceneVisibilityManager.instance.Hide(dim.gameObject, true);
+            }
+        }
+    }
 }
