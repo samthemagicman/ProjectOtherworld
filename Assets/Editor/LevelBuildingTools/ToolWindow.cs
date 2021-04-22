@@ -11,10 +11,13 @@ public class ToolWindow : EditorWindow
     float myFloat = 1.23f;
     bool onSceneGuiActivated = false;
 
-    bool selectedObjectDimension;
+    DimensionFilter.Dimension selectedObjectDimension;
 
     Color dimension1Color = new Color(1, 0, 0, 0.1f);
     Color dimension2Color = new Color(0, 0, 1, 0.1f);
+    Color outlineColor = new Color(0, 1, 0, 1f);
+
+    GameObject lastTarget = null;
 
     // Add menu item named "My Window" to the Window menu
     [MenuItem("Window/Level Building Tool")]
@@ -23,26 +26,70 @@ public class ToolWindow : EditorWindow
         //Show existing window instance. If one doesn't exist, make one.
         EditorWindow.GetWindow(typeof(ToolWindow));
     }
+    public void OnInspectorUpdate()
+    {
+        // This will only get called 10 times per second.
+        Repaint();
+    }
 
 
     void OnGUI()
     {
+        GameObject currentSelection = Selection.activeGameObject;
+        bool targetChanged = currentSelection != lastTarget;
+        DimensionFilter dimensionFilter = null;
+        if (currentSelection != null)
+            dimensionFilter = currentSelection.GetComponent<DimensionFilter>();
+
+        if (dimensionFilter != null && targetChanged)
+        {
+            selectedObjectDimension = dimensionFilter.dimension;
+        }
+
         GUILayout.Label("Base Settings", EditorStyles.boldLabel);
 
-        EditorGUILayout.DropdownButton(new GUIContent("Test", "Test), FocusType.Passive);
-        EditorGUILayout.LabelField("Object Dimension");
         EditorGUILayout.BeginHorizontal();
-        selectedObjectDimension = EditorGUILayout.Toggle("Dimension 1", selectedObjectDimension);
-        selectedObjectDimension = !EditorGUILayout.Toggle("Dimension 2", !selectedObjectDimension);
-        selectedObjectDimension = !EditorGUILayout.Toggle("None", !selectedObjectDimension);
+
+        if (dimensionFilter == null) GUI.enabled = false;
+        if (GUILayout.Button("None")) DestroyImmediate(dimensionFilter);
+        GUI.enabled = true;
+
+        if (dimensionFilter != null && selectedObjectDimension == DimensionFilter.Dimension.One) GUI.enabled = false;
+        if (GUILayout.Button("Dimension 1"))
+        {
+            if (dimensionFilter == null)
+            {
+                dimensionFilter = currentSelection.AddComponent<DimensionFilter>();
+            }
+            dimensionFilter.dimension = DimensionFilter.Dimension.One;
+            selectedObjectDimension = DimensionFilter.Dimension.One;
+        }
+        GUI.enabled = true;
+
+        if (dimensionFilter != null && selectedObjectDimension == DimensionFilter.Dimension.Two) GUI.enabled = false;
+        if (GUILayout.Button("Dimension 2"))
+        {
+            if (dimensionFilter == null)
+            {
+                dimensionFilter = currentSelection.AddComponent<DimensionFilter>();
+            }
+            dimensionFilter.dimension = DimensionFilter.Dimension.Two;
+            selectedObjectDimension = DimensionFilter.Dimension.Two;
+        }
+        GUI.enabled = true;
+
         EditorGUILayout.EndHorizontal();
 
+        GUI.enabled = true;
 
         showingDimensions = EditorGUILayout.BeginToggleGroup("Enable Dimension Settings", showingDimensions);
         dimension1Color = EditorGUILayout.ColorField("Dimension 1", dimension1Color);
         dimension2Color = EditorGUILayout.ColorField("Dimension 2", dimension2Color);
-
+        outlineColor = EditorGUILayout.ColorField("Outline Color", outlineColor);
         EditorGUILayout.EndToggleGroup();
+
+
+        lastTarget = Selection.activeGameObject;
     }
     private void OnEnable()
     {
@@ -75,10 +122,10 @@ public class ToolWindow : EditorWindow
                 };
                 if (dim.dimension == DimensionFilter.Dimension.One)
                 {
-                    Handles.DrawSolidRectangleWithOutline(rectangleCorners, dimension1Color, Color.white);
+                    Handles.DrawSolidRectangleWithOutline(rectangleCorners, dimension1Color, outlineColor);
                 } else
                 {
-                    Handles.DrawSolidRectangleWithOutline(rectangleCorners, dimension2Color, Color.white);
+                    Handles.DrawSolidRectangleWithOutline(rectangleCorners, dimension2Color, outlineColor);
                 }
             }
             HandleUtility.Repaint();

@@ -30,6 +30,7 @@ public class RectExampleEditor : EditorTool
 
     public override void OnToolGUI(EditorWindow window)
     {
+        if (target == null) return;
         RectExample rectExample = ((GameObject)target).GetComponent<RectExample>();
         if (!rectExample) return;
         var rect = RectUtils.ResizeRect(
@@ -91,16 +92,19 @@ public class RectUtils
 
         Vector2 halfRectSize = new Vector2(rect.size.x * 0.5f, rect.size.y * 0.5f);
 
-        Vector3[] rectangleCorners =
-            {
+        if (gameObject.GetComponent<DimensionFilter>() == null)
+        {
+            Vector3[] rectangleCorners =
+                {
                 new Vector3(rect.position.x - halfRectSize.x, rect.position.y - halfRectSize.y, 0),   // Bottom Left
                 new Vector3(rect.position.x + halfRectSize.x, rect.position.y - halfRectSize.y, 0),   // Bottom Right
                 new Vector3(rect.position.x + halfRectSize.x, rect.position.y + halfRectSize.y, 0),   // Top Right
                 new Vector3(rect.position.x - halfRectSize.x, rect.position.y + halfRectSize.y, 0)    // Top Left
             };
 
-        Handles.color = fillCol;
-        Handles.DrawSolidRectangleWithOutline(rectangleCorners, new Color(fillCol.r, fillCol.g, fillCol.b, 0.1f), capCol);
+            Handles.color = fillCol;
+            Handles.DrawSolidRectangleWithOutline(rectangleCorners, new Color(fillCol.r, fillCol.g, fillCol.b, 0.1f), capCol);
+        }
 
         Vector3[] handlePoints =
             {
@@ -120,6 +124,8 @@ public class RectUtils
         var bottomHandle = Handles.Slider(handlePoints[3], -Vector3.up, rect.width / 2, Handles.RectangleHandleCap, snap).y - handlePoints[3].y;//Handles.Slider(handlePoints[3], -Vector3.up, capSize, capFunc, snap).y - handlePoints[3].y;
         Vector2 middleHandle = Handles.Slider2D(rect.position, Vector3.back, Vector3.right, Vector3.up, capSize*2, Handles.RectangleHandleCap, snap) - new Vector3(rect.position.x, rect.position.y);
 
+        Vector2 topRightHandle = Handles.Slider2D(rect.position + halfRectSize, Vector3.back, Vector3.right, Vector3.up, capSize, Handles.CubeHandleCap, snap) - new Vector3((rect.position + halfRectSize).x, (rect.position + halfRectSize).y);
+
 
 
 
@@ -128,12 +134,15 @@ public class RectUtils
         topHandle = Mathf.Round(topHandle / 1) * 1;
         bottomHandle = Mathf.Round(bottomHandle / 1) * 1;
         middleHandle = new Vector2(Mathf.Round(middleHandle.x / 1) * 1, Mathf.Round(middleHandle.y / 1) * 1);
+        topRightHandle = new Vector2(Mathf.Round(topRightHandle.x / 1) * 1, Mathf.Round(topRightHandle.y / 1) * 1);
 
-        newSize = new Vector2(Mathf.Max(.1f, newSize.x - leftHandle + rightHandle), Mathf.Max(.1f, newSize.y + topHandle - bottomHandle));
+        newSize = new Vector2(
+            Mathf.Max(.1f, newSize.x - leftHandle + topRightHandle.x + rightHandle),
+            Mathf.Max(.1f, newSize.y + topHandle + topRightHandle.y - bottomHandle));
 
         newPosition = new Vector2(
-            newPosition.x + leftHandle * .5f + rightHandle * .5f + middleHandle.x,
-            newPosition.y + topHandle * .5f + bottomHandle * .5f + middleHandle.y);
+            newPosition.x + leftHandle * .5f + rightHandle * .5f + middleHandle.x + topRightHandle.x/2,
+            newPosition.y + topHandle * .5f + bottomHandle * .5f + middleHandle.y + topRightHandle.y/2);
 
         return new Rect(newPosition.x, newPosition.y, newSize.x, newSize.y);
     }
