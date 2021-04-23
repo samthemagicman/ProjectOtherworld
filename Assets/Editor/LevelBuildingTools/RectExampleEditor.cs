@@ -31,10 +31,11 @@ public class RectExampleEditor : EditorTool
     public override void OnToolGUI(EditorWindow window)
     {
         if (target == null) return;
-        RectExample rectExample = ((GameObject)target).GetComponent<RectExample>();
+        GameObject targetGameObject = ((GameObject)target);
+        SpriteRenderer rectExample = ((GameObject)target).GetComponent<SpriteRenderer>();
         if (!rectExample) return;
         var rect = RectUtils.ResizeRect(
-            rectExample.MyRect,
+            new RectUtils.ObjectDetails(targetGameObject.transform.position, rectExample.size),
             Handles.CubeHandleCap,
             Color.green,
             Color.yellow,
@@ -42,9 +43,8 @@ public class RectExampleEditor : EditorTool
             10f,
             rectExample.gameObject
         );
-
-
-        rectExample.MyRect = rect;
+        targetGameObject.transform.position = rect.position;
+        rectExample.size = rect.size;
     }
 
     
@@ -54,7 +54,16 @@ public class RectExampleEditor : EditorTool
 
 public class RectUtils
 {
-
+    public class ObjectDetails
+    {
+        public Vector2 position;
+        public Vector2 size;
+        public ObjectDetails(Vector2 position, Vector2 size)
+        {
+            this.position = position;
+            this.size = size;
+        }
+    }
 
     public static int MouseIsNearObjectEdge(Vector2 position, Vector2 size)
     {
@@ -78,7 +87,7 @@ public class RectUtils
     }
 
 
-    public static Rect ResizeRect(Rect rect, Handles.CapFunction capFunc, Color capCol, Color fillCol, float capSize, float snap, GameObject gameObject)
+    public static ObjectDetails ResizeRect(ObjectDetails rect, Handles.CapFunction capFunc, Color capCol, Color fillCol, float capSize, float snap, GameObject gameObject)
     {
         #region Mouse Changing
         SpriteRenderer renderer = gameObject.GetComponent<SpriteRenderer>();
@@ -134,10 +143,10 @@ public class RectUtils
 
         var newSize = rect.size;
         var newPosition = rect.position;
-        var leftHandle = Handles.Slider(handlePoints[0], -Vector3.right, rect.height / 2, Handles.RectangleHandleCap, snap).x - handlePoints[0].x; //Handles.Slider(handlePoints[0], -Vector3.right, capSize, capFunc, snap).x - handlePoints[0].x;
-        var rightHandle = Handles.Slider(handlePoints[1], Vector3.right, rect.height / 2, Handles.RectangleHandleCap, snap).x - handlePoints[1].x;
-        var topHandle = Handles.Slider(handlePoints[2], Vector3.up, rect.width / 2, Handles.RectangleHandleCap, snap).y - handlePoints[2].y; //Handles.Slider(handlePoints[2], Vector3.up, capSize, capFunc, snap).y - handlePoints[2].y;
-        var bottomHandle = Handles.Slider(handlePoints[3], -Vector3.up, rect.width / 2, Handles.RectangleHandleCap, snap).y - handlePoints[3].y;//Handles.Slider(handlePoints[3], -Vector3.up, capSize, capFunc, snap).y - handlePoints[3].y;
+        var leftHandle = Handles.Slider(handlePoints[0], -Vector3.right, rect.size.y / 2, Handles.RectangleHandleCap, snap).x - handlePoints[0].x; //Handles.Slider(handlePoints[0], -Vector3.right, capSize, capFunc, snap).x - handlePoints[0].x;
+        var rightHandle = Handles.Slider(handlePoints[1], Vector3.right, rect.size.y / 2, Handles.RectangleHandleCap, snap).x - handlePoints[1].x;
+        var topHandle = Handles.Slider(handlePoints[2], Vector3.up, rect.size.x / 2, Handles.RectangleHandleCap, snap).y - handlePoints[2].y; //Handles.Slider(handlePoints[2], Vector3.up, capSize, capFunc, snap).y - handlePoints[2].y;
+        var bottomHandle = Handles.Slider(handlePoints[3], -Vector3.up, rect.size.x / 2, Handles.RectangleHandleCap, snap).y - handlePoints[3].y;//Handles.Slider(handlePoints[3], -Vector3.up, capSize, capFunc, snap).y - handlePoints[3].y;
         Vector2 middleHandle = Handles.Slider2D(rect.position, Vector3.back, Vector3.right, Vector3.up, capSize*2, Handles.RectangleHandleCap, snap) - new Vector3(rect.position.x, rect.position.y);
 
         Vector2 topRightHandle = Handles.Slider2D(handlePoints[4], Vector3.back, Vector3.right, Vector3.up, capSize, Handles.CubeHandleCap, snap) - handlePoints[4];
@@ -188,6 +197,6 @@ public class RectUtils
             + bottomLeftHandle.y / 2
             );
 
-        return new Rect(newPosition.x, newPosition.y, newSize.x, newSize.y);
+        return new ObjectDetails(newPosition, newSize);
     }
 }

@@ -120,7 +120,7 @@ public class ToolWindow : EditorWindow
 
         GUI.enabled = true;
 
-        showingDimensions = EditorGUILayout.BeginToggleGroup("Enable Dimension Settings", showingDimensions);
+        showingDimensions = EditorGUILayout.BeginToggleGroup("Enable Dimension Color Preview", showingDimensions);
         dimension1Color = EditorGUILayout.ColorField("Dimension 1", dimension1Color);
         dimension2Color = EditorGUILayout.ColorField("Dimension 2", dimension2Color);
         outlineColor = EditorGUILayout.ColorField("Outline Color", outlineColor);
