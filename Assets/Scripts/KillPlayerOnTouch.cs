@@ -4,9 +4,28 @@ using UnityEngine;
 
 public class KillPlayerOnTouch : MonoBehaviour
 {
+    public Collider2D collider = null;
+
+    public enum KillBlockTrigger
+    {
+        Collision,
+        Trigger
+    }
+
+    public KillBlockTrigger KillBlockTriggerType = KillBlockTrigger.Collision;
+
+
+    private void Start()
+    {
+        if (collider == null)
+        {
+            collider = GetComponent<Collider2D>();
+            
+        }
+    }
     private void OnCollisionEnter2D(Collision2D collider)
     {
-        if (collider.gameObject.tag == "Player")
+        if (KillBlockTriggerType == KillBlockTrigger.Collision && collider.gameObject.tag == "Player")
         {
             collider.gameObject.GetComponent<PlayerDeathHandler>().Die();
         }
@@ -14,10 +33,8 @@ public class KillPlayerOnTouch : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        //Debug.Log(collider);
-        /*if (collider.isTrigger && collider.gameObject.tag == "Player")
-        {
-            collider.gameObject.GetComponent<PlayerDeathHandler>().Die();
-        }*/
+        if (KillBlockTriggerType != KillBlockTrigger.Trigger) return;
+        PlayerDeathHandler death = collider.gameObject.GetComponentInParent<PlayerDeathHandler>();
+        if (death != null) death.Die();
     }
 }
