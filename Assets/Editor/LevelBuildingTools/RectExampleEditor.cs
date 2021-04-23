@@ -43,7 +43,7 @@ public class RectExampleEditor : EditorTool
             10f,
             rectExample.gameObject
         );
-        targetGameObject.transform.position = rect.position;
+        targetGameObject.transform.position = new Vector3(rect.position.x, rect.position.y, targetGameObject.transform.position.z);
         rectExample.size = rect.size;
     }
 
