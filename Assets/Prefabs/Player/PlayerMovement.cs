@@ -25,19 +25,26 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Wall Jump Settings")]
 
+    public bool wallJumpEnabled = true;
+
+    [ConditionalHide("wallJumpEnabled")]
     [InspectorName("Wall Slide Speed")]
     public float wallSlideSpeed = -15;
 
+    [ConditionalHide("wallJumpEnabled")]
     [InspectorName("Coyote Time")]
     public float wallJumpCoyoteTime = 0.2f;
 
+    [ConditionalHide("wallJumpEnabled")]
     [InspectorName("Move Delay after Jump")]
     [Tooltip("The time it takes before you can control your character again after a wall jump")]
     public float wallJumpMoveDelay = 0.15f;
 
+    [ConditionalHide("wallJumpEnabled")]
     [Tooltip("The time it takes to unstick from a wall")]
     public float wallUnstickTime = 0.05f;
 
+    [ConditionalHide("wallJumpEnabled")]
     public Vector2 wallJumpVelocity = new Vector2(20f, 40f);
     #endregion
 
@@ -137,7 +144,7 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
 
-            if (isOnWall && movingAwayFromWallStamp < wallUnstickTime) // on wall
+            if ((isOnWall && movingAwayFromWallStamp < wallUnstickTime)) // on wall
             {
                 wantedVelocity *= new Vector2(0, 1);
             }
@@ -157,7 +164,7 @@ public class PlayerMovement : MonoBehaviour
 
         #region Gravity and wall sliding
         //If player is touching a wall, and they're not moving towards it
-        if (isTouchingAnyWall && !isMovingTowardsWall)
+        if ((isTouchingAnyWall && !isMovingTowardsWall))
         {
             // If they're touching a wall, they're not moving towards it, and they're going UP the wall, then fake some friction (slow them down sliding up the wall)
             if (rb.velocity.y > 0)
@@ -170,7 +177,7 @@ public class PlayerMovement : MonoBehaviour
             //rb.AddForce(new Vector2(0, wallSlidingGravity)); // Old way of adding slow gravity
             rb.velocity = Vector2.Lerp(rb.velocity, new Vector2(0, wallSlideSpeed), 0.1f);
         }
-        else if (isTouchingAnyWall && isMovingTowardsWall)
+        else if ((isTouchingAnyWall && isMovingTowardsWall))
         {
             rb.velocity = rb.velocity * new Vector2(1, 0.7f); // If space was not down, and we're touching any wall, and we're moving towards a wall, slow down the y velocity to 0
         }
@@ -183,7 +190,7 @@ public class PlayerMovement : MonoBehaviour
 
         #region Wall jumping
         //If the player can wall jump, the wall jump key is pressed, and the player is not grounded, then wall jump
-        if (mayWallJump > 0 && wallJumpKeyPressed && !isGrounded) // Wall jump
+        if ((mayWallJump > 0 && wallJumpKeyPressed && !isGrounded)) // Wall jump
         {
             var wallJumpXVelocity = IsTouchingLeftWall() == true ? wallJumpVelocity.x : -wallJumpVelocity.x;
             if (mayWallJump != wallJumpCoyoteTime)
@@ -253,13 +260,13 @@ public class PlayerMovement : MonoBehaviour
     bool IsTouchingRightWall()
     {
         //return Physics2D.Raycast(transform.position, -Vector2.up, distToGround + 0.1f).collider != null;
-        return Physics2D.BoxCast(transform.position + new Vector3(1, 1, 0), new Vector2(0.05f, 1.8f), 0, Vector2.right, 0, ~ignoreRaycastLayers).collider != null;
+        return wallJumpEnabled && Physics2D.BoxCast(transform.position + new Vector3(1, 1, 0), new Vector2(0.05f, 1.8f), 0, Vector2.right, 0, ~ignoreRaycastLayers).collider != null;
     }
 
     bool IsTouchingLeftWall()
     {
         //return Physics2D.Raycast(transform.position, -Vector2.up, distToGround + 0.1f).collider != null;
-        return Physics2D.BoxCast(transform.position + new Vector3(-1, 1, 0), new Vector2(0.05f, 1.8f), 0, Vector2.right, 0, ~ignoreRaycastLayers).collider != null;
+        return wallJumpEnabled && Physics2D.BoxCast(transform.position + new Vector3(-1, 1, 0), new Vector2(0.05f, 1.8f), 0, Vector2.right, 0, ~ignoreRaycastLayers).collider != null;
     }
 
     bool IsTouchingAnyWall()
