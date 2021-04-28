@@ -13,7 +13,7 @@ public class Parallax : MonoBehaviour
     Vector3 lastPlayerPosition;
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = Camera.main.gameObject;
     }
 
     // Update is called once per frame
@@ -34,7 +34,7 @@ public class Parallax : MonoBehaviour
             lastPlayerPosition = player.transform.position;
         } else
         {
-            player = GameObject.FindGameObjectWithTag("Player");
+            player = Camera.main.gameObject;
         }
     }
 }
