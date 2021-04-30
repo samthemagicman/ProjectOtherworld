@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Parallax : MonoBehaviour
 {
-    [Range(0, 10)]
+    [Range(-10, 10)]
     public int parallaxValue;
 
     GameObject player;
@@ -14,6 +14,8 @@ public class Parallax : MonoBehaviour
     void Start()
     {
         player = Camera.main.gameObject;
+
+        transform.position = transform.position - Vector3.Scale(transform.position - player.transform.position, new Vector3((float)parallaxValue / 10, (float)parallaxValue / 10, (float)parallaxValue / 10));
     }
 
     // Update is called once per frame
