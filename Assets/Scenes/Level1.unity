@@ -5691,6 +5691,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4572557802371348569, guid: ff9efa1e18c72b448bf23c06542eabe5, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.99999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4572557802371348569, guid: ff9efa1e18c72b448bf23c06542eabe5, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4572557802371348569, guid: ff9efa1e18c72b448bf23c06542eabe5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4572557802371348570, guid: ff9efa1e18c72b448bf23c06542eabe5, type: 3}
+      propertyPath: m_BoneTransforms.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4572557802371348573, guid: ff9efa1e18c72b448bf23c06542eabe5, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 7965041275371851250, guid: 0c52cefa38fa2904db552281adc1fe47, type: 3}
+    - target: {fileID: 4572557802371348573, guid: ff9efa1e18c72b448bf23c06542eabe5, type: 3}
+      propertyPath: m_DrawMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4572557802371348573, guid: ff9efa1e18c72b448bf23c06542eabe5, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff9efa1e18c72b448bf23c06542eabe5, type: 3}
 --- !u!1 &1368122661
