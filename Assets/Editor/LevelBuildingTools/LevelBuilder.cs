@@ -9,7 +9,7 @@ using System;
 
 //[CustomEditor(typeof(RectExample))]
 [EditorTool("Level Builder")]
-public class RectExampleEditor : EditorTool
+public class LevelBuilder : EditorTool
 {
     public static CustomCursor.WindowsCursor currentCursor = CustomCursor.WindowsCursor.none;
     void OnEnable()
@@ -36,34 +36,53 @@ public class RectExampleEditor : EditorTool
         if (!rectExample) return;
         var rect = RectUtils.ResizeRect(
             new RectUtils.ObjectDetails(targetGameObject.transform.position, rectExample.size),
-            Handles.CubeHandleCap,
-            Color.green,
-            Color.yellow,
-            HandleUtility.GetHandleSize(Vector3.zero) * 0.15f,
-            10f,
             rectExample.gameObject
         );
-        Undo.RecordObject(targetGameObject.transform, "Resize");
-        Undo.RecordObject(rectExample, "Resize");
+
+        foreach (GameObject obj in Selection.gameObjects)
+        {
+            Undo.RecordObject(obj.transform, "move/resize");
+        }
+
+        Vector2 previousPosition = targetGameObject.transform.position;
         targetGameObject.transform.position = new Vector3(rect.position.x, rect.position.y, targetGameObject.transform.position.z);
+        Vector2 delta = ((Vector2)targetGameObject.transform.position) - previousPosition;
+        if (rect.positionDelta.magnitude > 0)
+        {
+            GameObject[] selected = Selection.gameObjects;
+            foreach (GameObject obj in selected)
+            {
+                if (obj == targetGameObject) continue;
+                obj.transform.position += new Vector3(delta.x, delta.y, 0);
+            }
+        }
         rectExample.size = rect.size;
     }
 
-    
+
 }
 
 
 
 public class RectUtils
 {
+    static Color capCol = Color.green;
+    static Color fillCol = Color.yellow;
     public class ObjectDetails
     {
         public Vector2 position;
         public Vector2 size;
+        public Vector2 positionDelta;
         public ObjectDetails(Vector2 position, Vector2 size)
         {
             this.position = position;
             this.size = size;
+        }
+        public ObjectDetails(Vector2 position, Vector2 size, Vector2 positionDelta)
+        {
+            this.position = position;
+            this.size = size;
+            this.positionDelta = positionDelta;
         }
     }
 
@@ -88,8 +107,7 @@ public class RectUtils
         return new Vector2(  Mathf.Round(vector3.x / 1) * 1, Mathf.Round(vector3.y / 1) * 1);
     }
 
-
-    public static ObjectDetails ResizeRect(ObjectDetails rect, Handles.CapFunction capFunc, Color capCol, Color fillCol, float capSize, float snap, GameObject gameObject)
+    public static ObjectDetails ResizeRect(ObjectDetails rect, GameObject gameObject)
     {
         #region Mouse Changing
         SpriteRenderer renderer = gameObject.GetComponent<SpriteRenderer>();
@@ -98,20 +116,21 @@ public class RectUtils
             int edge = MouseIsNearObjectEdge(gameObject.transform.position, renderer.size);
             if (edge == 1)
             {
-                RectExampleEditor.currentCursor = CustomCursor.WindowsCursor.DoublePointedArrowPointingWestAndEast;
+                LevelBuilder.currentCursor = CustomCursor.WindowsCursor.DoublePointedArrowPointingWestAndEast;
             }
             else if (edge == 2)
             {
-                RectExampleEditor.currentCursor = CustomCursor.WindowsCursor.DoublePointedArrowPointingNorthAndSouth;
+                LevelBuilder.currentCursor = CustomCursor.WindowsCursor.DoublePointedArrowPointingNorthAndSouth;
             }
             else
             {
-                RectExampleEditor.currentCursor = CustomCursor.WindowsCursor.none;
+                LevelBuilder.currentCursor = CustomCursor.WindowsCursor.none;
             }
         }
         #endregion
 
-
+        float snap = 10;
+        float capSize = HandleUtility.GetHandleSize(Vector3.zero) * 0.15f;
         Vector2 halfRectSize = new Vector2(rect.size.x * 0.5f, rect.size.y * 0.5f);
 
         if (gameObject.GetComponent<DimensionFilter>() == null)
@@ -186,7 +205,10 @@ public class RectUtils
             - bottomHandle));
 
         newPosition = new Vector2(
-            newPosition.x + leftHandle * .5f + rightHandle * .5f + middleHandle.x
+            newPosition.x
+            + leftHandle * .5f
+            + rightHandle * .5f
+            + middleHandle.x
             + topRightHandle.x / 2
             + topLeftHandle.x / 2
             + bottomRightHandle.x / 2
@@ -199,6 +221,6 @@ public class RectUtils
             + bottomLeftHandle.y / 2
             );
 
-        return new ObjectDetails(newPosition, newSize);
+        return new ObjectDetails(newPosition, newSize, ((Vector2) gameObject.transform.position) - newPosition);
     }
 }
