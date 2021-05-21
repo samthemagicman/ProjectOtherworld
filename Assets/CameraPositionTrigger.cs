@@ -5,16 +5,28 @@ using UnityEngine.Events;
 
 public class CameraPositionTrigger : MonoBehaviour
 {
+    [HideInInspector]
     public UnityEvent PlayerEntered = new UnityEvent();
+    
+    public Color gizmoOutlineColor = Color.green;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("oonga boonga chugga chug chug");
         PlayerEntered.Invoke();
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         
+    }
+
+    private void OnDrawGizmos()
+    {
+        Camera cam = GetComponent<Camera>();
+        float height = 2f * cam.orthographicSize;
+        float width = height * cam.aspect;
+
+        Gizmos.color = gizmoOutlineColor;
+        Gizmos.DrawWireCube(transform.position, new Vector2(width, height));
     }
 }

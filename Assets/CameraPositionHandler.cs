@@ -26,4 +26,17 @@ public class CameraPositionHandler : MonoBehaviour
     {
         Camera.main.transform.position = Vector3.MoveTowards(Camera.main.transform.position, targetPosition, 2);
     }
+
+    private void OnDrawGizmos()
+    {
+        BoxCollider2D[] colliders = transform.GetComponentsInChildren<BoxCollider2D>();
+
+        foreach (BoxCollider2D coll in colliders)
+        {
+            Camera cam = coll.gameObject.GetComponent<Camera>();
+            cam.depth = -1000;
+            coll.size = new Vector2(cam.orthographicSize * 3.5566666f, cam.orthographicSize * 2);
+            coll.offset = Vector2.zero;
+        }
+    }
 }
