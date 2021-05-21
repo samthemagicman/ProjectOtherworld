@@ -42,21 +42,31 @@ public class LevelBuilder : EditorTool
         foreach (GameObject obj in Selection.gameObjects)
         {
             Undo.RecordObject(obj.transform, "move/resize");
+            SpriteRenderer rend = obj.GetComponent<SpriteRenderer>();
+            if (rend)
+            {
+                Undo.RecordObject(rend, "move/resize");
+            }
         }
 
         Vector2 previousPosition = targetGameObject.transform.position;
         targetGameObject.transform.position = new Vector3(rect.position.x, rect.position.y, targetGameObject.transform.position.z);
-        Vector2 delta = ((Vector2)targetGameObject.transform.position) - previousPosition;
+        Vector2 positionDelta = ((Vector2)targetGameObject.transform.position) - previousPosition;
+        
+        Vector2 prev = rectExample.size;
+        rectExample.size = rect.size;
+        Vector2 sizeDelta = rect.size - prev;
+
         if (rect.positionDelta.magnitude > 0)
         {
             GameObject[] selected = Selection.gameObjects;
             foreach (GameObject obj in selected)
             {
                 if (obj == targetGameObject) continue;
-                obj.transform.position += new Vector3(delta.x, delta.y, 0);
+                obj.transform.position += new Vector3(positionDelta.x, positionDelta.y, 0);
+                obj.GetComponent<SpriteRenderer>().size += sizeDelta;
             }
         }
-        rectExample.size = rect.size;
     }
 
 
