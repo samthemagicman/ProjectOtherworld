@@ -49,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
 
 
     public Vector2 horizontalControlScale = new Vector2(1,1 );
+    public float sharpness = .1f; //the value that controls the ease back to base
     #endregion
 
     #region Component References
@@ -151,9 +152,11 @@ public class PlayerMovement : MonoBehaviour
             {
                 wantedVelocity *= new Vector2(0, 1);
             }
-
+            
             rb.velocity = Vector2.Lerp(rb.velocity, wantedVelocity, velocityLerpValue * horizontalControlScale.x);
-            horizontalControlScale = Vector2.MoveTowards(horizontalControlScale, new Vector2(1, 1), 0.01f);
+            float blend = 1f - Mathf.Pow(1f - sharpness, Time.deltaTime * 30);
+            horizontalControlScale = Vector2.Lerp(horizontalControlScale, new Vector2(1, 1), blend);
+            if (horizontalControlScale.x >= 0.95f) horizontalControlScale.x = 1;
         }
         #endregion
 

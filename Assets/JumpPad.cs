@@ -44,7 +44,7 @@ public class JumpPad : MonoBehaviour
             animator.SetTrigger("Bounce");
             collision.gameObject.GetComponent<Rigidbody2D>().AddForce( vel * force );
             //collision.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.Reflect(collision.gameObject.GetComponent<Rigidbody2D>().velocity, collision.contacts[0].normal) * force;
-            collision.gameObject.GetComponent<PlayerMovement>().horizontalControlScale = new Vector2(0, 1);
+            collision.gameObject.GetComponent<PlayerMovement>().horizontalControlScale = new Vector2(0.1f, 1);
             //collision.gameObject.GetComponent<PlayerMovement>().Fling(vel * force, 0.4f);
         }
     }
