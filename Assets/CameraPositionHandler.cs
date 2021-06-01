@@ -17,6 +17,14 @@ public class CameraPositionHandler : MonoBehaviour
         foreach (CameraPositionTrigger coll in colliders)
         {
             coll.PlayerEntered.AddListener(() => {
+                if (coll.transform.Find("Spawn"))
+                {
+                    Player.Respawn.Handler.lastCheckpointPosition = coll.transform.Find("Spawn").transform.position;
+                    Player.Respawn.Handler.currentCheckpointType = Player.Respawn.CheckpointType.CheckpointPosition;
+                } else
+                {
+                    Player.Respawn.Handler.currentCheckpointType = Player.Respawn.CheckpointType.ClosestPlatform;
+                }
                 targetPosition = coll.gameObject.transform.position;
             });
         }
