@@ -1,0 +1,21 @@
+title: RayDialogue1
+---
+Ray: You are dumb and stupid. #line:0ebae3f
+Ray: I think that you should die. #line:06a7075
+Ray: Please... #line:0049818
+<<wait 1>>
+Ray: Die... #line:028c2b3
+[[No I am not going to just die. |NoDie]] #line:06c0dcb
+[[Okay, I will go die now. |Die]] #line:06d82fc
+===
+
+title: NoDie
+---
+Ray: Fine then, just leave my sight. #line:09ed181
+===
+
+title: Die
+---
+Ray: Thank you. #line:05dba30
+===
+
