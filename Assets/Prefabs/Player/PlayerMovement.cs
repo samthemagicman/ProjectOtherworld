@@ -7,6 +7,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     #region Public Variables
+    public static bool controlsEnabled = true;
+
     public int walkSpeed = 20;
     [Tooltip("The lerp value to move to wanted velocity each frame")]
     public float velocityLerpValue = 0.4f;
@@ -86,8 +88,18 @@ public class PlayerMovement : MonoBehaviour
         animator = animators[1];
     }
 
+    public static void DisableControls()
+    {
+        controlsEnabled = false;
+    }
+    public static void EnableControls()
+    {
+        controlsEnabled = true;
+    }
+
     void FixedUpdate()
     {
+
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveHorizontalRaw = Input.GetAxisRaw("Horizontal");
         //float moveVertical = Input.GetAxis("Vertical");
@@ -96,6 +108,15 @@ public class PlayerMovement : MonoBehaviour
         bool isTouchingAnyWall = IsTouchingAnyWall();
         bool isGrounded = IsGrounded();
         bool isOnWall = isTouchingAnyWall && !isGrounded;
+
+
+        if (!controlsEnabled)
+        {
+            moveHorizontal = 0;
+            moveHorizontalRaw = 0;
+            mayWallJump = 0;
+            jumpKeyPressedStamp = 0;
+        }
 
         if (isGrounded)
         {

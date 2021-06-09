@@ -7,11 +7,10 @@ public class PlayerDeathHandler : MonoBehaviour
 {
     public GameObject explodingPlayerPrefab;
     public UnityEvent onDied;
-    public GameObject bone1;
     
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetButtonDown("ResetCharacter"))
         {
             Die();
         }
@@ -29,6 +28,5 @@ public class PlayerDeathHandler : MonoBehaviour
         Time.timeScale = 1f;
         Time.fixedDeltaTime = 0.02F * Time.timeScale;
         this.gameObject.SetActive(false);
-        bone1.transform.eulerAngles = new Vector3(0, 0, 90);
     }
 }
