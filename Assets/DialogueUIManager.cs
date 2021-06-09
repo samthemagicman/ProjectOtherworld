@@ -16,5 +16,6 @@ public class DialogueUIManager : MonoBehaviour
     public void SetCharacterName(string[] parameters)
     {
         characterName.text = parameters[0];
+        LayoutRebuilder.ForceRebuildLayoutImmediate(characterName.GetComponentInParent<RectTransform>());
     }
 }
