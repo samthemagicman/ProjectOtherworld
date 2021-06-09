@@ -151,9 +151,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 wantedVelocity *= new Vector2(0, 1);
             }
-
             rb.velocity = Vector2.Lerp(rb.velocity, wantedVelocity, velocityLerpValue * horizontalControlScale.x);
-            horizontalControlScale = Vector2.MoveTowards(horizontalControlScale, new Vector2(1, 1), 0.01f);
         }
         #endregion
 
