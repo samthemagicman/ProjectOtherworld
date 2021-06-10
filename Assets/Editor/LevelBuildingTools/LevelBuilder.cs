@@ -52,10 +52,8 @@ public class LevelBuilder : EditorTool
         Vector2 previousPosition = targetGameObject.transform.position;
         targetGameObject.transform.position = new Vector3(rect.position.x, rect.position.y, targetGameObject.transform.position.z);
         Vector2 positionDelta = ((Vector2)targetGameObject.transform.position) - previousPosition;
-        if (targetGameObject.transform.position.x % 0.5f != 0 || targetGameObject.transform.position.y % 0.5f != 0)
-        {
-            targetGameObject.transform.position = new Vector3(Mathf.Floor(targetGameObject.transform.position.x / 0.5f) * 0.5f, Mathf.Floor(targetGameObject.transform.position.y / 0.5f) * 0.5f, 0);
-        }
+        //if (targetGameObject.transform.position.x % 0.5f != 0 || targetGameObject.transform.position.y % 0.5f != 0)
+        
 
         Vector2 prev = rectExample.size;
         rectExample.size = rect.size;
@@ -73,11 +71,48 @@ public class LevelBuilder : EditorTool
                 }
                 obj.transform.position += new Vector3(positionDelta.x, positionDelta.y, 0);
                 obj.GetComponent<SpriteRenderer>().size += sizeDelta;
+                SnapToGrid(obj);
+            }
+        }
+
+        SnapToGrid(targetGameObject);
+
+    }
+
+    void SnapToGrid(GameObject obj)
+    {
+        SpriteRenderer rectExample = obj.GetComponent<SpriteRenderer>();
+        rectExample.size = new Vector2(Mathf.Round(rectExample.size.x), Mathf.Round(rectExample.size.y));
+        if (rectExample.size.x % 2 == 0) // even
+        {
+            if (obj.transform.position.x % 1f != 0)
+            {
+                obj.transform.position = new Vector3(Mathf.Floor(obj.transform.position.x), obj.transform.position.y, obj.transform.position.z);
+            }
+        }
+        else //odd
+        {
+            if ((obj.transform.position.x / 0.5f) % 2 != 1)
+            {
+                obj.transform.position = new Vector3(Mathf.Round(obj.transform.position.x) + 0.5f, obj.transform.position.y, obj.transform.position.z);
+            }
+        }
+
+        if (rectExample.size.y % 2 == 0) // even
+        {
+            if (obj.transform.position.y % 1f != 0)
+            {
+                obj.transform.position = new Vector3(obj.transform.position.x, Mathf.Floor(obj.transform.position.y), obj.transform.position.z);
+            }
+        }
+        else //odd
+        {
+            if ((obj.transform.position.y / 0.5f) % 2 != 1)
+            {
+                obj.transform.position = new Vector3(obj.transform.position.x, Mathf.Round(obj.transform.position.y) + 0.5f, obj.transform.position.z);
             }
         }
     }
-
-
 }
 
 
