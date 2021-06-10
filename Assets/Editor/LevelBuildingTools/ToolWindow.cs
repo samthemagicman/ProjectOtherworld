@@ -139,6 +139,7 @@ public class ToolWindow : EditorWindow
             {
                 comp = obj.AddComponent<DimensionFilter>();
             }
+            Undo.RecordObject(comp, "Change Object Dimension");
             comp.dimension = dimension;
         }
         selectedObjectDimension = dimension;
