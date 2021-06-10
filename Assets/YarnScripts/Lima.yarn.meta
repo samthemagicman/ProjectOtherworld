@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 0c3e146f35cd5524eacd75e0d5ec90fe
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 94073015eacc34c1d8fc6786e43d60ca, type: 3}
+  baseLanguageID: 
+  stringIDs:
+  - Lima-Lima.Start-0
+  - Lima-Lima.Start-1
+  - Lima-Lima.Start-2
+  - Lima-Lima.Start-3
+  - Lima-Lima.Start-4
+  - Lima-Lima.Start-5
+  compilationStatus: 1
+  isSuccesfullyCompiled: 1
+  compilationErrorMessage: 
+  baseLanguage: {instanceID: 0}
+  localizations: []
