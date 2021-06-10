@@ -43,7 +43,7 @@ public class DimensionFilter : MonoBehaviour
         startingMaterial = renderer.material;
         currentDimensionLayer = LayerMask.NameToLayer("CurrentDimension");
         otherDimensionLayer = LayerMask.NameToLayer("OtherDimension");
-        collider = GetComponent<Collider2D>();
+        TryGetComponent<Collider2D>(out collider);
         RenderPipelineManager.beginFrameRendering += OnBeginFrameRendering;
         RenderPipelineManager.endFrameRendering += OnEndFrameRendering;
     }
@@ -62,12 +62,12 @@ public class DimensionFilter : MonoBehaviour
         startLayer = gameObject.layer;
         if (DimensionSwapping.currentDimension == dimension)
         {
-            collider.enabled = true;
+            if (collider) collider.enabled = true;
             wasEnabledLastFrame = true;
             gameObject.layer = currentDimensionLayer;
         } else
         {
-            collider.enabled = false;
+            if (collider) collider.enabled = false;
             gameObject.layer = otherDimensionLayer;
         }
     }
