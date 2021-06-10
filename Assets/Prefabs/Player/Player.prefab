@@ -4926,7 +4926,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4572557801642798760}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7097803, w: 0.7044231}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0.03910759, y: -0.963883, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -4934,7 +4934,7 @@ Transform:
   - {fileID: 4572557802507917192}
   m_Father: {fileID: 4572557802371348569}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!1 &4572557801684133966
 GameObject:
   m_ObjectHideFlags: 0
@@ -5018,6 +5018,7 @@ MonoBehaviour:
   maxCoyoteJumpDistance: 2
   maxFallSpeed: 100
   gravity: -100
+  wallJumpEnabled: 1
   wallSlideSpeed: -15
   wallJumpCoyoteTime: 0.04
   wallJumpMoveDelay: 0.15
@@ -5265,8 +5266,8 @@ MonoBehaviour:
   - {fileID: 4572557801562239260}
   - {fileID: 4572557802507917192}
   m_Bounds:
-    m_Center: {x: 0.000000059604645, y: 0, z: 0}
-    m_Extent: {x: 1, y: 0.99999994, z: 0}
+    m_Center: {x: 0.0073034763, y: 0.00026869774, z: 0}
+    m_Extent: {x: 1.0075474, y: 1.0075474, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!95 &4572557802371348571

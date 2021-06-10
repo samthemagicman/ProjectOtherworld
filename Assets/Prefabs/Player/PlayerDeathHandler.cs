@@ -7,6 +7,7 @@ public class PlayerDeathHandler : MonoBehaviour
 {
     public GameObject explodingPlayerPrefab;
     public UnityEvent onDied;
+    public GameObject bone1;
     
     void Update()
     {
@@ -23,9 +24,11 @@ public class PlayerDeathHandler : MonoBehaviour
         explodable.fragmentInEditor();
         explodable.explode();
         explodable.setVelocity(GetComponent<Rigidbody2D>().velocity);
-        Destroy(this.gameObject);
+        //Destroy(this.gameObject);
         onDied.Invoke();
         Time.timeScale = 1f;
         Time.fixedDeltaTime = 0.02F * Time.timeScale;
+        this.gameObject.SetActive(false);
+        bone1.transform.eulerAngles = new Vector3(0, 0, 90);
     }
 }
