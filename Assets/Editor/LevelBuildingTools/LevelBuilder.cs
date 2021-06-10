@@ -52,7 +52,11 @@ public class LevelBuilder : EditorTool
         Vector2 previousPosition = targetGameObject.transform.position;
         targetGameObject.transform.position = new Vector3(rect.position.x, rect.position.y, targetGameObject.transform.position.z);
         Vector2 positionDelta = ((Vector2)targetGameObject.transform.position) - previousPosition;
-        
+        if (targetGameObject.transform.position.x % 0.5f != 0 || targetGameObject.transform.position.y % 0.5f != 0)
+        {
+            targetGameObject.transform.position = new Vector3(Mathf.Floor(targetGameObject.transform.position.x / 0.5f) * 0.5f, Mathf.Floor(targetGameObject.transform.position.y / 0.5f) * 0.5f, 0);
+        }
+
         Vector2 prev = rectExample.size;
         rectExample.size = rect.size;
         Vector2 sizeDelta = rect.size - prev;
@@ -63,6 +67,10 @@ public class LevelBuilder : EditorTool
             foreach (GameObject obj in selected)
             {
                 if (obj == targetGameObject) continue;
+                if (obj.transform.position.x % 0.5f != 0 || obj.transform.position.y % 0.5f != 0)
+                {
+                    obj.transform.position = new Vector3( Mathf.Floor(obj.transform.position.x / 0.5f) * 0.5f, Mathf.Floor(obj.transform.position.y / 0.5f) * 0.5f, 0);
+                }
                 obj.transform.position += new Vector3(positionDelta.x, positionDelta.y, 0);
                 obj.GetComponent<SpriteRenderer>().size += sizeDelta;
             }
