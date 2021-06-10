@@ -6,6 +6,7 @@ public class CameraPositionHandler : MonoBehaviour
 {
     public GameObject initialPosition;
     Vector3 targetPosition;
+    Camera targetCamera;
 
     void Start()
     {
@@ -26,13 +27,15 @@ public class CameraPositionHandler : MonoBehaviour
                     Player.Respawn.Handler.currentCheckpointType = Player.Respawn.CheckpointType.ClosestPlatform;
                 }
                 targetPosition = coll.gameObject.transform.position;
+                targetCamera = coll.GetComponent<Camera>();
             });
         }
     }
 
     void Update()
     {
-        Camera.main.transform.position = Vector3.MoveTowards(Camera.main.transform.position, targetPosition, 2);
+        Camera.main.transform.position = Vector3.MoveTowards(Camera.main.transform.position, targetPosition, 0.3f);
+        Camera.main.orthographicSize = Mathf.MoveTowards(Camera.main.orthographicSize, targetCamera.orthographicSize, 0.04f);//Vector3.MoveTowards(Camera.main.transform.position, targetPosition, 2);
     }
 
     private void OnDrawGizmos()

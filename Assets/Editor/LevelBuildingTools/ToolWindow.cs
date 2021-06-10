@@ -53,31 +53,30 @@ public class ToolWindow : EditorWindow
 
         EditorGUILayout.BeginHorizontal();
 
-        if (dimensionFilter == null) GUI.enabled = false;
-        if (GUILayout.Button("None")) DestroyImmediate(dimensionFilter);
+        if (Selection.gameObjects.Length == 1 && dimensionFilter == null) GUI.enabled = false;
+        if (GUILayout.Button("None")) {
+            foreach (GameObject obj in Selection.gameObjects)
+            {
+                DimensionFilter comp;
+                obj.TryGetComponent<DimensionFilter>(out comp);
+                if (comp) DestroyImmediate(comp);
+            }
+        };
         GUI.enabled = true;
 
-        if (dimensionFilter != null && selectedObjectDimension == DimensionFilter.Dimension.One) GUI.enabled = false;
+        if (Selection.gameObjects.Length == 1 && (dimensionFilter != null && selectedObjectDimension == DimensionFilter.Dimension.One)) GUI.enabled = false;
         if (GUILayout.Button("Dimension 1"))
         {
-            if (dimensionFilter == null)
-            {
-                dimensionFilter = currentSelection.AddComponent<DimensionFilter>();
-            }
-            dimensionFilter.dimension = DimensionFilter.Dimension.One;
-            selectedObjectDimension = DimensionFilter.Dimension.One;
+            SetDimensionOnSelectedObjects(DimensionFilter.Dimension.One);
+            currentSelection.TryGetComponent<DimensionFilter>(out dimensionFilter);
         }
         GUI.enabled = true;
 
-        if (dimensionFilter != null && selectedObjectDimension == DimensionFilter.Dimension.Two) GUI.enabled = false;
+        if (Selection.gameObjects.Length == 1 && (dimensionFilter != null && selectedObjectDimension == DimensionFilter.Dimension.Two)) GUI.enabled = false;
         if (GUILayout.Button("Dimension 2"))
         {
-            if (dimensionFilter == null)
-            {
-                dimensionFilter = currentSelection.AddComponent<DimensionFilter>();
-            }
-            dimensionFilter.dimension = DimensionFilter.Dimension.Two;
-            selectedObjectDimension = DimensionFilter.Dimension.Two;
+            SetDimensionOnSelectedObjects(DimensionFilter.Dimension.Two);
+            currentSelection.TryGetComponent<DimensionFilter>(out dimensionFilter);
         }
         GUI.enabled = true;
         EditorGUILayout.EndHorizontal();
@@ -129,6 +128,22 @@ public class ToolWindow : EditorWindow
 
         lastTarget = Selection.activeGameObject;
     }
+
+    void SetDimensionOnSelectedObjects(DimensionFilter.Dimension dimension)
+    {
+        foreach (GameObject obj in Selection.gameObjects)
+        {
+            DimensionFilter comp;
+            obj.TryGetComponent<DimensionFilter>(out comp);
+            if (comp == null)
+            {
+                comp = obj.AddComponent<DimensionFilter>();
+            }
+            comp.dimension = dimension;
+        }
+        selectedObjectDimension = dimension;
+    }
+
     private void OnEnable()
     {
         SceneView.duringSceneGui += OnSceneGUI;
