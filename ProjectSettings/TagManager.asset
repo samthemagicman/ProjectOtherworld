@@ -10,6 +10,7 @@ TagManager:
   - BombPickup
   - Enemy
   - Unropable
+  - CameraTrigger
   layers:
   - Default
   - TransparentFX
