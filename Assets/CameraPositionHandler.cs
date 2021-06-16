@@ -39,7 +39,8 @@ public class CameraPositionHandler : MonoBehaviour
     {
         if (targetCamera != null)
         {
-            Camera.main.transform.position = Vector3.MoveTowards(Camera.main.transform.position, targetPosition, 0.3f);
+            Camera.main.transform.position = Vector3.MoveTowards(Camera.main.transform.position, targetPosition, 0.7f);
+            Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, -5);
             Camera.main.orthographicSize = Mathf.MoveTowards(Camera.main.orthographicSize, targetCamera.orthographicSize, 0.04f);//Vector3.MoveTowards(Camera.main.transform.position, targetPosition, 2);
         }
     }
