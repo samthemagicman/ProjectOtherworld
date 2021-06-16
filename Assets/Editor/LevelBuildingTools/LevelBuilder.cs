@@ -93,10 +93,19 @@ public class LevelBuilder : EditorTool
         SnapToGrid(targetGameObject);
 
     }
+    void SnapToGrid2(GameObject obj)
+    {
+        obj.transform.position = new Vector3(Mathf.Floor(obj.transform.position.x), Mathf.Floor(obj.transform.position.y), obj.transform.position.z);
+    }
 
     void SnapToGrid(GameObject obj)
     {
         SpriteRenderer rectExample = obj.GetComponent<SpriteRenderer>();
+        if (rectExample == null)
+        {
+            SnapToGrid2(obj);
+            return;
+        }
         rectExample.size = new Vector2(Mathf.Round(rectExample.size.x), Mathf.Round(rectExample.size.y));
         if (rectExample.size.x % 2 == 0) // even
         {
