@@ -38,7 +38,8 @@ public class LevelBuilder : EditorTool
             Vector2 middleHandle = Handles.Slider2D(targetGameObject.transform.position, Vector3.back, Vector3.right, Vector3.up, HandleUtility.GetHandleSize(Vector3.zero) * 0.15f * 2, Handles.RectangleHandleCap, 10)
                                     - new Vector3(targetGameObject.transform.position.x, targetGameObject.transform.position.y);
             middleHandle = new Vector2(Mathf.Round(middleHandle.x / 1) * 1, Mathf.Round(middleHandle.y / 1) * 1);
-            
+
+            Undo.RecordObject(targetGameObject.transform, "move/resize");
             if (targetGameObject.transform.position.x % 0.5f != 0 || targetGameObject.transform.position.y % 0.5f != 0)
             {
                 targetGameObject.transform.position = new Vector3(Mathf.Floor(targetGameObject.transform.position.x / 0.5f) * 0.5f, Mathf.Floor(targetGameObject.transform.position.y / 0.5f) * 0.5f, 0);
