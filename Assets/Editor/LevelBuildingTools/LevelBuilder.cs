@@ -33,7 +33,21 @@ public class LevelBuilder : EditorTool
         if (target == null) return;
         GameObject targetGameObject = ((GameObject)target);
         SpriteRenderer rectExample = ((GameObject)target).GetComponent<SpriteRenderer>();
-        if (!rectExample) return;
+        if (!rectExample)
+        {
+            Vector2 middleHandle = Handles.Slider2D(targetGameObject.transform.position, Vector3.back, Vector3.right, Vector3.up, HandleUtility.GetHandleSize(Vector3.zero) * 0.15f * 2, Handles.RectangleHandleCap, 10)
+                                    - new Vector3(targetGameObject.transform.position.x, targetGameObject.transform.position.y);
+            middleHandle = new Vector2(Mathf.Round(middleHandle.x / 1) * 1, Mathf.Round(middleHandle.y / 1) * 1);
+            
+            if (targetGameObject.transform.position.x % 0.5f != 0 || targetGameObject.transform.position.y % 0.5f != 0)
+            {
+                targetGameObject.transform.position = new Vector3(Mathf.Floor(targetGameObject.transform.position.x / 0.5f) * 0.5f, Mathf.Floor(targetGameObject.transform.position.y / 0.5f) * 0.5f, 0);
+            }
+            targetGameObject.transform.position = (Vector3)middleHandle + targetGameObject.transform.position;//= new Vector3(positionDelta.x, positionDelta.y, 0);
+            SnapToGrid(targetGameObject);
+                
+            return;
+        };
         var rect = RectUtils.ResizeRect(
             new RectUtils.ObjectDetails(targetGameObject.transform.position, rectExample.size),
             rectExample.gameObject
@@ -79,9 +93,18 @@ public class LevelBuilder : EditorTool
 
     }
 
+    void SnapToGridNoRect(GameObject obj)
+    {
+        if (obj.transform.position.x % 1f != 0)
+        {
+            obj.transform.position = new Vector3(Mathf.Floor(obj.transform.position.x), obj.transform.position.y, obj.transform.position.z);
+        }
+    }
+
     void SnapToGrid(GameObject obj)
     {
         SpriteRenderer rectExample = obj.GetComponent<SpriteRenderer>();
+        if (!rectExample) { SnapToGridNoRect(obj); return; };
         rectExample.size = new Vector2(Mathf.Round(rectExample.size.x), Mathf.Round(rectExample.size.y));
         if (rectExample.size.x % 2 == 0) // even
         {
