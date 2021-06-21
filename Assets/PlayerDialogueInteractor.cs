@@ -5,11 +5,13 @@ using Yarn.Unity;
 public class PlayerDialogueInteractor : MonoBehaviour
 {
     public RectTransform interactPromptUI;
-    NPCDialogue currentNPCDialogue;
+    public NPCDialogue currentNPCDialogue;
     DialogueRunner dialogueRunner;
+    public static PlayerDialogueInteractor singleton;
+
     void Start()
     {
-        
+        singleton = this;
     }
 
     private void Awake()
