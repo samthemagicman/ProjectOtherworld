@@ -6,7 +6,7 @@ public class MovingPlatform : MonoBehaviour
 {
     public Vector2 moveToOffset;
     public float pause = 0.5f;
-    public float speed = 1;
+    public float speed = 5;
 
     Vector3 target;
     Vector3 originalPosition;
@@ -15,6 +15,9 @@ public class MovingPlatform : MonoBehaviour
 
     Vector3 previousFramePos;
     Vector3 velocity;
+    Vector3 velocityDelta;
+
+    PlayerMovement plyrMovement;
 
     // Start is called before the first frame update
     void Start()
@@ -25,11 +28,20 @@ public class MovingPlatform : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-
-        velocity = (transform.position - previousFramePos) / Time.deltaTime;
+        Vector3 newVel = ((transform.position - previousFramePos) / Time.deltaTime);
+        velocityDelta = velocity - newVel;
+        velocity = newVel;
         previousFramePos = transform.position;
+
+        if (newVel.magnitude == 0 && velocityDelta.magnitude > 0)
+        {
+            plyrMovement.gameObject.transform.parent = null;
+            plyrMovement.gameObject.GetComponent<Rigidbody2D>().AddForce(velocityDelta * 150);
+            plyrMovement = plyrMovement.gameObject.GetComponent<PlayerMovement>();
+            plyrMovement.horizontalControlScale = new Vector2(0, 1);
+        }
         if (Time.time - pauseTime < pause) return;
 
         if (moveToTarget)
@@ -56,6 +68,7 @@ public class MovingPlatform : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            plyrMovement = collision.gameObject.GetComponent<PlayerMovement>();
             collision.transform.parent = transform;
         }
     }
@@ -66,7 +79,9 @@ public class MovingPlatform : MonoBehaviour
         {
             collision.transform.parent = null;
             collision.gameObject.GetComponent<Rigidbody2D>().AddForce(velocity * 20);
-            collision.gameObject.GetComponent<PlayerMovement>().horizontalControlScale = new Vector2(0, 1);
+            plyrMovement = collision.gameObject.GetComponent<PlayerMovement>();
+            plyrMovement.horizontalControlScale = new Vector2(0, 1);
+            plyrMovement = null;
         }
     }
 

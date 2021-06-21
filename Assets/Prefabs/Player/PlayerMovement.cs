@@ -173,7 +173,54 @@ public class PlayerMovement : MonoBehaviour
                 wantedVelocity *= new Vector2(0, 1);
             }
 
-            rb.velocity = Vector2.Lerp(rb.velocity, wantedVelocity, velocityLerpValue * horizontalControlScale.x);
+            if (isGrounded)
+            {
+                rb.AddForce((wantedVelocity - rb.velocity) * 15);
+            } else if (moveHorizontalRaw != 0)
+            {
+                rb.AddForce((wantedVelocity - rb.velocity) * 10);
+            } else
+            {
+                rb.AddForce((wantedVelocity - rb.velocity) * 10*(horizontalControlScale.x));
+            }
+
+            /*if (isGrounded) // We're on the ground, so full control
+            {
+                rb.AddForce((wantedVelocity - rb.velocity) * control);
+                control = Mathf.MoveTowards(control, 15, 0.5f);
+            }
+            else if (moveHorizontalRaw != 0) // We're in the air and moving our keys
+            {
+
+                if (rb.velocity.x > 23) // Our X velocity is greater than our walkspeed
+                {
+                    //LESS CONTROL
+                    control = Mathf.MoveTowards(control, 3, 0.8f);
+                    rb.AddForce((wantedVelocity - rb.velocity) * control);
+                }
+                else // We're fully in control
+                {
+                    control = Mathf.MoveTowards(control, 15, 0.5f);
+                    rb.AddForce((wantedVelocity - rb.velocity) * control);
+                }
+            }
+            else // We're not moving our movement keys
+            {
+                //rb.AddForce((wantedVelocity - rb.velocity) * 10*(horizontalControlScale.x));
+                if (rb.velocity.x > 23) // Our X velocity is greater than our walkspeed
+                {
+                    //LESS CONTROL
+                    control = Mathf.MoveTowards(control, 3, 0.8f);
+                    rb.AddForce((wantedVelocity - rb.velocity) * control);
+                }
+                else // We're fully in control
+                {
+                    control = Mathf.MoveTowards(control, 15, 0.5f);
+                    rb.AddForce((wantedVelocity - rb.velocity) * control);
+                }
+            }*/
+
+            //rb.velocity = Vector2.Lerp(rb.velocity, wantedVelocity, velocityLerpValue * horizontalControlScale.x);
             horizontalControlScale = Vector2.MoveTowards(horizontalControlScale, new Vector2(1, 1), 0.01f);
         }
         #endregion
