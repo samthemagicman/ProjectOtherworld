@@ -1,17 +1,19 @@
 title: Paul.Start
 tags: 
 colorID: 0
-position: 642,64
+position: 368,-82
 ---
 <<call NPCAnimation("SetBool", "talking to player", true)>>
 <<name ???>>
 <<if not $visited_paul>>
 <<set $visited_paul to true>>
-Well, hello there!
+ Well, hello there!
 The name's Paul, what's your name?
 <<endif>>
 <<name Paul>>
+<<call NPCAnimation("SetBool", "talking to player", false)>>
 -> ...
+    <<call NPCAnimation("SetBool", "talking to player", true)>>
     Not the speaking type eh?
     Oh well, no matter.
     Why don't you go ahead and press...

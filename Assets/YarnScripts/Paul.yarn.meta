@@ -8,10 +8,14 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 94073015eacc34c1d8fc6786e43d60ca, type: 3}
-  baseLanguageID: en-CA
+  baseLanguageID: en-US
   stringIDs: []
   compilationStatus: 0
-  isSuccesfullyCompiled: 1
-  compilationErrorMessage: 
+  isSuccesfullyCompiled: 0
+  compilationErrorMessage: "Error on line 9 at position 82:\nmismatched input 'call
+    ' expecting COMMAND_IF\r\n<<call NPCAnimation(\"SetBool\", \"talking to player\",
+    true)>> Well, hello there! <<call NPCAnimation(\"SetBool\", \"talking to player\",
+    false)>>\r\n                                                                                
+    ^^^^^"
   baseLanguage: {instanceID: 0}
   localizations: []
