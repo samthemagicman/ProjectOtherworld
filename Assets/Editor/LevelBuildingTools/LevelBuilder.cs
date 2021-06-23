@@ -86,7 +86,7 @@ public class LevelBuilder : EditorTool
                 }
                 obj.transform.position += new Vector3(positionDelta.x, positionDelta.y, 0);
                 obj.GetComponent<SpriteRenderer>().size += sizeDelta;
-                //SnapToGrid(obj);
+                SnapToGrid(obj);
             }
         }
 
