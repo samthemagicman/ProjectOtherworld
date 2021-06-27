@@ -5,14 +5,13 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class NPCVoice : MonoBehaviour
 {
-    //audio crap
     public static bool talking;
     private AudioSource voice;
     public AudioClip[] voiceSamples;
     AudioClip sample;
     public float minPitch = 1f;
-    public float maxPitch = 2f;
-    // Start is called before the first frame update
+    public float maxPitch = 1.2f;
+
     void Start()
     {
         voice = GetComponent<AudioSource>();
@@ -22,14 +21,15 @@ public class NPCVoice : MonoBehaviour
     {
         if(talking)
         {
-
             if (voiceSamples.Length > 0 && !voice.isPlaying)
             {
                 AudioClip newSample;
-                do
+                do //prevents repeating clips
                 {
                     newSample = voiceSamples[Random.Range(0, voiceSamples.Length)];
-                }while(sample == newSample);
+                }
+                while (sample == newSample);
+
                 sample = newSample;
                 voice.clip = sample;
                 voice.pitch = Random.Range(minPitch, maxPitch);
@@ -37,12 +37,12 @@ public class NPCVoice : MonoBehaviour
             }
 
         }
-        else if (voice)
+        else 
         {
             voice.Stop();
         }
     }
-    public static void SetTalking(bool state)
+    public static void SetTalking(bool state) //called by Yarn DialougeUI to start/end with lines of dialouge.
     {
         talking = state;
     }
