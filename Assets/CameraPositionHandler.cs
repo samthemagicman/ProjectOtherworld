@@ -30,6 +30,13 @@ public class CameraPositionHandler : MonoBehaviour
                     Player.Respawn.Handler.currentCheckpointType = Player.Respawn.CheckpointType.ClosestPlatform;
                 }
                 targetPosition = coll.gameObject.transform.position;
+                if (targetCamera == null)
+                {
+                    targetCamera = coll.GetComponent<Camera>();
+                    Camera.main.transform.position = targetPosition;
+                    Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, -20);
+                    Camera.main.orthographicSize = targetCamera.orthographicSize;//Vector3.MoveTowards(Camera.main.transform.position, targetPosition, 2);
+                }
                 targetCamera = coll.GetComponent<Camera>();
             });
         }
