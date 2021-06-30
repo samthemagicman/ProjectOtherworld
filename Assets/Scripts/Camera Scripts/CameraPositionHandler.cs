@@ -7,6 +7,8 @@ public class CameraPositionHandler : MonoBehaviour
     public GameObject initialPosition;
     Vector3 targetPosition;
     Camera targetCamera;
+    CameraPositionTrigger targetPositionTrigger;
+    GameObject player;
     public float transitionSpeed = 2;
 
     void Start()
@@ -21,6 +23,7 @@ public class CameraPositionHandler : MonoBehaviour
             CameraPositionTrigger coll = obj.GetComponent<CameraPositionTrigger>();
 
             coll.PlayerEntered.AddListener((plyr) => {
+                player = plyr;
                 PlayerMovement plyrMvmnt = plyr.GetComponent<PlayerMovement>();
                 if (coll.transform.Find("Spawn"))
                 {
@@ -46,6 +49,7 @@ public class CameraPositionHandler : MonoBehaviour
                     plyrMvmnt.Fling(new Vector2( (temp.transform.position - targetCamera.transform.position).normalized.x * 15, 0), 0.2f);
                 }
                 targetCamera = temp;
+                targetPositionTrigger = coll;
             });
         }
     }
@@ -54,9 +58,28 @@ public class CameraPositionHandler : MonoBehaviour
     {
         if (targetCamera != null)
         {
-            Camera.main.transform.position = Vector3.MoveTowards(Camera.main.transform.position, targetPosition, transitionSpeed);
-            Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, -20);
-            Camera.main.orthographicSize = Mathf.MoveTowards(Camera.main.orthographicSize, targetCamera.orthographicSize, 2f);//Vector3.MoveTowards(Camera.main.transform.position, targetPosition, 2);
+            if (targetPositionTrigger.cameraType == CameraPositionTrigger.CameraType.Static)
+            {
+                Camera.main.transform.position = Vector3.MoveTowards(Camera.main.transform.position, targetPosition, transitionSpeed);
+                Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, -20);
+                Camera.main.orthographicSize = Mathf.MoveTowards(Camera.main.orthographicSize, targetCamera.orthographicSize, 2f);//Vector3.MoveTowards(Camera.main.transform.position, targetPosition, 2);
+            } else
+            {
+                GameObject limitObj = targetPositionTrigger.staticObjectIndicator;
+                SpriteRenderer renderer = limitObj.GetComponent<SpriteRenderer>();
+
+                float height = 2f * Camera.main.orthographicSize;
+                float width = height * Camera.main.aspect;
+                float xLimitMax = limitObj.transform.position.x + renderer.size.x / 2 - width / 2;
+                float xLimitMin = limitObj.transform.position.x - renderer.size.x / 2 + width / 2;
+                float yLimitMax = limitObj.transform.position.y + renderer.size.y / 2 - height / 2;
+                float yLimitMin = limitObj.transform.position.y - renderer.size.y / 2 + height / 2;
+
+                Vector3 wantedPos = player.transform.position;
+                wantedPos = new Vector3(Mathf.Clamp(wantedPos.x, xLimitMin, xLimitMax), Mathf.Clamp(wantedPos.y, yLimitMin, yLimitMax));
+                Camera.main.transform.position = Vector3.MoveTowards(Camera.main.transform.position, wantedPos, transitionSpeed);
+                Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, -20);
+            }
         }
     }
 
