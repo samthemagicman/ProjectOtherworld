@@ -65,7 +65,7 @@ public class CameraPositionHandler : MonoBehaviour
                 Camera.main.orthographicSize = Mathf.MoveTowards(Camera.main.orthographicSize, targetCamera.orthographicSize, 2f);//Vector3.MoveTowards(Camera.main.transform.position, targetPosition, 2);
             } else
             {
-                GameObject limitObj = targetPositionTrigger.staticObjectIndicator;
+                GameObject limitObj = targetPositionTrigger.dynamicObjectIndicator;
                 SpriteRenderer renderer = limitObj.GetComponent<SpriteRenderer>();
 
                 float height = 2f * Camera.main.orthographicSize;

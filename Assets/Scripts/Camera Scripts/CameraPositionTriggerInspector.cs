@@ -11,21 +11,39 @@ public class CameraPositionTriggerInspector : Editor
     public override void OnInspectorGUI()
     {
         CameraPositionTrigger t = (CameraPositionTrigger)target;
-        DrawPropertiesExcluding(serializedObject, new string[] { "cameraType" });
+        DrawPropertiesExcluding(serializedObject, new string[] { "cameraType", "dynamicObjectIndicator" });
 
 
         t.cameraType = (CameraPositionTrigger.CameraType)EditorGUILayout.EnumPopup("Camera Type", t.cameraType);
-        if (t.cameraType == CameraPositionTrigger.CameraType.Dynamic && t.staticObjectIndicator == null)
+        if (t.cameraType == CameraPositionTrigger.CameraType.Dynamic && t.dynamicObjectIndicator == null)
         {
-            t.staticObjectIndicator = new GameObject("StaticCameraIndicator", typeof(SpriteRenderer));
-            t.staticObjectIndicator.transform.SetParent(t.transform);
+            t.dynamicObjectIndicator = CreateStaticObjectIndicator(t.gameObject);
+            //t.staticObjectIndicator = new GameObject("StaticCameraIndicator", typeof(SpriteRenderer));
+            //t.staticObjectIndicator.transform.SetParent(t.transform);
         }
-        else if (t.cameraType == CameraPositionTrigger.CameraType.Static && t.staticObjectIndicator != null)
+        else if (t.cameraType == CameraPositionTrigger.CameraType.Static && t.dynamicObjectIndicator != null)
         {
-            DestroyImmediate(t.staticObjectIndicator);
+            DestroyImmediate(t.dynamicObjectIndicator);
         }
 
 
         serializedObject.ApplyModifiedProperties();
+    }
+
+    GameObject CreateStaticObjectIndicator(GameObject target)
+    {
+        GameObject indicator;
+        indicator = new GameObject("DynamicCameraArea", typeof(SpriteRenderer));
+        indicator.transform.SetParent(target.transform);
+        indicator.transform.position = target.transform.position;
+
+        SpriteRenderer renderer = indicator.GetComponent<SpriteRenderer>();
+
+        Camera cam = target.GetComponent<Camera>();
+        float height = 2f * cam.orthographicSize;
+        float width = height * cam.aspect;
+
+        renderer.size = new Vector3(width, height);
+        return indicator;
     }
 }

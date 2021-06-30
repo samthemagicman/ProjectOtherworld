@@ -11,7 +11,7 @@ public class CameraPositionTrigger : MonoBehaviour
         Dynamic
     }
     public CameraType cameraType = CameraType.Static;
-    public GameObject staticObjectIndicator;
+    public GameObject dynamicObjectIndicator;
 
     [HideInInspector]
     public UnityEvent<GameObject> PlayerEntered = new UnityEvent<GameObject>();
@@ -39,10 +39,10 @@ public class CameraPositionTrigger : MonoBehaviour
 
         Gizmos.color = gizmoOutlineColor;
         Gizmos.DrawWireCube(transform.position, new Vector2(width, height));
-        if (staticObjectIndicator != null)
+        if (dynamicObjectIndicator != null)
         {
-            SpriteRenderer renderer = staticObjectIndicator.GetComponent<SpriteRenderer>();
-            Gizmos.DrawWireCube(staticObjectIndicator.transform.position, new Vector2(renderer.size.x, renderer.size.y));
+            SpriteRenderer renderer = dynamicObjectIndicator.GetComponent<SpriteRenderer>();
+            Gizmos.DrawWireCube(dynamicObjectIndicator.transform.position, new Vector2(renderer.size.x, renderer.size.y));
         }
     }
 
