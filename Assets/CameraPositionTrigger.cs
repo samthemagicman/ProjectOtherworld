@@ -6,13 +6,16 @@ using UnityEngine.Events;
 public class CameraPositionTrigger : MonoBehaviour
 {
     [HideInInspector]
-    public UnityEvent PlayerEntered = new UnityEvent();
+    public UnityEvent<GameObject> PlayerEntered = new UnityEvent<GameObject>();
     
     public Color gizmoOutlineColor = Color.green;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        PlayerEntered.Invoke();
+        if (collision.gameObject.tag == "Player")
+        {
+            PlayerEntered.Invoke(collision.gameObject);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)

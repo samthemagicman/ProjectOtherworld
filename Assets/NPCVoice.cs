@@ -12,6 +12,8 @@ public class NPCVoice : MonoBehaviour
     public float minPitch = 1f;
     public float maxPitch = 1.2f;
 
+
+
     void Start()
     {
         voice = GetComponent<AudioSource>();

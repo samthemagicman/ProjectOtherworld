@@ -12,6 +12,7 @@ The name's Paul, what's your name?
 <<endif>>
 <<name Paul>>
 <<call NPCAnimation("SetBool", "is_talking", false)>>
+pee poo poo
 -> ...
     <<call NPCAnimation("SetBool", "is_talking", true)>>
     Not the speaking type eh?
