@@ -30,16 +30,14 @@ public class NPCVoice : MonoBehaviour
                 }
                 while (sample == newSample);
 
+                
                 sample = newSample;
                 voice.clip = sample;
                 voice.pitch = Random.Range(minPitch, maxPitch);
                 voice.Play();
+                voice.loop = false;
             }
 
-        }
-        else 
-        {
-            voice.Stop();
         }
     }
     public static void SetTalking(bool state) //called by Yarn DialougeUI to start/end with lines of dialouge.
