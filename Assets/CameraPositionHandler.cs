@@ -7,6 +7,7 @@ public class CameraPositionHandler : MonoBehaviour
     public GameObject initialPosition;
     Vector3 targetPosition;
     Camera targetCamera;
+    public float transitionSpeed = 2;
 
     void Start()
     {
@@ -19,7 +20,8 @@ public class CameraPositionHandler : MonoBehaviour
         {
             CameraPositionTrigger coll = obj.GetComponent<CameraPositionTrigger>();
 
-            coll.PlayerEntered.AddListener(() => {
+            coll.PlayerEntered.AddListener((plyr) => {
+                PlayerMovement plyrMvmnt = plyr.GetComponent<PlayerMovement>();
                 if (coll.transform.Find("Spawn"))
                 {
                     Player.Respawn.Handler.lastCheckpointPosition = coll.transform.Find("Spawn").transform.position;
@@ -30,6 +32,7 @@ public class CameraPositionHandler : MonoBehaviour
                     Player.Respawn.Handler.currentCheckpointType = Player.Respawn.CheckpointType.ClosestPlatform;
                 }
                 targetPosition = coll.gameObject.transform.position;
+
                 if (targetCamera == null)
                 {
                     targetCamera = coll.GetComponent<Camera>();
@@ -37,7 +40,12 @@ public class CameraPositionHandler : MonoBehaviour
                     Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, -20);
                     Camera.main.orthographicSize = targetCamera.orthographicSize;//Vector3.MoveTowards(Camera.main.transform.position, targetPosition, 2);
                 }
-                targetCamera = coll.GetComponent<Camera>();
+                Camera temp = coll.GetComponent<Camera>();
+                if (plyrMvmnt)
+                {
+                    plyrMvmnt.Fling(new Vector2( (temp.transform.position - targetCamera.transform.position).normalized.x * 15, 0), 0.2f);
+                }
+                targetCamera = temp;
             });
         }
     }
@@ -46,9 +54,9 @@ public class CameraPositionHandler : MonoBehaviour
     {
         if (targetCamera != null)
         {
-            Camera.main.transform.position = Vector3.MoveTowards(Camera.main.transform.position, targetPosition, 0.7f);
+            Camera.main.transform.position = Vector3.MoveTowards(Camera.main.transform.position, targetPosition, transitionSpeed);
             Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, -20);
-            Camera.main.orthographicSize = Mathf.MoveTowards(Camera.main.orthographicSize, targetCamera.orthographicSize, 0.04f);//Vector3.MoveTowards(Camera.main.transform.position, targetPosition, 2);
+            Camera.main.orthographicSize = Mathf.MoveTowards(Camera.main.orthographicSize, targetCamera.orthographicSize, 2f);//Vector3.MoveTowards(Camera.main.transform.position, targetPosition, 2);
         }
     }
 
