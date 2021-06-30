@@ -97,6 +97,7 @@ public class PlayerMovement : MonoBehaviour
         controlsEnabled = true;
     }
 
+    float control = 15;
     void FixedUpdate()
     {
 
@@ -173,7 +174,7 @@ public class PlayerMovement : MonoBehaviour
                 wantedVelocity *= new Vector2(0, 1);
             }
 
-            if (isGrounded)
+            /*if (isGrounded)
             {
                 rb.AddForce((wantedVelocity - rb.velocity) * 15);
             } else if (moveHorizontalRaw != 0)
@@ -181,10 +182,10 @@ public class PlayerMovement : MonoBehaviour
                 rb.AddForce((wantedVelocity - rb.velocity) * 10);
             } else
             {
-                rb.AddForce((wantedVelocity - rb.velocity) * 10*(horizontalControlScale.x));
-            }
+                rb.AddForce((wantedVelocity - rb.velocity) * 10 * (horizontalControlScale.x));
+            }*/
 
-            /*if (isGrounded) // We're on the ground, so full control
+            if (isGrounded) // We're on the ground, so full control
             {
                 rb.AddForce((wantedVelocity - rb.velocity) * control);
                 control = Mathf.MoveTowards(control, 15, 0.5f);
@@ -195,7 +196,7 @@ public class PlayerMovement : MonoBehaviour
                 if (rb.velocity.x > 23) // Our X velocity is greater than our walkspeed
                 {
                     //LESS CONTROL
-                    control = Mathf.MoveTowards(control, 3, 0.8f);
+                    control = Mathf.MoveTowards(control, 9, 0.8f);
                     rb.AddForce((wantedVelocity - rb.velocity) * control);
                 }
                 else // We're fully in control
@@ -215,10 +216,10 @@ public class PlayerMovement : MonoBehaviour
                 }
                 else // We're fully in control
                 {
-                    control = Mathf.MoveTowards(control, 15, 0.5f);
+                    control = Mathf.MoveTowards(control, 3, 0.5f);
                     rb.AddForce((wantedVelocity - rb.velocity) * control);
                 }
-            }*/
+            }
 
             //rb.velocity = Vector2.Lerp(rb.velocity, wantedVelocity, velocityLerpValue * horizontalControlScale.x);
             horizontalControlScale = Vector2.MoveTowards(horizontalControlScale, new Vector2(1, 1), 0.01f);
@@ -332,13 +333,16 @@ public class PlayerMovement : MonoBehaviour
     bool IsTouchingRightWall()
     {
         //return Physics2D.Raycast(transform.position, -Vector2.up, distToGround + 0.1f).collider != null;
-        return wallJumpEnabled && Physics2D.BoxCast(transform.position + new Vector3(1, 1, 0), new Vector2(0.05f, 1.8f), 0, Vector2.right, 0, ~ignoreRaycastLayers).collider != null;
+        Collider2D collider = Physics2D.BoxCast(transform.position + new Vector3(1, 1, 0), new Vector2(0.05f, 1.8f), 0, Vector2.right, 0, ~ignoreRaycastLayers).collider;
+
+        return wallJumpEnabled && collider != null && !collider.usedByEffector; //Physics2D.BoxCast(transform.position + new Vector3(1, 1, 0), new Vector2(0.05f, 1.8f), 0, Vector2.right, 0, ~ignoreRaycastLayers).collider != null;
     }
 
     bool IsTouchingLeftWall()
     {
         //return Physics2D.Raycast(transform.position, -Vector2.up, distToGround + 0.1f).collider != null;
-        return wallJumpEnabled && Physics2D.BoxCast(transform.position + new Vector3(-1, 1, 0), new Vector2(0.05f, 1.8f), 0, Vector2.right, 0, ~ignoreRaycastLayers).collider != null;
+        Collider2D collider = Physics2D.BoxCast(transform.position + new Vector3(-1, 1, 0), new Vector2(0.05f, 1.8f), 0, Vector2.right, 0, ~ignoreRaycastLayers).collider;
+        return wallJumpEnabled && collider != null && !collider.usedByEffector;
     }
 
     bool IsTouchingAnyWall()
