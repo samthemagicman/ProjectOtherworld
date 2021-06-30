@@ -5,8 +5,10 @@ using UnityEngine;
 public class MovingPlatform : MonoBehaviour
 {
     public Vector2 moveToOffset;
+    public bool wakeOnTouch = false;
+    bool awake = false;
     public float pause = 0.5f;
-    public float speed = 5;
+    public float speed = 1;
 
     Vector3 target;
     Vector3 originalPosition;
@@ -19,56 +21,66 @@ public class MovingPlatform : MonoBehaviour
 
     PlayerMovement plyrMovement;
 
+
+    Rigidbody2D rb;
+
     // Start is called before the first frame update
     void Start()
     {
+        awake = !wakeOnTouch;
         originalPosition = transform.position;
         pauseTime = Time.time;
         target = transform.position + (Vector3)moveToOffset;
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (!awake) return;
         Vector3 newVel = ((transform.position - previousFramePos) / Time.deltaTime);
         velocityDelta = velocity - newVel;
         velocity = newVel;
         previousFramePos = transform.position;
 
+        // Platform suddenly stopped
         if (newVel.magnitude == 0 && velocityDelta.magnitude > 0)
         {
-            plyrMovement.gameObject.transform.parent = null;
-            plyrMovement.gameObject.GetComponent<Rigidbody2D>().AddForce(velocityDelta * 150);
-            plyrMovement = plyrMovement.gameObject.GetComponent<PlayerMovement>();
-            plyrMovement.horizontalControlScale = new Vector2(0, 1);
+            //plyrMovement.gameObject.transform.parent = null;
+            plyrMovement.gameObject.GetComponent<Rigidbody2D>().AddForce(velocityDelta * 40);
+            /*plyrMovement = plyrMovement.gameObject.GetComponent<PlayerMovement>();
+            plyrMovement.horizontalControlScale = new Vector2(0, 1);*/
         }
         if (Time.time - pauseTime < pause) return;
 
+        Vector3 newTarget;
         if (moveToTarget)
         {
-            transform.position = Vector3.MoveTowards(transform.position, target, speed);
-            if (Vector3.Distance(transform.position, target) < 0.05f)
+            newTarget = target;
+            if (Vector3.Distance(transform.position, newTarget) < 0.05f)
             {
                 moveToTarget = false;
                 pauseTime = Time.time;
             }
         } else
         {
-            transform.position = Vector3.MoveTowards(transform.position, originalPosition, speed);
-
-            if (Vector3.Distance(transform.position, originalPosition) < 0.05f)
+            newTarget = originalPosition;
+            if (Vector3.Distance(transform.position, newTarget) < 0.05f)
             {
                 moveToTarget = true;
                 pauseTime = Time.time;
             }
         }
+        transform.position = Vector3.MoveTowards(transform.position, newTarget, speed);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
+            awake = true;
             plyrMovement = collision.gameObject.GetComponent<PlayerMovement>();
+
             collision.transform.parent = transform;
         }
     }
@@ -78,7 +90,7 @@ public class MovingPlatform : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             collision.transform.parent = null;
-            collision.gameObject.GetComponent<Rigidbody2D>().AddForce(velocity * 20);
+            collision.gameObject.GetComponent<Rigidbody2D>().AddForce(velocity * 50);
             plyrMovement = collision.gameObject.GetComponent<PlayerMovement>();
             plyrMovement.horizontalControlScale = new Vector2(0, 1);
             plyrMovement = null;

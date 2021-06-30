@@ -54,7 +54,7 @@ public class CameraPositionHandler : MonoBehaviour
         }
     }
 
-    void Update()
+    void LateUpdate()
     {
         if (targetCamera != null)
         {
@@ -77,7 +77,13 @@ public class CameraPositionHandler : MonoBehaviour
 
                 Vector3 wantedPos = player.transform.position;
                 wantedPos = new Vector3(Mathf.Clamp(wantedPos.x, xLimitMin, xLimitMax), Mathf.Clamp(wantedPos.y, yLimitMin, yLimitMax));
-                Camera.main.transform.position = Vector3.MoveTowards(Camera.main.transform.position, wantedPos, transitionSpeed);
+                if (Vector2.Distance(Camera.main.transform.position, wantedPos) > 5)
+                {
+                    Camera.main.transform.position = Vector3.MoveTowards(Camera.main.transform.position, wantedPos, transitionSpeed);
+                } else
+                {
+                    Camera.main.transform.position = wantedPos;
+                }
                 Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, -20);
             }
         }

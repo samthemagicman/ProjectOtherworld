@@ -220,7 +220,7 @@ public class PlayerMovement : MonoBehaviour
                     rb.AddForce((wantedVelocity - rb.velocity) * control);
                 }
             }
-
+            
             //rb.velocity = Vector2.Lerp(rb.velocity, wantedVelocity, velocityLerpValue * horizontalControlScale.x);
             horizontalControlScale = Vector2.MoveTowards(horizontalControlScale, new Vector2(1, 1), 0.01f);
         }
