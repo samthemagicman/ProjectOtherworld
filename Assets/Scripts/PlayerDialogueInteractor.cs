@@ -5,6 +5,7 @@ using Yarn.Unity;
 public class PlayerDialogueInteractor : MonoBehaviour
 {
     public RectTransform interactPromptUI;
+    [HideInInspector]
     public NPCDialogue currentNPCDialogue;
     DialogueRunner dialogueRunner;
     public static PlayerDialogueInteractor singleton;
@@ -21,21 +22,25 @@ public class PlayerDialogueInteractor : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        collision.gameObject.TryGetComponent<NPCDialogue>(out currentNPCDialogue);
-        if (currentNPCDialogue && !dialogueRunner.IsDialogueRunning)
+        NPCDialogue npcDial;
+        collision.gameObject.TryGetComponent<NPCDialogue>(out npcDial);
+        if (npcDial && !dialogueRunner.IsDialogueRunning)
         {
+            currentNPCDialogue = npcDial;
             interactPromptUI.gameObject.SetActive(true);
             //Debug.Log(currentNPCDialogue.yarnDialogue.GetProgram().Nodes["String.Paul"].Tags);
         }
         else
         {
-            interactPromptUI.gameObject.SetActive(false);
+            //interactPromptUI.gameObject.SetActive(false);
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (currentNPCDialogue && currentNPCDialogue.GetComponent<Collider2D>() && collision == currentNPCDialogue.GetComponent<Collider2D>())
+        NPCDialogue npcDial;
+        collision.gameObject.TryGetComponent<NPCDialogue>(out npcDial);
+        if (npcDial == currentNPCDialogue)// currentNPCDialogue && currentNPCDialogue.GetComponent<Collider2D>() && collision == currentNPCDialogue.GetComponent<Collider2D>())
         {
             interactPromptUI.gameObject.SetActive(false);
             currentNPCDialogue = null;
