@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class NPCAnimation : MonoBehaviour
 {
-    void Start()
+    public string isTalkingParameter = "is_talking";
+
+    public static void SetIsTalking(bool talking)
     {
-        
+        NPCAnimation anim;
+        Animator animator;
+        PlayerDialogueInteractor.singleton.currentNPCDialogue.TryGetComponent<NPCAnimation> (out anim);
+        PlayerDialogueInteractor.singleton.currentNPCDialogue.TryGetComponent<Animator> (out animator);
+
+        if (animator && anim)
+        {
+            animator.SetBool(anim.isTalkingParameter, talking);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

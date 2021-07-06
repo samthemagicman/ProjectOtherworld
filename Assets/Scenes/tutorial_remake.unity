@@ -5460,11 +5460,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4572557801684133971, guid: ff9efa1e18c72b448bf23c06542eabe5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 340
+      value: 342.4
       objectReference: {fileID: 0}
     - target: {fileID: 4572557801684133971, guid: ff9efa1e18c72b448bf23c06542eabe5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 663
+      value: 673.9
       objectReference: {fileID: 0}
     - target: {fileID: 4572557801684133971, guid: ff9efa1e18c72b448bf23c06542eabe5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9127,6 +9127,7 @@ GameObject:
   - component: {fileID: 660840700}
   - component: {fileID: 660840702}
   - component: {fileID: 660840703}
+  - component: {fileID: 660840704}
   m_Layer: 0
   m_Name: guy seperated mask
   m_TagString: Untagged
@@ -9176,8 +9177,8 @@ MonoBehaviour:
   - {fileID: 1371181497}
   - {fileID: 335586718}
   m_Bounds:
-    m_Center: {x: -0.4645778, y: -2.065, z: 0}
-    m_Extent: {x: 1.0545784, y: 1.7950002, z: 0}
+    m_Center: {x: -0.46459293, y: -2.065, z: 0}
+    m_Extent: {x: 1.0545936, y: 1.7950002, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!212 &660840698
@@ -9413,6 +9414,19 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1ca235f1eeaeeb04d81741cde641c4bf, type: 3}
   minPitch: 0.9
   maxPitch: 1.1
+--- !u!114 &660840704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 660840695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0729d0cd911ef947803294e80b0ae56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTalkingParameter: is_talking
 --- !u!1 &662444941
 GameObject:
   m_ObjectHideFlags: 0
@@ -12949,6 +12963,7 @@ GameObject:
   - component: {fileID: 925788002}
   - component: {fileID: 925788001}
   - component: {fileID: 925788000}
+  - component: {fileID: 925788006}
   m_Layer: 0
   m_Name: guy seperated mask (1)
   m_TagString: Untagged
@@ -13039,8 +13054,8 @@ MonoBehaviour:
   - {fileID: 1948155279}
   - {fileID: 1446369818}
   m_Bounds:
-    m_Center: {x: -0.46459305, y: -2.065, z: 0}
-    m_Extent: {x: 1.0545937, y: 1.7950002, z: 0}
+    m_Center: {x: -0.46459293, y: -2.065, z: 0}
+    m_Extent: {x: 1.0545936, y: 1.7950002, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!212 &925788004
@@ -13109,6 +13124,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &925788006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 925787999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0729d0cd911ef947803294e80b0ae56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTalkingParameter: is_talking
 --- !u!1 &953110034
 GameObject:
   m_ObjectHideFlags: 0
@@ -26119,6 +26147,7 @@ GameObject:
   - component: {fileID: 1906315659}
   - component: {fileID: 1906315658}
   - component: {fileID: 1906315657}
+  - component: {fileID: 1906315661}
   m_Layer: 0
   m_Name: Dialogue
   m_TagString: Untagged
@@ -26191,9 +26220,9 @@ MonoBehaviour:
   onLineStart:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 660840703}
-        m_TargetAssemblyTypeName: NPCVoice, Assembly-CSharp
-        m_MethodName: SetTalking
+      - m_Target: {fileID: 1906315661}
+        m_TargetAssemblyTypeName: NPCAnimation, Assembly-CSharp
+        m_MethodName: SetIsTalking
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -26206,25 +26235,13 @@ MonoBehaviour:
   onLineFinishDisplaying:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 660840703}
-        m_TargetAssemblyTypeName: NPCVoice, Assembly-CSharp
-        m_MethodName: SetTalking
+      - m_Target: {fileID: 1906315661}
+        m_TargetAssemblyTypeName: NPCAnimation, Assembly-CSharp
+        m_MethodName: SetIsTalking
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 660840695}
-        m_TargetAssemblyTypeName: NPCVoice, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -26298,6 +26315,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1906315661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1906315656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0729d0cd911ef947803294e80b0ae56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTalkingParameter: is_talking
 --- !u!1 &1909002119
 GameObject:
   m_ObjectHideFlags: 0
