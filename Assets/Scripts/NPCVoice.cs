@@ -7,6 +7,7 @@ public class NPCVoice : MonoBehaviour
 {
     public static bool talking;
     private AudioSource voice;
+    public bool allowRepeats;
     public AudioClip[] voiceSamples;
     AudioClip sample;
     public float minPitch = 1f;
@@ -23,14 +24,15 @@ public class NPCVoice : MonoBehaviour
     {
         if(talking)
         {
-            if (voiceSamples.Length > 0 && !voice.isPlaying)
+            if (voiceSamples.Length > 1 && !voice.isPlaying)
             {
                 AudioClip newSample;
                 do //prevents repeating clips
                 {
                     newSample = voiceSamples[Random.Range(0, voiceSamples.Length)];
+                    if (allowRepeats) break;
                 }
-                while (sample == newSample);
+                while (sample == newSample );
 
                 
                 sample = newSample;
