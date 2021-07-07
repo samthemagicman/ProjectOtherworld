@@ -3,7 +3,7 @@ tags:
 colorID: 0
 position: 369,-83
 ---
-<<call NPCAnimation("SetBool", "is_talking", true)>>
+
 <<name ???>>
 <<if not $visited_paul>>
 <<set $visited_paul to true>>
@@ -11,24 +11,19 @@ position: 369,-83
 The name's Paul, what's your name?
 <<endif>>
 <<name Paul>>
-<<call NPCAnimation("SetBool", "is_talking", false)>>
 pee poo poo
 -> ...
-    <<call NPCAnimation("SetBool", "is_talking", true)>>
     Not the speaking type eh?
     Oh well, no matter.
     Why don't you go ahead and press...
     RIGHT CLICK, for me?
-<<call NPCAnimation("SetBool", "is_talking", false)>>
 ===
 title: Paul.Encourage
 tags: 
 colorID: 0
 position: 688,-80
 ---
-<<call NPCAnimation("SetBool", "is_talking", true)>>
 <<name Paul>>
 These next few pages might seem hard, but I believe in you.
 See you on the other side.
-<<call NPCAnimation("SetBool", "is_talking", false)>>
 ===

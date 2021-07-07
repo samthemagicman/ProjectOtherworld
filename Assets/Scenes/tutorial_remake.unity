@@ -9301,7 +9301,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 9bab1a1b6eeeb604ba84fbdcc93f7a8a, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: -0
+  m_Pitch: 1.74
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -9396,6 +9396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 444579b09c8c3bc4eabc134c93319497, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  talking: 0
   allowRepeats: 0
   voiceSamples:
   - {fileID: 8300000, guid: 8e993d5d13e7b4341aa8b6d091a15d26, type: 3}
@@ -12984,7 +12985,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeTitle: Paul.Encourage
-  yarnDialogue: {fileID: 2480198943629176163, guid: f2ed7a0e78a2422438db65b9e928f919, type: 3}
+  yarnDialogue: {fileID: 0}
   interactUIOffset: {x: -0.3, y: 0.6, z: 0}
 --- !u!61 &925788001
 BoxCollider2D:
@@ -13898,7 +13899,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1046896399
 RectTransform:
   m_ObjectHideFlags: 0
@@ -26147,7 +26148,6 @@ GameObject:
   - component: {fileID: 1906315659}
   - component: {fileID: 1906315658}
   - component: {fileID: 1906315657}
-  - component: {fileID: 1906315661}
   m_Layer: 0
   m_Name: Dialogue
   m_TagString: Untagged
@@ -26202,6 +26202,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 660840700}
+        m_TargetAssemblyTypeName: NPCDialogue, Assembly-CSharp
+        m_MethodName: SetBeingInteractedWith
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   onDialogueEnd:
     m_PersistentCalls:
       m_Calls:
@@ -26217,12 +26229,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 660840700}
+        m_TargetAssemblyTypeName: NPCDialogue, Assembly-CSharp
+        m_MethodName: SetBeingInteractedWith
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onLineStart:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1906315661}
-        m_TargetAssemblyTypeName: NPCAnimation, Assembly-CSharp
-        m_MethodName: SetIsTalking
+      - m_Target: {fileID: 660840700}
+        m_TargetAssemblyTypeName: NPCDialogue, Assembly-CSharp
+        m_MethodName: SetTalking
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -26235,9 +26259,9 @@ MonoBehaviour:
   onLineFinishDisplaying:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1906315661}
-        m_TargetAssemblyTypeName: NPCAnimation, Assembly-CSharp
-        m_MethodName: SetIsTalking
+      - m_Target: {fileID: 660840700}
+        m_TargetAssemblyTypeName: NPCDialogue, Assembly-CSharp
+        m_MethodName: SetTalking
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -26315,19 +26339,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1906315661
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1906315656}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0729d0cd911ef947803294e80b0ae56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isTalkingParameter: is_talking
 --- !u!1 &1909002119
 GameObject:
   m_ObjectHideFlags: 0
