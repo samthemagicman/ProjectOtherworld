@@ -6,12 +6,12 @@ public class NPCAnimation : MonoBehaviour
 {
     public string isTalkingParameter = "is_talking";
 
-    public static void SetIsTalking(bool talking)
+    public void SetTalking(bool talking)
     {
         NPCAnimation anim;
         Animator animator;
-        PlayerDialogueInteractor.singleton.currentNPCDialogue.TryGetComponent<NPCAnimation> (out anim);
-        PlayerDialogueInteractor.singleton.currentNPCDialogue.TryGetComponent<Animator> (out animator);
+        TryGetComponent<NPCAnimation> (out anim);
+        TryGetComponent<Animator> (out animator);
 
         if (animator && anim)
         {

@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class NPCVoice : MonoBehaviour
 {
-    public static bool talking;
+    public bool talking;
     private AudioSource voice;
     public bool allowRepeats;
     public AudioClip[] voiceSamples;
@@ -44,7 +44,7 @@ public class NPCVoice : MonoBehaviour
 
         }
     }
-    public static void SetTalking(bool state) //called by Yarn DialougeUI to start/end with lines of dialouge.
+    public void SetTalking(bool state) //called by Yarn DialougeUI to start/end with lines of dialouge.
     {
         talking = state;
     }
