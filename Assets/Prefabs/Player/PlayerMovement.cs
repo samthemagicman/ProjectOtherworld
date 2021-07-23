@@ -68,6 +68,7 @@ public class PlayerMovement : MonoBehaviour
     bool wallJumpKeyPressed = false;
     bool didJumpOffWallRecently = false;
     bool isBeingFlung = false;
+    bool jumpKeyDown = false;
 
     float mayJump = 0; 
     float mayWallJump = 0;
@@ -230,6 +231,7 @@ public class PlayerMovement : MonoBehaviour
         if ((mayJump > 0 && jumpKeyPressedStamp > 0 && Vector2.Distance(lastGroundedPosition, transform.position) < maxCoyoteJumpDistance)
             || isGrounded && jumpKeyPressedStamp > 0)// && !isTouchingAnyWall)
         {
+            jumpKeyDown = true;
             rb.velocity = new Vector2(rb.velocity.x, jumpHeight);//rb.velocity * new Vector2(1, 0) + (new Vector2(0, moveVerticalRaw) * jumpHeight);
             mayJump = 0;
         }
@@ -256,6 +258,10 @@ public class PlayerMovement : MonoBehaviour
         }
         else // Apply gravity
         {
+            if (rb.velocity.y > 0 && !jumpKeyDown)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.6f);
+            }
             rb.AddForce(new Vector2(0, gravity));
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -maxFallSpeed, Mathf.Infinity));
         }
@@ -265,6 +271,7 @@ public class PlayerMovement : MonoBehaviour
         //If the player can wall jump, the wall jump key is pressed, and the player is not grounded, then wall jump
         if ((mayWallJump > 0 && wallJumpKeyPressed && !isGrounded)) // Wall jump
         {
+            jumpKeyDown = true;
             var wallJumpXVelocity = IsTouchingLeftWall() == true ? wallJumpVelocity.x : -wallJumpVelocity.x;
             if (mayWallJump != wallJumpCoyoteTime)
             {
@@ -286,7 +293,9 @@ public class PlayerMovement : MonoBehaviour
     private void LateUpdate()
     {
         if ((IsTouchingAnyWall() || mayWallJump > 0) && Input.GetButtonDown("Jump")) wallJumpKeyPressed = true;
-        if (Input.GetButtonDown("Jump")) jumpKeyPressedStamp = 0.2f; ;
+        if (Input.GetButtonDown("Jump")) jumpKeyPressedStamp = 0.2f;
+        if (Input.GetButtonUp("Jump") && jumpKeyDown) jumpKeyDown = false;
+
 
     }
 
