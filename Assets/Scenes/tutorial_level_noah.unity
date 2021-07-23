@@ -1008,6 +1008,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 335184d6949636440b0d378381b38ddb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraType: 0
+  dynamicObjectIndicator: {fileID: 0}
   PlayerEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -1824,6 +1826,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 335184d6949636440b0d378381b38ddb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraType: 0
+  dynamicObjectIndicator: {fileID: 0}
   PlayerEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -4019,6 +4023,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 335184d6949636440b0d378381b38ddb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraType: 0
+  dynamicObjectIndicator: {fileID: 0}
   PlayerEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -4273,11 +4279,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4572557801684133971, guid: ff9efa1e18c72b448bf23c06542eabe5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 644.3
+      value: 340.8
       objectReference: {fileID: 0}
     - target: {fileID: 4572557801684133971, guid: ff9efa1e18c72b448bf23c06542eabe5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 690.3
+      value: 668.6
       objectReference: {fileID: 0}
     - target: {fileID: 4572557801684133971, guid: ff9efa1e18c72b448bf23c06542eabe5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7009,6 +7015,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 444579b09c8c3bc4eabc134c93319497, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  talking: 0
+  allowRepeats: 0
   voiceSamples:
   - {fileID: 8300000, guid: 8ba9000efb03fbe418cf36ef858b6937, type: 3}
   - {fileID: 8300000, guid: aa92201ab83062d41a5d77068b58085a, type: 3}
@@ -12118,6 +12126,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 335184d6949636440b0d378381b38ddb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraType: 0
+  dynamicObjectIndicator: {fileID: 0}
   PlayerEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -14008,6 +14018,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialPosition: {fileID: 143491677}
+  transitionSpeed: 2
 --- !u!4 &1549059049
 Transform:
   m_ObjectHideFlags: 0
@@ -17972,6 +17983,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 335184d6949636440b0d378381b38ddb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraType: 0
+  dynamicObjectIndicator: {fileID: 0}
   PlayerEntered:
     m_PersistentCalls:
       m_Calls: []
