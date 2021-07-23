@@ -260,7 +260,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (rb.velocity.y > 0 && !jumpKeyDown)
             {
-                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.6f);
+                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
             }
             rb.AddForce(new Vector2(0, gravity));
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -maxFallSpeed, Mathf.Infinity));
