@@ -1,29 +1,50 @@
 title: Paul.Start
 tags: 
 colorID: 0
-position: 369,-83
+position: 416,-40
 ---
-
 <<name ???>>
 <<if not $visited_paul>>
 <<set $visited_paul to true>>
- Well, hello there!
-The name's Paul, what's your name?
+Oh, hello there!
+Been a while since I seen somebody...
+Almost forgot why I was standin' here!
+The name's Paul.. You got one partner?
+-> ... 
+    Not the speaking type eh?
+    Ah well, I guess it don't matter anyway.
+    What was I supposed to tell you again...
+    ...
+    ...
+    Oh yeah!
 <<endif>>
 <<name Paul>>
-pee poo poo
--> ...
-    Not the speaking type eh?
-    Oh well, no matter.
-    Why don't you go ahead and press...
-    RIGHT CLICK, for me?
+Go ahead and press that RIGHT CLICK button for me!
 ===
 title: Paul.Encourage
 tags: 
 colorID: 0
-position: 688,-80
+position: 646,-46
 ---
 <<name Paul>>
-These next few pages might seem hard, but I believe in you.
-See you on the other side.
+Oh hey again!
+Now Ima be honest witcha...
+Not many make it this far...
+I almost forgot where to stand!
+HA HA HA HA HA  
+Anyway, this next parts kinda hard...
+But I'll be on the other side waitin for ya so...
+Don't make me wait too long!
+===
+title: Paul.Last
+tags: 
+colorID: 0
+position: 924,-31
+---
+<<name Paul>>
+Well well well, looks like ya made it!
+Nice job! I struggle gettin' through there sometimes myself...
+I hope yer ready for this next part... cuz it ain't gonna be easy!
+But I'm sure you'll get through it, ya seem tough to me!
+Good luck Partner, see ya on the other side!
 ===
