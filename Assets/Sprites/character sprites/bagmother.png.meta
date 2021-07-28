@@ -42,8 +42,8 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 1
-  spriteExtrude: 1
-  spriteMeshType: 1
+  spriteExtrude: 32
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -75,55 +75,88 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites: []
     outline:
-    - - {x: -406.7755, y: -1101.4414}
-      - {x: -406.77563, y: 1097.7212}
-      - {x: 677.89185, y: 1111.2795}
-      - {x: 710.4319, y: -1090.5947}
-    - - {x: 805.34033, y: -1120.4231}
-      - {x: 805.34033, y: -447.92944}
-      - {x: 1456.1406, y: -447.92944}
-      - {x: 1456.1406, y: -1120.4231}
-    - - {x: -1434.4977, y: -1114.9998}
-      - {x: -1434.4977, y: -415.3894}
-      - {x: -488.1256, y: -415.3894}
-      - {x: -488.1256, y: -1114.9998}
-    physicsShape: []
+    - - {x: -412, y: -1105}
+      - {x: -419, y: 1136}
+      - {x: 681, y: 1136}
+      - {x: 679, y: -1102}
+    - - {x: -1502, y: -1148}
+      - {x: -1502, y: -371}
+      - {x: -453, y: -371}
+      - {x: -453, y: -1148}
+    - - {x: 708, y: -1156}
+      - {x: 708, y: -357}
+      - {x: 1528, y: -357}
+      - {x: 1528, y: -1156}
+    physicsShape:
+    - - {x: -465, y: -1134}
+      - {x: -465, y: 1146}
+      - {x: 717, y: 1146}
+      - {x: 717, y: -1134}
     bones:
-    - name: bone_1
-      position: {x: 1717.966, y: 289.71948, z: 1}
-      rotation: {x: 0, y: 0, z: 0.705674, w: 0.7085367}
-      length: 1747.1641
+    - name: root
+      position: {x: 1684.1656, y: 96.57526, z: 1}
+      rotation: {x: 0, y: 0, z: 0.019042186, w: 0.9998187}
+      length: 456.97433
       parentId: -1
-    - name: bone_2
-      position: {x: -99.0182, y: 1162.0173, z: 2}
-      rotation: {x: 0, y: 0, z: 0.0050004153, w: 0.9999875}
+    - name: hand
+      position: {x: -1124.0388, y: 141.73549, z: 2}
+      rotation: {x: 0, y: 0, z: 0.69565505, w: 0.7183761}
       length: 396.12195
       parentId: 0
-    - name: bone_3
-      position: {x: -43.175713, y: -983.39655, z: 0}
-      rotation: {x: 0, y: 0, z: -0.013969452, w: 0.9999024}
+    - name: hand2
+      position: {x: 1021.84875, y: 107.15587, z: -1}
+      rotation: {x: 0, y: 0, z: 0.6819032, w: 0.73144245}
       length: 294.87918
+      parentId: 0
+    - name: body
+      position: {x: -0.48893842, y: 41.570892, z: 0}
+      rotation: {x: 0, y: 0, z: 0.68620557, w: 0.72740775}
+      length: 2132.2625
       parentId: 0
     spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices:
-    - {x: 2242.0046, y: 81.10282}
-    - {x: 2257.7334, y: 2278.4038}
-    - {x: 1148.9911, y: 2273.3936}
-    - {x: 1146.7806, y: 86.139015}
-    - {x: 1073.8123, y: 64.56123}
-    - {x: 1081.5315, y: 742.6588}
-    - {x: 137.98578, y: 742.37164}
-    - {x: 131.71649, y: 65.03546}
-    - {x: 3016.39, y: 63.641235}
-    - {x: 3012.3481, y: 725.66296}
-    - {x: 2393.6218, y: 721.3865}
-    - {x: 2386.4768, y: 61.093857}
-    indices: 080000000b0000000a000000080000000a00000009000000020000000000000003000000020000000100000000000000040000000700000006000000040000000600000005000000
+    - {x: 2336.689, y: 13.122876}
+    - {x: 2347.563, y: 2324.5312}
+    - {x: 1095.5789, y: 2312.2378}
+    - {x: 1098.2231, y: 10.875732}
+    - {x: 1098.0905, y: 20.860168}
+    - {x: 1091.2426, y: 786.35956}
+    - {x: 50.58374, y: 798.2117}
+    - {x: 58.88159, y: 33.47367}
+    - {x: 3084.3687, y: 17.512451}
+    - {x: 3075.4714, y: 793.64215}
+    - {x: 2357.204, y: 791.79346}
+    - {x: 2354.9146, y: 17.392883}
+    indices: 09000000080000000b0000000b0000000a00000009000000020000000100000000000000000000000300000002000000050000000400000007000000070000000600000005000000
     edges:
     - {x: 11, y: 8}
     - {x: 11, y: 10}
@@ -142,7 +175,7 @@ TextureImporter:
       weight[1]: 0
       weight[2]: 0
       weight[3]: 0
-      boneIndex[0]: 0
+      boneIndex[0]: 3
       boneIndex[1]: 0
       boneIndex[2]: 0
       boneIndex[3]: 0
@@ -150,7 +183,7 @@ TextureImporter:
       weight[1]: 0
       weight[2]: 0
       weight[3]: 0
-      boneIndex[0]: 0
+      boneIndex[0]: 3
       boneIndex[1]: 0
       boneIndex[2]: 0
       boneIndex[3]: 0
@@ -158,7 +191,7 @@ TextureImporter:
       weight[1]: 0
       weight[2]: 0
       weight[3]: 0
-      boneIndex[0]: 0
+      boneIndex[0]: 3
       boneIndex[1]: 0
       boneIndex[2]: 0
       boneIndex[3]: 0
@@ -166,7 +199,7 @@ TextureImporter:
       weight[1]: 0
       weight[2]: 0
       weight[3]: 0
-      boneIndex[0]: 0
+      boneIndex[0]: 3
       boneIndex[1]: 0
       boneIndex[2]: 0
       boneIndex[3]: 0
