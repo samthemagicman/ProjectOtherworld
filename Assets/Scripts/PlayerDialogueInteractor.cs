@@ -53,7 +53,7 @@ public class PlayerDialogueInteractor : MonoBehaviour
         {
             interactPromptUI.position = RectTransformUtility.WorldToScreenPoint(Camera.main, currentNPCDialogue.transform.position + currentNPCDialogue.interactUIOffset);
         }
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetButtonDown("Interact"))
         {
             if (!FindObjectOfType<DialogueRunner>().IsDialogueRunning)
             {
