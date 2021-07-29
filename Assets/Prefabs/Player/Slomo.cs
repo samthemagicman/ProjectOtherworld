@@ -7,7 +7,13 @@ public class Slomo : MonoBehaviour
     public float speed = 0.3f;
     void Update()
     {
-        if (Input.GetButton("PreviewDimension") && !Input.GetButtonDown("PreviewDimension") && !Input.GetButtonUp("PreviewDimension"))
+        if (
+            (Input.GetButton("PreviewDimension")
+            && !Input.GetButtonDown("PreviewDimension")
+            && !Input.GetButtonUp("PreviewDimension"))
+            || Input.GetAxisRaw("PreviewDimension") > 0
+            
+            )
         {
             Time.timeScale = Mathf.Lerp(Time.timeScale, speed, 0.1f);
             Time.fixedDeltaTime = 0.02F * Time.timeScale;

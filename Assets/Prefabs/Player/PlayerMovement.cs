@@ -111,7 +111,6 @@ public class PlayerMovement : MonoBehaviour
         bool isGrounded = IsGrounded();
         bool isOnWall = isTouchingAnyWall && !isGrounded;
 
-
         if (!controlsEnabled)
         {
             moveHorizontal = 0;
