@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovingPlatform : MonoBehaviour
+public class FallingPlatform : MonoBehaviour
 {
     public Vector2 moveToOffset;
-    public bool wakeOnTouch = false;
+    public bool wakeOnTouch = true;
     bool awake = false;
     public float pause = 0.5f;
     public float speed = 1;
@@ -44,13 +44,7 @@ public class MovingPlatform : MonoBehaviour
         previousFramePos = transform.position;
         if (Time.time - pauseTime < pause) return;
         // Platform suddenly stopped
-        if (newVel.magnitude == 0 && velocityDelta.magnitude > 0)
-        {
-            //plyrMovement.gameObject.transform.parent = null;
-            plyrMovement.gameObject.GetComponent<Rigidbody2D>().AddForce(velocityDelta * 40);
-            /*plyrMovement = plyrMovement.gameObject.GetComponent<PlayerMovement>();
-            plyrMovement.horizontalControlScale = new Vector2(0, 1);*/
-        }
+        
         
 
         Vector3 newTarget;
@@ -61,6 +55,8 @@ public class MovingPlatform : MonoBehaviour
             {
                 moveToTarget = false;
                 pauseTime = Time.time;
+                awake = false;
+                this.enabled = false;
             }
         } else
         {
@@ -78,7 +74,7 @@ public class MovingPlatform : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            awake = true;
+            awake = wakeOnTouch;
             plyrMovement = collision.gameObject.GetComponent<PlayerMovement>();
 
             collision.transform.parent = transform;
@@ -90,9 +86,9 @@ public class MovingPlatform : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             collision.transform.parent = null;
-            collision.gameObject.GetComponent<Rigidbody2D>().AddForce(velocity * 50);
-            plyrMovement = collision.gameObject.GetComponent<PlayerMovement>();
-            plyrMovement.horizontalControlScale = new Vector2(0, 1);
+            //collision.gameObject.GetComponent<Rigidbody2D>().AddForce(velocity * 50);
+            //plyrMovement = collision.gameObject.GetComponent<PlayerMovement>();
+            //plyrMovement.horizontalControlScale = new Vector2(0, 1);
             plyrMovement = null;
         }
     }

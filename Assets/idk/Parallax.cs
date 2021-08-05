@@ -5,15 +5,15 @@ using UnityEngine;
 public class Parallax : MonoBehaviour
 {
     [Range(-10, 10)]
-    public int parallaxValue;
+    public float parallaxValue;
 
-    GameObject player;
+    public GameObject player;
 
     Vector3 playerPositionDelta;
     Vector3 lastPlayerPosition;
     void Start()
     {
-        player = Camera.main.gameObject;
+        //player = Camera.main.gameObject;
 
         transform.position = transform.position - Vector3.Scale(transform.position - player.transform.position, new Vector3((float)parallaxValue / 10, (float)parallaxValue / 10, (float)parallaxValue / 10));
     }
