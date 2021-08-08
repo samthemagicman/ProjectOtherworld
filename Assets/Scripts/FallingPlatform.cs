@@ -20,7 +20,7 @@ public class FallingPlatform : MonoBehaviour
     Vector3 velocityDelta;
 
     PlayerMovement plyrMovement;
-
+    
 
     Rigidbody2D rb;
 
@@ -29,7 +29,7 @@ public class FallingPlatform : MonoBehaviour
     {
         awake = !wakeOnTouch;
         originalPosition = transform.position;
-        pauseTime = Time.time;
+        
         target = transform.position + (Vector3)moveToOffset;
         rb = GetComponent<Rigidbody2D>();
     }
@@ -47,7 +47,7 @@ public class FallingPlatform : MonoBehaviour
         
         
 
-        Vector3 newTarget;
+        Vector3 newTarget = transform.position;
         if (moveToTarget)
         {
             newTarget = target;
@@ -56,17 +56,9 @@ public class FallingPlatform : MonoBehaviour
                 moveToTarget = false;
                 pauseTime = Time.time;
                 awake = false;
-                this.enabled = false;
+                
             }
-        } else
-        {
-            newTarget = originalPosition;
-            if (Vector3.Distance(transform.position, newTarget) < 0.05f)
-            {
-                moveToTarget = true;
-                pauseTime = Time.time;
-            }
-        }
+        } 
         transform.position = Vector3.MoveTowards(transform.position, newTarget, speed);
     }
 
@@ -74,6 +66,10 @@ public class FallingPlatform : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            if (!awake)
+            {
+                pauseTime = Time.time;
+            }
             awake = wakeOnTouch;
             plyrMovement = collision.gameObject.GetComponent<PlayerMovement>();
 
@@ -91,6 +87,12 @@ public class FallingPlatform : MonoBehaviour
             //plyrMovement.horizontalControlScale = new Vector2(0, 1);
             plyrMovement = null;
         }
+    }
+    public static void ResetPos(Transform transform, bool awake,Vector3 originalPosition)
+    {
+        awake = false;
+        transform.position = originalPosition;
+        Debug.Log(transform.position);
     }
 
     private void OnDrawGizmos()
