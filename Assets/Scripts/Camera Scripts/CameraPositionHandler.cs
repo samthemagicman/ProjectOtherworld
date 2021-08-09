@@ -10,7 +10,7 @@ public class CameraPositionHandler : MonoBehaviour
     CameraPositionTrigger targetPositionTrigger;
     GameObject player;
     public float transitionSpeed = 2;
-
+    Transform spawn;
     void Start()
     {
         targetPosition = initialPosition.transform.position;
@@ -25,7 +25,8 @@ public class CameraPositionHandler : MonoBehaviour
             coll.PlayerEntered.AddListener((plyr) => {
                 player = plyr;
                 PlayerMovement plyrMvmnt = plyr.GetComponent<PlayerMovement>();
-                if (coll.transform.Find("Spawn"))
+                spawn = coll.transform.Find("Spawn");
+                if (spawn)
                 {
                     Player.Respawn.Handler.lastCheckpointPosition = coll.transform.Find("Spawn").transform.position;
                     Player.Respawn.Handler.currentCheckpointType = Player.Respawn.CheckpointType.CheckpointPosition;
@@ -46,7 +47,8 @@ public class CameraPositionHandler : MonoBehaviour
                 Camera temp = coll.GetComponent<Camera>();
                 if (plyrMvmnt)
                 {
-                    plyrMvmnt.Fling(new Vector2( (temp.transform.position - targetCamera.transform.position).normalized.x * 15, 0), 0.2f);
+                    player.transform.position = spawn.position;
+                    //plyrMvmnt.Fling(new Vector2( (temp.transform.position - targetCamera.transform.position).normalized.x * 15, 0), 0.2f);
                 }
                 targetCamera = temp;
                 targetPositionTrigger = coll;

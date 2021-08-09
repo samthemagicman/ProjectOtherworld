@@ -27,11 +27,11 @@ public class FallingPlatform : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        awake = !wakeOnTouch;
         originalPosition = transform.position;
-        
         target = transform.position + (Vector3)moveToOffset;
         rb = GetComponent<Rigidbody2D>();
+        PlayerDeathHandler.onDeath.AddListener(ResetPos);
+        
     }
 
     // Update is called once per frame
@@ -43,9 +43,6 @@ public class FallingPlatform : MonoBehaviour
         velocity = newVel;
         previousFramePos = transform.position;
         if (Time.time - pauseTime < pause) return;
-        // Platform suddenly stopped
-        
-        
 
         Vector3 newTarget = transform.position;
         if (moveToTarget)
@@ -56,7 +53,7 @@ public class FallingPlatform : MonoBehaviour
                 moveToTarget = false;
                 pauseTime = Time.time;
                 awake = false;
-                
+                wakeOnTouch = false;
             }
         } 
         transform.position = Vector3.MoveTowards(transform.position, newTarget, speed);
@@ -69,10 +66,9 @@ public class FallingPlatform : MonoBehaviour
             if (!awake)
             {
                 pauseTime = Time.time;
+                awake = wakeOnTouch;
+                plyrMovement = collision.gameObject.GetComponent<PlayerMovement>();
             }
-            awake = wakeOnTouch;
-            plyrMovement = collision.gameObject.GetComponent<PlayerMovement>();
-
             collision.transform.parent = transform;
         }
     }
@@ -82,17 +78,14 @@ public class FallingPlatform : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             collision.transform.parent = null;
-            //collision.gameObject.GetComponent<Rigidbody2D>().AddForce(velocity * 50);
-            //plyrMovement = collision.gameObject.GetComponent<PlayerMovement>();
-            //plyrMovement.horizontalControlScale = new Vector2(0, 1);
-            plyrMovement = null;
         }
     }
-    public static void ResetPos(Transform transform, bool awake,Vector3 originalPosition)
+    void ResetPos()
     {
         awake = false;
+        wakeOnTouch = true;
+        moveToTarget = true;
         transform.position = originalPosition;
-        Debug.Log(transform.position);
     }
 
     private void OnDrawGizmos()
