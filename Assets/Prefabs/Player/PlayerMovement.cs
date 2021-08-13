@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
 {
     #region Public Variables
     public static bool controlsEnabled = true;
+    public static PlayerMovement singleton;
 
     public int walkSpeed = 20;
     [Tooltip("The lerp value to move to wanted velocity each frame")]
@@ -81,13 +82,15 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        
+        singleton = this;
         rb = GetComponent<Rigidbody2D>();
         particles = GetComponentInChildren<ParticleSystem>();
         Animator[] animators = GetComponentsInChildren<Animator>();
         playerParentAnimator = animators[0];
         animator = animators[1];
     }
+
+    
 
     public static void DisableControls()
     {

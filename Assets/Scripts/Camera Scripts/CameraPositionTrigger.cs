@@ -15,20 +15,54 @@ public class CameraPositionTrigger : MonoBehaviour
 
     [HideInInspector]
     public UnityEvent<GameObject> PlayerEntered = new UnityEvent<GameObject>();
-    
+    public UnityEvent<GameObject> PlayerExited = new UnityEvent<GameObject>();
+
     public Color gizmoOutlineColor = Color.green;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    void OnCollisionEnterHandle(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
             PlayerEntered.Invoke(collision.gameObject);
         }
     }
-
-    private void OnTriggerExit2D(Collider2D other)
+    void OnCollisionExitHandle(Collider2D collision)
     {
-        
+        if (collision.gameObject.tag == "Player")
+        {
+            PlayerExited.Invoke(collision.gameObject);
+        }
+    }
+
+    private void Start()
+    {
+        if (cameraType == CameraType.Dynamic && dynamicObjectIndicator != null)
+        {
+            dynamicObjectIndicator.GetComponent<OnTriggerEvent>().OnTriggerEnter2DEvent.AddListener((Collider2D collision) =>
+            {
+                OnCollisionEnterHandle(collision);
+            });
+            dynamicObjectIndicator.GetComponent<OnTriggerEvent>().OnTriggerExit2DEvent.AddListener((Collider2D collision) =>
+            {
+                OnCollisionExitHandle(collision);
+            });
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (cameraType == CameraType.Static)
+        {
+            OnCollisionEnterHandle(collision);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (cameraType == CameraType.Static)
+        {
+            OnCollisionExitHandle(collision);
+        }
     }
 
     private void OnDrawGizmos()
