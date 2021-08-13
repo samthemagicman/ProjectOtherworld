@@ -11,6 +11,9 @@ public class CameraPositionHandler : MonoBehaviour
     GameObject player;
     public float transitionSpeed = 2;
     Transform spawn;
+
+    Camera lastCameraNotExited;
+
     void Start()
     {
         targetPosition = initialPosition.transform.position;
@@ -23,36 +26,72 @@ public class CameraPositionHandler : MonoBehaviour
             CameraPositionTrigger coll = obj.GetComponent<CameraPositionTrigger>();
 
             coll.PlayerEntered.AddListener((plyr) => {
-                player = plyr;
-                PlayerMovement plyrMvmnt = plyr.GetComponent<PlayerMovement>();
-                spawn = coll.transform.Find("Spawn");
-                if (spawn)
-                {
-                    Player.Respawn.Handler.lastCheckpointPosition = coll.transform.Find("Spawn").transform.position;
-                    Player.Respawn.Handler.currentCheckpointType = Player.Respawn.CheckpointType.CheckpointPosition;
-                }
-                else
-                {
-                    Player.Respawn.Handler.currentCheckpointType = Player.Respawn.CheckpointType.ClosestPlatform;
-                }
-                targetPosition = coll.gameObject.transform.position;
-
-                if (targetCamera == null)
-                {
-                    targetCamera = coll.GetComponent<Camera>();
-                    Camera.main.transform.position = targetPosition;
-                    Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, -20);
-                    Camera.main.orthographicSize = targetCamera.orthographicSize;//Vector3.MoveTowards(Camera.main.transform.position, targetPosition, 2);
-                }
-                Camera temp = coll.GetComponent<Camera>();
-                if (plyrMvmnt)
-                {
-                    player.transform.position = spawn.position;
-                    //plyrMvmnt.Fling(new Vector2( (temp.transform.position - targetCamera.transform.position).normalized.x * 15, 0), 0.2f);
-                }
-                targetCamera = temp;
-                targetPositionTrigger = coll;
+                SetTargetCamera(coll);
             });
+
+            coll.PlayerExited.AddListener(plyr =>
+            {
+                Camera cam = coll.GetComponent<Camera>();
+                if (cam == targetCamera && lastCameraNotExited != null) // Exited new camera
+                {
+                    SetTargetCamera(lastCameraNotExited.GetComponent<CameraPositionTrigger>());
+                } else if (cam == lastCameraNotExited) //Fully exited old camera
+                {
+                    lastCameraNotExited = targetCamera;
+                }
+
+            });
+        }
+    }
+
+    void SetTargetCamera(CameraPositionTrigger coll)
+    {
+        if (lastCameraNotExited == null)
+        {
+            lastCameraNotExited = coll.GetComponent<Camera>();
+        }
+        PlayerMovement plyrMvmnt = PlayerMovement.singleton;
+        player = plyrMvmnt.gameObject;
+        
+        SetSpawn(coll.transform);
+        targetPosition = coll.gameObject.transform.position;
+
+        if (targetCamera == null)
+        {
+            targetCamera = coll.GetComponent<Camera>();
+            Camera.main.transform.position = targetPosition;
+            Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, -20);
+            Camera.main.orthographicSize = targetCamera.orthographicSize;//Vector3.MoveTowards(Camera.main.transform.position, targetPosition, 2);
+        }
+        Camera temp = coll.GetComponent<Camera>();
+
+        if (plyrMvmnt && targetCamera != temp)
+        {
+            Vector2 diff = temp.transform.position - targetCamera.transform.position;
+            if (diff.x > diff.y)
+            {
+                //plyrMvmnt.Fling(new Vector2(diff.normalized.x * 15, 0), 0.2f);
+            }
+            else if (diff.y < 0)
+            {
+                //plyrMvmnt.Fling(new Vector2(0, diff.normalized.y * 50), 0.2f);
+            }
+        }
+        targetCamera = temp;
+        targetPositionTrigger = coll;
+    }
+
+    void SetSpawn(Transform trans)
+    {
+        spawn = trans.Find("Spawn");
+        if (spawn)
+        {
+            Player.Respawn.Handler.lastCheckpointPosition = trans.Find("Spawn").transform.position;
+            Player.Respawn.Handler.currentCheckpointType = Player.Respawn.CheckpointType.CheckpointPosition;
+        }
+        else
+        {
+            Player.Respawn.Handler.currentCheckpointType = Player.Respawn.CheckpointType.ClosestPlatform;
         }
     }
 
