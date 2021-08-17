@@ -45,6 +45,7 @@ public class NPCDialogue : MonoBehaviour
         curDialogue.isBeingInteractedWith = interactingWith;
     }
 
+#if UNITY_EDITOR
     private void OnDrawGizmos()
     {
         if (UnityEditor.Selection.activeGameObject != this.gameObject) return;
@@ -52,4 +53,5 @@ public class NPCDialogue : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawCube(transform.position + interactUIOffset, new Vector3(1.5f, 0.1f, 1));
     }
+#endif
 }

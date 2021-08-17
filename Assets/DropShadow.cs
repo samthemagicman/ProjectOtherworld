@@ -26,7 +26,7 @@ public class DropShadow : MonoBehaviour
             shadowObject.transform.localPosition = Vector3.zero + (Vector3) offset;
             shadowObject.transform.localPosition = new Vector3(0, 0, -1) + (Vector3) offset;
             shadowObject.transform.localScale = Vector3.one;
-            shadowObject.hideFlags = HideFlags.HideInHierarchy;
+            //shadowObject.hideFlags = HideFlags.HideInHierarchy;
         } else if (shadowEnabled == false && shadowObject != null)
         {
             DestroyImmediate(shadowObject);

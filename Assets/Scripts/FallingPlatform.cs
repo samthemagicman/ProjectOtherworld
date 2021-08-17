@@ -88,6 +88,7 @@ public class FallingPlatform : MonoBehaviour
         transform.position = originalPosition;
     }
 
+#if UNITY_EDITOR
     private void OnDrawGizmos()
     {
         SpriteRenderer renderer = GetComponent<SpriteRenderer>();
@@ -113,4 +114,5 @@ public class FallingPlatform : MonoBehaviour
             }
         }
     }
+#endif
 }

@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor.UI;
-using UnityEditor.UIElements;
 using UnityEngine.UI;
 
 public class DropdownFilter : MonoBehaviour

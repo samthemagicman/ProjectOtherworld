@@ -97,6 +97,7 @@ public class MovingPlatform : MonoBehaviour
         }
     }
 
+#if UNITY_EDITOR
     private void OnDrawGizmos()
     {
         SpriteRenderer renderer = GetComponent<SpriteRenderer>();
@@ -122,4 +123,5 @@ public class MovingPlatform : MonoBehaviour
             }
         }
     }
+#endif
 }
