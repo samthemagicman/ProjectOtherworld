@@ -24,7 +24,7 @@ public class DropShadow : MonoBehaviour
             shadowObject.transform.SetParent(transform);
             shadowObject.GetComponent<SpriteRenderer>().sprite = GetComponent<SpriteRenderer>().sprite;
             shadowObject.transform.localPosition = Vector3.zero + (Vector3) offset;
-            shadowObject.transform.localPosition = new Vector3(0, 0, -1) + (Vector3) offset;
+            shadowObject.transform.localPosition = new Vector3(0, 0, 1) + (Vector3) offset;
             shadowObject.transform.localScale = Vector3.one;
             //shadowObject.hideFlags = HideFlags.HideInHierarchy;
         } else if (shadowEnabled == false && shadowObject != null)
@@ -33,6 +33,6 @@ public class DropShadow : MonoBehaviour
         }
 
         shadowObject.GetComponent<SpriteRenderer>().color = shadowColor;
-        shadowObject.transform.localPosition = new Vector3(0, 0, -1) + (Vector3)offset;
+        shadowObject.transform.localPosition = new Vector3(0, 0, 1) + (Vector3)offset;
     }
 }
