@@ -15,6 +15,12 @@ public class FallingPlatform : MonoBehaviour
     float pauseTime;
     bool moveToTarget = true;
 
+    //rumble before fall effect. 
+    SpriteRenderer sprite;
+    private bool flipx = true;
+    [Range(1,10)]
+    public float rumbleTimeMod = 1.8f;
+
     Vector3 previousFramePos;
     Vector3 velocity;
     Vector3 velocityDelta;
@@ -27,6 +33,7 @@ public class FallingPlatform : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        sprite = GetComponent<SpriteRenderer>();
         originalPosition = transform.position;
         target = transform.position + (Vector3)moveToOffset;
         rb = GetComponent<Rigidbody2D>();
@@ -38,12 +45,19 @@ public class FallingPlatform : MonoBehaviour
     void FixedUpdate()
     {
         if (!awake) return;
+        if (Time.time - pauseTime < pause)
+        {
+            if(!rumbling) StartCoroutine("Rumble");
+            return;
+        }
+        
         Vector3 newVel = ((transform.position - previousFramePos) / Time.deltaTime);
         velocityDelta = velocity - newVel;
         velocity = newVel;
         previousFramePos = transform.position;
-        if (Time.time - pauseTime < pause) return;
-
+        
+        
+        
         Vector3 newTarget = transform.position;
         if (moveToTarget)
         {
@@ -85,9 +99,21 @@ public class FallingPlatform : MonoBehaviour
         awake = false;
         wakeOnTouch = true;
         moveToTarget = true;
+        //animator.SetBool("landed", false);
+        sprite.flipX = false;
         transform.position = originalPosition;
     }
-
+    
+    bool rumbling = false;
+    IEnumerator Rumble() //it just flips the sprite right now.
+    {
+        rumbling = true;
+        sprite.flipX = flipx;
+        flipx = !flipx;
+        yield return new WaitForSeconds((Time.time-pauseTime)/rumbleTimeMod);
+        rumbling = false;
+    }
+    
 #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
