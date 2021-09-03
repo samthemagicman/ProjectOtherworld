@@ -10,7 +10,11 @@ public class CameraPositionHandler : MonoBehaviour
     CameraPositionTrigger targetPositionTrigger;
     GameObject player;
     public float transitionSpeed = 2;
-    Transform spawn;
+    public float xLimitMax;
+    public float xLimitMin;
+    public float yLimitMax;
+    public float yLimitMin;
+    Transform spawn; 
 
     Camera lastCameraNotExited;
 
@@ -97,7 +101,7 @@ public class CameraPositionHandler : MonoBehaviour
 
     void LateUpdate()
     {
-        if (targetCamera != null)
+        if (targetCamera != null && Camera.main != null)
         {
             if (targetPositionTrigger.cameraType == CameraPositionTrigger.CameraType.Static)
             {
@@ -111,10 +115,10 @@ public class CameraPositionHandler : MonoBehaviour
 
                 float height = 2f * Camera.main.orthographicSize;
                 float width = height * Camera.main.aspect;
-                float xLimitMax = limitObj.transform.position.x + renderer.size.x / 2 - width / 2;
-                float xLimitMin = limitObj.transform.position.x - renderer.size.x / 2 + width / 2;
-                float yLimitMax = limitObj.transform.position.y + renderer.size.y / 2 - height / 2;
-                float yLimitMin = limitObj.transform.position.y - renderer.size.y / 2 + height / 2;
+                xLimitMax = limitObj.transform.position.x + renderer.size.x / 2 - width / 2;
+                xLimitMin = limitObj.transform.position.x - renderer.size.x / 2 + width / 2;
+                yLimitMax = limitObj.transform.position.y + renderer.size.y / 2 - height / 2;
+                yLimitMin = limitObj.transform.position.y - renderer.size.y / 2 + height / 2;
 
                 Vector3 wantedPos = player.transform.position;
                 wantedPos = new Vector3(Mathf.Clamp(wantedPos.x, xLimitMin, xLimitMax), Mathf.Clamp(wantedPos.y, yLimitMin, yLimitMax));
