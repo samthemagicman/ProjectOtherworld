@@ -11,7 +11,10 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/level1_Wasteland1.unity
     guid: a072c50df652f1c4fb3ba971dbb46aea
+  - enabled: 1
+    path: Assets/Scenes/level1_Wasteland2.unity
+    guid: aa6bed28522551146bde6cb477ec983d
   m_configObjects: {}
