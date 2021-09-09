@@ -7,13 +7,14 @@ public class Parascope : MonoBehaviour
 {
     public PlayerMovement player;
     public RectTransform interactPromptUI;
-    public GameObject cameraArea;
     private BoxCollider2D interactArea;
     private bool inInteractArea;
     public Camera mainCam;
-    public Camera paraCam;
     private CameraPositionHandler cameraBounds;
-    public float panSpeed = 10;
+    private bool parascopeControl;
+    public float panSpeed = 100;
+    private Vector3 holdplayer = Vector3.zero; //this is just to fix a weird bug where the player will slide away from the interactable
+
     public void Awake()
     {
         interactArea = GetComponent<BoxCollider2D>();
@@ -37,41 +38,33 @@ public class Parascope : MonoBehaviour
         {
             if (Input.GetButtonDown("Interact"))
             {
-                Debug.Log("input detected");
-                //paraCam.enabled = !paraCam.enabled;
-                //mainCam.enabled = !mainCam.enabled;
-
-                
-                if (PlayerMovement.controlsEnabled == true)
+                if(player == null)
                 {
-                    paraCam.transform.position = transform.position;
-                    paraCam.enabled = true;
-                    mainCam.enabled = false;
+                    player = FindObjectOfType<PlayerMovement>();// to fix it breaking on death
+                }
+                if (PlayerMovement.controlsEnabled)
+                {
+                    parascopeControl = true;
                     PlayerMovement.DisableControls();
-                    Debug.Log(PlayerMovement.controlsEnabled);
+                    holdplayer = player.transform.position;
+                    cameraBounds.wantedPositionOverride = player.transform.position;
                 }
-                else if (PlayerMovement.controlsEnabled == false)
+                else
                 {
-                    mainCam.enabled = true;
-                    paraCam.enabled = false;
-
+                    parascopeControl = false;
                     PlayerMovement.EnableControls();
-                    Debug.Log(PlayerMovement.controlsEnabled);
+                    cameraBounds.wantedPositionOverride = null;
                 }
             }
-            if (paraCam.enabled && PlayerMovement.controlsEnabled == false)
+            if (parascopeControl)
             {
-                float moveHorizontal = Input.GetAxisRaw("Horizontal");
-                float moveVertical = Input.GetAxisRaw("Vertical");
-                Vector3 wantedPos = paraCam.transform.position;
-                //wantedPos = new Vector3(Mathf.Clamp(wantedPos.x + moveHorizontal, cameraBounds.xLimitMin, cameraBounds.xLimitMax), Mathf.Clamp(wantedPos.y + moveVertical, cameraBounds.yLimitMin, cameraBounds.yLimitMax));
-                wantedPos +=new Vector3(moveHorizontal*panSpeed, moveVertical*panSpeed, 0);
-                paraCam.transform.position = wantedPos;
-                Debug.Log("moveH:" + moveHorizontal);
-                Debug.Log("moveV:" + moveVertical);
-                Debug.Log("wantedPos:" + wantedPos);
-                Debug.Log("paraCamPos:" +paraCam.transform.position);
+                player.transform.position = holdplayer;
+                float moveVerticalRaw = Input.GetAxisRaw("Vertical");
+                float moveHorizontalRaw = Input.GetAxisRaw("Horizontal");
+                Vector3 wantedpos = (Vector3) cameraBounds.wantedPositionOverride + new Vector3 (moveHorizontalRaw * panSpeed * Time.deltaTime, moveVerticalRaw * panSpeed * Time.deltaTime,0);
+                cameraBounds.wantedPositionOverride = wantedpos;
             }
+        
         }
         
     }
