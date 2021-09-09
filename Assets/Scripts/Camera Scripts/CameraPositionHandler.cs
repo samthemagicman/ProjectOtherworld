@@ -18,6 +18,15 @@ public class CameraPositionHandler : MonoBehaviour
 
     Camera lastCameraNotExited;
 
+    [HideInInspector]
+    public float xLimitMax;
+    [HideInInspector]
+    public float xLimitMin;
+    [HideInInspector]
+    public float yLimitMax;
+    [HideInInspector]
+    public float yLimitMin;
+
     void Start()
     {
         targetPosition = initialPosition.transform.position;
@@ -115,10 +124,10 @@ public class CameraPositionHandler : MonoBehaviour
 
                 float height = 2f * Camera.main.orthographicSize;
                 float width = height * Camera.main.aspect;
-                float xLimitMax = limitObj.transform.position.x + renderer.size.x / 2 - width / 2;
-                float xLimitMin = limitObj.transform.position.x - renderer.size.x / 2 + width / 2;
-                float yLimitMax = limitObj.transform.position.y + renderer.size.y / 2 - height / 2;
-                float yLimitMin = limitObj.transform.position.y - renderer.size.y / 2 + height / 2;
+                xLimitMax = limitObj.transform.position.x + renderer.size.x / 2 - width / 2;
+                xLimitMin = limitObj.transform.position.x - renderer.size.x / 2 + width / 2;
+                yLimitMax = limitObj.transform.position.y + renderer.size.y / 2 - height / 2;
+                yLimitMin = limitObj.transform.position.y - renderer.size.y / 2 + height / 2;
 
                 
                 if (wantedPositionOverride != null)

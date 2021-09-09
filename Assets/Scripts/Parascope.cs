@@ -61,11 +61,10 @@ public class Parascope : MonoBehaviour
                 player.transform.position = holdplayer;
                 float moveVerticalRaw = Input.GetAxisRaw("Vertical");
                 float moveHorizontalRaw = Input.GetAxisRaw("Horizontal");
-                Vector3 wantedpos = (Vector3) cameraBounds.wantedPositionOverride + new Vector3 (moveHorizontalRaw * panSpeed * Time.deltaTime, moveVerticalRaw * panSpeed * Time.deltaTime,0);
-                cameraBounds.wantedPositionOverride = wantedpos;
+                Vector3 wantedPos = (Vector3) cameraBounds.wantedPositionOverride + new Vector3 (moveHorizontalRaw * panSpeed * Time.deltaTime, moveVerticalRaw * panSpeed * Time.deltaTime,0);
+                wantedPos = new Vector3(Mathf.Clamp(wantedPos.x, cameraBounds.xLimitMin+1, cameraBounds.xLimitMax + 1), Mathf.Clamp(wantedPos.y, cameraBounds.yLimitMin, cameraBounds.yLimitMax));//+1 plus fixes weird vibrating bug?
+                cameraBounds.wantedPositionOverride = wantedPos;
             }
-        
         }
-        
     }
 }
