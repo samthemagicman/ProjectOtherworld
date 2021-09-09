@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CameraPositionHandler : MonoBehaviour
 {
+    public static CameraPositionHandler singleton;
     public GameObject initialPosition;
     Vector3 targetPosition;
     Camera targetCamera;
@@ -11,6 +12,9 @@ public class CameraPositionHandler : MonoBehaviour
     GameObject player;
     public float transitionSpeed = 2;
     Transform spawn;
+
+    public Vector3? wantedPositionOverride = null;
+    Vector3 wantedPos = Vector3.zero;
 
     Camera lastCameraNotExited;
 
@@ -116,7 +120,15 @@ public class CameraPositionHandler : MonoBehaviour
                 float yLimitMax = limitObj.transform.position.y + renderer.size.y / 2 - height / 2;
                 float yLimitMin = limitObj.transform.position.y - renderer.size.y / 2 + height / 2;
 
-                Vector3 wantedPos = player.transform.position;
+                
+                if (wantedPositionOverride != null)
+                {
+                    wantedPos = (Vector3) wantedPositionOverride;
+                } else
+                {
+                    wantedPos = player.transform.position;
+                }
+
                 wantedPos = new Vector3(Mathf.Clamp(wantedPos.x, xLimitMin, xLimitMax), Mathf.Clamp(wantedPos.y, yLimitMin, yLimitMax));
                 if (Vector2.Distance(Camera.main.transform.position, wantedPos) > 5)
                 {
