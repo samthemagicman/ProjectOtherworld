@@ -2,33 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.EventSystems;
+using System.Runtime.InteropServices;
+using System.Diagnostics;
 
-public class MMUIFader : MonoBehaviour
+public class FadeOut : MonoBehaviour
 {
     public CanvasGroup uiElement;
-    public GameObject firstMenuButton;
+    public bool running = true;
 
     void Start()
     {
         StartCoroutine(fader());
     }
 
-    public void FadeOut()
+    public void FadingOut()
     {
         StartCoroutine(FadeCanvasGroup(uiElement, uiElement.alpha, 0));
     }
 
     IEnumerator fader()
     {
-        EventSystem.current.SetSelectedGameObject(null);
-        FadeOut();
+        FadingOut();
         yield return new WaitForSeconds(5);
         var dasd = GameObject.Find("Panel");
-        EventSystem.current.SetSelectedGameObject(firstMenuButton);
+        running = false;
         dasd.SetActive(false);
     }
+
+
 
     public IEnumerator FadeCanvasGroup(CanvasGroup cg, float start, float end, float lerpTime = 5.0f)
     {
