@@ -7,6 +7,7 @@ public class InputHandler : MonoBehaviour
 
     public FadeOut fader;
     public MenuNavi menuNavi;
+    public EventSystem events;
 
     public enum eInputState
     {
@@ -20,7 +21,6 @@ public class InputHandler : MonoBehaviour
     {
         if (!fader.running)
         {
-            EventSystem.current.SetSelectedGameObject(null);
             switch (m_State)
             {
                 case eInputState.MouseKeyboard:
@@ -29,24 +29,24 @@ public class InputHandler : MonoBehaviour
                         m_State = eInputState.Controller;
                         if (menuNavi.mainMenuActive == true)
                         {
-                            EventSystem.current.SetSelectedGameObject(menuNavi.firstMenuButton);
+                            events.SetSelectedGameObject(menuNavi.firstMenuButton);
                             print(menuNavi.firstMenuButton);
                             print("first menu button on");
                         } else if (menuNavi.optionsMenuActive == true)
                         {
-                            EventSystem.current.SetSelectedGameObject(menuNavi.optionsFirstButton);
+                            events.SetSelectedGameObject(menuNavi.optionsFirstButton);
                             print("opti menu button on");
                         } else if (menuNavi.displayMenuActive == true)
                         {
-                            EventSystem.current.SetSelectedGameObject(menuNavi.displayFirstButton);
+                            events.SetSelectedGameObject(menuNavi.displayFirstButton);
                             print("fit menu button on");
                         } else if (menuNavi.audioMenuActive == true)
                         {
-                            EventSystem.current.SetSelectedGameObject(menuNavi.audioFirstButton);
+                            events.SetSelectedGameObject(menuNavi.audioFirstButton);
                             print("fiasdrst mena button on");
                         } else if (menuNavi.advancedMenuActive == true)
                         {
-                            EventSystem.current.SetSelectedGameObject(menuNavi.advancedFirstButton);
+                            events.SetSelectedGameObject(menuNavi.advancedFirstButton);
                             print("gay enu button on");
                         }
                         Debug.Log("JoyStick being used");

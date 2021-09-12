@@ -21,19 +21,25 @@ public class MenuNavi : MonoBehaviour
     public GameObject displayFirstButton;
     public GameObject advancedFirstButton;
 
+    //whitman is here now
+    public InputHandler inputHandler;
+    private bool lastMenu;
+
     //dead variables
     public bool mainMenuActive;
     public bool optionsMenuActive;
     public bool displayMenuActive;
     public bool audioMenuActive;
     public bool advancedMenuActive;
-
+    public GameObject[] menus;
     void Update()
     {
         //checking which menu is active
         if (mainMenu.activeInHierarchy == true)
         {
             mainMenuActive = true;
+            SelectIfControler(firstMenuButton);
+            
         } else
         {
             mainMenuActive = false;
@@ -42,6 +48,7 @@ public class MenuNavi : MonoBehaviour
         if (optionsMenu.activeInHierarchy == true)
         {
             optionsMenuActive = true;
+            SelectIfControler(optionsFirstButton);
         } else
         {
             optionsMenuActive = false;
@@ -50,6 +57,7 @@ public class MenuNavi : MonoBehaviour
         if (audioMenu.activeInHierarchy == true)
         {
             audioMenuActive = true;
+            SelectIfControler(audioFirstButton);
         } else
         {
             audioMenuActive = false;
@@ -58,6 +66,7 @@ public class MenuNavi : MonoBehaviour
         if (displayMenu.activeInHierarchy == true)
         {
             displayMenuActive = true;
+            SelectIfControler(displayFirstButton);
         } else
         {
             displayMenuActive = false;
@@ -66,10 +75,23 @@ public class MenuNavi : MonoBehaviour
         if (advancedMenu.activeInHierarchy == true)
         {
             advancedMenuActive = true;
+            SelectIfControler(advancedFirstButton);
         }
         else
         {
             advancedMenuActive = false;
         }
+    }
+
+    private void SelectIfControler(GameObject button)
+    {
+        if (inputHandler.GetInputState() == InputHandler.eInputState.Controller)
+        {
+            EventSystem.current.SetSelectedGameObject(button);
+        }
+    }
+    public void SetActiveMenu()
+    {
+
     }
 }
