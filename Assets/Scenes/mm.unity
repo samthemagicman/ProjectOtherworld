@@ -602,8 +602,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fader: {fileID: 29422729}
-  menuNavi: {fileID: 29422732}
-  events: {fileID: 471122953}
+  isController: 0
+  isKeyboard: 0
 --- !u!114 &29422732
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -626,13 +626,13 @@ MonoBehaviour:
   audioFirstButton: {fileID: 940026826}
   displayFirstButton: {fileID: 1329911252}
   advancedFirstButton: {fileID: 561304050}
+  sim: {fileID: 471122952}
   inputHandler: {fileID: 29422731}
   mainMenuActive: 0
   optionsMenuActive: 0
   displayMenuActive: 0
   audioMenuActive: 0
   advancedMenuActive: 0
-  menus: []
 --- !u!1 &36957353
 GameObject:
   m_ObjectHideFlags: 0

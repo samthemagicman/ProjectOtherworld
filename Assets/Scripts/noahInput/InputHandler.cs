@@ -6,8 +6,9 @@ public class InputHandler : MonoBehaviour
 {
 
     public FadeOut fader;
-    public MenuNavi menuNavi;
-    public EventSystem events;
+
+    public bool isController;
+    public bool isKeyboard;
 
     public enum eInputState
     {
@@ -27,37 +28,18 @@ public class InputHandler : MonoBehaviour
                     if (isControllerInput())
                     {
                         m_State = eInputState.Controller;
-                        if (menuNavi.mainMenuActive == true)
-                        {
-                            events.SetSelectedGameObject(menuNavi.firstMenuButton);
-                            print(menuNavi.firstMenuButton);
-                            print("first menu button on");
-                        } else if (menuNavi.optionsMenuActive == true)
-                        {
-                            events.SetSelectedGameObject(menuNavi.optionsFirstButton);
-                            print("opti menu button on");
-                        } else if (menuNavi.displayMenuActive == true)
-                        {
-                            events.SetSelectedGameObject(menuNavi.displayFirstButton);
-                            print("fit menu button on");
-                        } else if (menuNavi.audioMenuActive == true)
-                        {
-                            events.SetSelectedGameObject(menuNavi.audioFirstButton);
-                            print("fiasdrst mena button on");
-                        } else if (menuNavi.advancedMenuActive == true)
-                        {
-                            events.SetSelectedGameObject(menuNavi.advancedFirstButton);
-                            print("gay enu button on");
-                        }
-                        Debug.Log("JoyStick being used");
+                        isController = true;
+                        isKeyboard = false;
+                        print(isController);
                     }
                     break;
                 case eInputState.Controller:
                     if (isMouseKeyboard())
                     {
-                        m_State = eInputState.MouseKeyboard; 
-                        EventSystem.current.SetSelectedGameObject(null);
-                        Debug.Log("Mouse & Keyboard being used");
+                        m_State = eInputState.MouseKeyboard;
+                        isKeyboard = true;
+                        isController = false;
+                        print(isController);
                     }
                     break;
             }
