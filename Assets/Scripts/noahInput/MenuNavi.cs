@@ -5,6 +5,12 @@ using UnityEngine.EventSystems;
 //sam i dont care, you can change whatever you what about this
 public class MenuNavi : MonoBehaviour
 {
+    public InputHandler inputHandler;
+    
+    private void Awake()
+    {
+        inputHandler = GetComponent<InputHandler>();
+    }
     //first, we need to get the current menu
     public void findMenus()
     {

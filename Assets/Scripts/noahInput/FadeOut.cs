@@ -26,7 +26,7 @@ public class FadeOut : MonoBehaviour
         yield return new WaitForSeconds(5);
         var dasd = GameObject.Find("Panel");
         running = false;
-        dasd.SetActive(false);
+        if(dasd) dasd.SetActive(false);
     }
 
 
