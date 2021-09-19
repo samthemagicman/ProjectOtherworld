@@ -68,9 +68,36 @@ public class MenuNavi : MonoBehaviour
             else
             {
                 //need something here to select non button options.
+                firstItem = FindFirstItem(firstItem);
+                firstItem = FindFirstSelectable(firstItem);
+                EventSystem.current.SetSelectedGameObject(firstItem);
             }
-
-
         } 
+    }
+
+    // these functions are a dumb way to do it maybe?
+    private GameObject FindFirstItem(GameObject firstItem)
+    {
+        if (firstItem.GetComponent<HorizontalOrVerticalLayoutGroup>())
+        {
+            firstItem = firstItem.transform.GetChild(0).gameObject;
+            return FindFirstItem(firstItem);
+        }
+        else
+        {
+            return firstItem;
+        }
+    }
+    private GameObject FindFirstSelectable(GameObject firstItem)
+    {
+        foreach (Transform item in firstItem.transform.parent)
+        {
+            if (item.GetComponent<Slider>() || item.GetComponent<Slider>())
+            {
+                //Debug.Log(item);   
+                return item.gameObject;
+            }
+        }
+        return (firstItem);
     }
 }

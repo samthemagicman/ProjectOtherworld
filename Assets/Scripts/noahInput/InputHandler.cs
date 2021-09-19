@@ -20,29 +20,26 @@ public class InputHandler : MonoBehaviour
 
     void OnGUI()
     {
-        if (!fader.running)
+        switch (m_State)
         {
-            switch (m_State)
-            {
-                case eInputState.MouseKeyboard:
-                    if (isControllerInput())
-                    {
-                        m_State = eInputState.Controller;
-                        isController = true;
-                        isKeyboard = false;
-                        print(isController);
-                    }
-                    break;
-                case eInputState.Controller:
-                    if (isMouseKeyboard())
-                    {
-                        m_State = eInputState.MouseKeyboard;
-                        isKeyboard = true;
-                        isController = false;
-                        print(isController);
-                    }
-                    break;
-            }
+            case eInputState.MouseKeyboard:
+                if (isControllerInput())
+                {
+                    m_State = eInputState.Controller;
+                    isController = true;
+                    isKeyboard = false;
+                    //print("Controller: " + isController);
+                }
+                break;
+            case eInputState.Controller:
+                if (isMouseKeyboard())
+                {
+                    m_State = eInputState.MouseKeyboard;
+                    isKeyboard = true;
+                    isController = false;
+                    //print("mkb: "+ isKeyboard);
+                }
+                break;
         }
     }
 
