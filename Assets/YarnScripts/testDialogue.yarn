@@ -1,21 +1,24 @@
-title: Start
+title: Tex.Start
 ---
-Ray: You are dumb and stupid. #line:0ebae3f
-Ray: I think that you should die. #line:06a7075
-Ray: Please... #line:0049818
-<<wait 1>>
-Ray: Die... #line:028c2b3
-[[No I am not going to just die. |NoDie]] #line:06c0dcb
-[[Okay, I will go die now. |Die]] #line:06d82fc
+<<name ???>>
+<<if not $visited_tex>>
+<<set $visited_tex to true>>
+Maggie... that you?
+<<wait 2>>
+Well you ain't Maggie... who're you?
+-> ...
+    Yer not much of a talker are ya?
+    -> ...
+Guess not.. Well the name's Tex.
+<<name Tex>>
+I live round' these parts, as you can see
+I don't reckon I've seen you before though...
+What's yer name? 
+-> ... 
+    Oh right, the no-talking thing.
+Well uh, usually I'm supposed to screen people before I let them through but..
+You seem well enough, so I'll let-cha through.
+<<endif>>
+Make sure to the read the signs around, puta lota hard work into makin' those.
+Goodluck litte fella.
 ===
-
-title: NoDie
----
-Ray: Fine then, just leave my sight. #line:09ed181
-===
-
-title: Die
----
-Ray: Thank you. #line:05dba30
-===
-
