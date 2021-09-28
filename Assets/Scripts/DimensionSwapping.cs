@@ -47,6 +47,7 @@ public class DimensionSwapping : MonoBehaviour
     // Update is called once per frame. Just in case you forgot
     void Update()
     {
+        if (GameManager.isPaused) return;
         previewingDimension = Input.GetButton("PreviewDimension") || Input.GetAxisRaw("PreviewDimension") > 0;
 
         currentLerpTime += lerpSpeed * Time.deltaTime / Time.timeScale;
