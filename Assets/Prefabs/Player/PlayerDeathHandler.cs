@@ -5,12 +5,19 @@ using UnityEngine.Events;
 
 public class PlayerDeathHandler : MonoBehaviour
 {
+    public static PlayerDeathHandler singleton;
+    public static UnityEvent onDeath = new UnityEvent();
     public GameObject explodingPlayerPrefab;
-    public UnityEvent onDied;
-    
+    public UnityEvent onDied = new UnityEvent();
+
+    private void Start()
+    {
+        singleton = this;
+    }
+
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetButtonDown("ResetCharacter"))
         {
             Die();
         }
@@ -23,9 +30,11 @@ public class PlayerDeathHandler : MonoBehaviour
         explodable.fragmentInEditor();
         explodable.explode();
         explodable.setVelocity(GetComponent<Rigidbody2D>().velocity);
-        Destroy(this.gameObject);
+        //Destroy(this.gameObject);
         onDied.Invoke();
+        onDeath.Invoke();
         Time.timeScale = 1f;
         Time.fixedDeltaTime = 0.02F * Time.timeScale;
+        this.gameObject.SetActive(false);
     }
 }

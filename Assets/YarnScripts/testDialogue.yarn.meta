@@ -1,0 +1,25 @@
+fileFormatVersion: 2
+guid: 84ffabaa86b9052498f2621da36b0e34
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 94073015eacc34c1d8fc6786e43d60ca, type: 3}
+  baseLanguageID: en-CA
+  stringIDs:
+  - testDialogue-RayDialogue1-0
+  - testDialogue-RayDialogue1-1
+  - testDialogue-RayDialogue1-2
+  - testDialogue-RayDialogue1-3
+  - testDialogue-RayDialogue1-4
+  - testDialogue-RayDialogue1-5
+  - testDialogue-NoDie-6
+  - testDialogue-Die-7
+  compilationStatus: 1
+  isSuccesfullyCompiled: 1
+  compilationErrorMessage: 
+  baseLanguage: {fileID: 7128917941130120860, guid: 84ffabaa86b9052498f2621da36b0e34, type: 3}
+  localizations: []

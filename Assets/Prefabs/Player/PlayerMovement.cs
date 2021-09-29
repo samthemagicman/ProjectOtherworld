@@ -7,6 +7,9 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     #region Public Variables
+    public static bool controlsEnabled = true;
+    public static PlayerMovement singleton;
+
     public int walkSpeed = 20;
     [Tooltip("The lerp value to move to wanted velocity each frame")]
     public float velocityLerpValue = 0.4f;
@@ -25,20 +28,30 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Wall Jump Settings")]
 
+    public bool wallJumpEnabled = true;
+
+    [ConditionalHide("wallJumpEnabled")]
     [InspectorName("Wall Slide Speed")]
     public float wallSlideSpeed = -15;
 
+    [ConditionalHide("wallJumpEnabled")]
     [InspectorName("Coyote Time")]
     public float wallJumpCoyoteTime = 0.2f;
 
+    [ConditionalHide("wallJumpEnabled")]
     [InspectorName("Move Delay after Jump")]
     [Tooltip("The time it takes before you can control your character again after a wall jump")]
     public float wallJumpMoveDelay = 0.15f;
 
+    [ConditionalHide("wallJumpEnabled")]
     [Tooltip("The time it takes to unstick from a wall")]
     public float wallUnstickTime = 0.05f;
 
+    [ConditionalHide("wallJumpEnabled")]
     public Vector2 wallJumpVelocity = new Vector2(20f, 40f);
+
+
+    public Vector2 horizontalControlScale = new Vector2(1,1 );
     #endregion
 
     #region Component References
@@ -56,6 +69,7 @@ public class PlayerMovement : MonoBehaviour
     bool wallJumpKeyPressed = false;
     bool didJumpOffWallRecently = false;
     bool isBeingFlung = false;
+    bool jumpKeyDown = false;
 
     float mayJump = 0; 
     float mayWallJump = 0;
@@ -68,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        
+        singleton = this;
         rb = GetComponent<Rigidbody2D>();
         particles = GetComponentInChildren<ParticleSystem>();
         Animator[] animators = GetComponentsInChildren<Animator>();
@@ -76,137 +90,210 @@ public class PlayerMovement : MonoBehaviour
         animator = animators[1];
     }
 
+    
+
+    public static void DisableControls()
+    {
+        controlsEnabled = false;
+    }
+    public static void EnableControls()
+    {
+        controlsEnabled = true;
+    }
+
+    float control = 15;
     void FixedUpdate()
     {
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveHorizontalRaw = Input.GetAxisRaw("Horizontal");
-        //float moveVertical = Input.GetAxis("Vertical");
-        //float moveVerticalRaw = Input.GetAxisRaw("Vertical");
-
-        bool isTouchingAnyWall = IsTouchingAnyWall();
-        bool isGrounded = IsGrounded();
-        bool isOnWall = isTouchingAnyWall && !isGrounded;
-
-        if (isGrounded)
+        if (controlsEnabled)
         {
-            lastGroundedPosition = transform.position;
-            mayJump = jumpCoyoteTime;
-        }
+            float moveHorizontal = Input.GetAxis("Horizontal");
+            float moveHorizontalRaw = Input.GetAxisRaw("Horizontal");
+            //float moveVertical = Input.GetAxis("Vertical");
+            //float moveVerticalRaw = Input.GetAxisRaw("Vertical");
 
-        if (isTouchingAnyWall) mayWallJump = wallJumpCoyoteTime;
+            bool isTouchingAnyWall = IsTouchingAnyWall();
+            bool isGrounded = IsGrounded();
+            bool isOnWall = isTouchingAnyWall && !isGrounded;
 
-        isMovingTowardsWall = IsMovingTowardsWall(moveHorizontalRaw);
-        bool isMovingAwayFromWall = IsMovingAwayFromWall(moveHorizontalRaw);
-
-        if (isOnWall && isMovingAwayFromWall)
-        {
-            movingAwayFromWallStamp += Time.deltaTime;
-        } else if (!isMovingAwayFromWall)
-        {
-            movingAwayFromWallStamp = 0;
-        }
-
-        if (Mathf.Abs(moveHorizontalRaw) > 0)
-        {
-            startedMovingTimeStamp += Time.deltaTime;
-        }
-        else if (!isMovingAwayFromWall)
-        {
-            startedMovingTimeStamp = 0;
-        }
-
-        #region Handle walking and moving in air
-        if (!isBeingFlung) //if (!didJumpOffWallRecently) //If they just jumped off a wall, they can't control their character
-        {
-            Vector2 wantedVelocity;
             if (isGrounded)
             {
-                wantedVelocity = new Vector2(moveHorizontalRaw, 0) * walkSpeed + new Vector2(0, rb.velocity.y);
-            } else // Moving in air
+                lastGroundedPosition = transform.position;
+                mayJump = jumpCoyoteTime;
+            }
+
+            if (isTouchingAnyWall) mayWallJump = wallJumpCoyoteTime;
+
+            isMovingTowardsWall = IsMovingTowardsWall(moveHorizontalRaw);
+            bool isMovingAwayFromWall = IsMovingAwayFromWall(moveHorizontalRaw);
+
+            if (isOnWall && isMovingAwayFromWall)
             {
-                // If the player isn't already moving FASTER than the move speed, and they
-                
-                if ((rb.velocity.x <  walkSpeed && moveHorizontalRaw > 0) ||
-                    (rb.velocity.x > -walkSpeed && moveHorizontalRaw < 0))
+                movingAwayFromWallStamp += Time.deltaTime;
+            }
+            else if (!isMovingAwayFromWall)
+            {
+                movingAwayFromWallStamp = 0;
+            }
+
+            if (Mathf.Abs(moveHorizontalRaw) > 0)
+            {
+                startedMovingTimeStamp += Time.deltaTime;
+            }
+            else if (!isMovingAwayFromWall)
+            {
+                startedMovingTimeStamp = 0;
+            }
+
+            #region Handle walking and moving in air
+            if (!isBeingFlung) //if (!didJumpOffWallRecently) //If they just jumped off a wall, they can't control their character
+            {
+                Vector2 wantedVelocity;
+                if (isGrounded)
                 {
-                    wantedVelocity = new Vector2(moveHorizontalRaw, 0) * walkSpeed + new Vector2(rb.velocity.x, rb.velocity.y);
+                    wantedVelocity = new Vector2(moveHorizontalRaw, 0) * walkSpeed + new Vector2(0, rb.velocity.y);
                 }
-                else
+                else // Moving in air
                 {
-                    wantedVelocity = new Vector2(rb.velocity.x * 0.6f, rb.velocity.y);
+                    // If the player isn't already moving FASTER than the move speed, and they
+
+                    if ((rb.velocity.x < walkSpeed && moveHorizontalRaw > 0) ||
+                        (rb.velocity.x > -walkSpeed && moveHorizontalRaw < 0))
+                    {
+                        wantedVelocity = new Vector2(moveHorizontalRaw, 0) * walkSpeed + new Vector2(rb.velocity.x, rb.velocity.y);
+                    }
+                    else
+                    {
+                        wantedVelocity = new Vector2(rb.velocity.x * 0.6f, rb.velocity.y);
+                    }
                 }
-            }
 
-            if (isOnWall && movingAwayFromWallStamp < wallUnstickTime) // on wall
+                if ((isOnWall && movingAwayFromWallStamp < wallUnstickTime)) // on wall
+                {
+                    wantedVelocity *= new Vector2(0, 1);
+                }
+
+                /*if (isGrounded)
+                {
+                    rb.AddForce((wantedVelocity - rb.velocity) * 15);
+                } else if (moveHorizontalRaw != 0)
+                {
+                    rb.AddForce((wantedVelocity - rb.velocity) * 10);
+                } else
+                {
+                    rb.AddForce((wantedVelocity - rb.velocity) * 10 * (horizontalControlScale.x));
+                }*/
+
+                if (isGrounded) // We're on the ground, so full control
+                {
+                    rb.AddForce((wantedVelocity - rb.velocity) * control);
+                    control = Mathf.MoveTowards(control, 15, 0.5f);
+                }
+                else if (moveHorizontalRaw != 0) // We're in the air and moving our keys
+                {
+
+                    if (rb.velocity.x > 23) // Our X velocity is greater than our walkspeed
+                    {
+                        //LESS CONTROL
+                        control = Mathf.MoveTowards(control, 9, 0.8f);
+                        rb.AddForce((wantedVelocity - rb.velocity) * control);
+                    }
+                    else // We're fully in control
+                    {
+                        control = Mathf.MoveTowards(control, 15, 0.5f);
+                        rb.AddForce((wantedVelocity - rb.velocity) * control);
+                    }
+                }
+                else // We're not moving our movement keys
+                {
+                    //rb.AddForce((wantedVelocity - rb.velocity) * 10*(horizontalControlScale.x));
+                    if (rb.velocity.x > 23) // Our X velocity is greater than our walkspeed
+                    {
+                        //LESS CONTROL
+                        control = Mathf.MoveTowards(control, 3, 0.8f);
+                        rb.AddForce((wantedVelocity - rb.velocity) * control);
+                    }
+                    else // We're fully in control
+                    {
+                        control = Mathf.MoveTowards(control, 3, 0.5f);
+                        rb.AddForce((wantedVelocity - rb.velocity) * control);
+                    }
+                }
+
+                //rb.velocity = Vector2.Lerp(rb.velocity, wantedVelocity, velocityLerpValue * horizontalControlScale.x);
+                horizontalControlScale = Vector2.MoveTowards(horizontalControlScale, new Vector2(1, 1), 0.01f);
+            }
+            #endregion
+
+            #region Jump
+            if ((mayJump > 0 && jumpKeyPressedStamp > 0 && Vector2.Distance(lastGroundedPosition, transform.position) < maxCoyoteJumpDistance)
+                || isGrounded && jumpKeyPressedStamp > 0)// && !isTouchingAnyWall)
             {
-                wantedVelocity *= new Vector2(0, 1);
+                jumpKeyDown = true;
+                rb.velocity = new Vector2(rb.velocity.x, jumpHeight);//rb.velocity * new Vector2(1, 0) + (new Vector2(0, moveVerticalRaw) * jumpHeight);
+                mayJump = 0;
             }
+            #endregion
 
-            rb.velocity = Vector2.Lerp(rb.velocity, wantedVelocity, velocityLerpValue);
-        }
-        #endregion
-
-        #region Jump
-        if ((mayJump > 0 && jumpKeyPressedStamp > 0 && Vector2.Distance(lastGroundedPosition, transform.position) < maxCoyoteJumpDistance)
-            || isGrounded && jumpKeyPressedStamp > 0)// && !isTouchingAnyWall)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, jumpHeight);//rb.velocity * new Vector2(1, 0) + (new Vector2(0, moveVerticalRaw) * jumpHeight);
-            mayJump = 0;
-        }
-        #endregion
-
-        #region Gravity and wall sliding
-        //If player is touching a wall, and they're not moving towards it
-        if (isTouchingAnyWall && !isMovingTowardsWall)
-        {
-            // If they're touching a wall, they're not moving towards it, and they're going UP the wall, then fake some friction (slow them down sliding up the wall)
-            if (rb.velocity.y > 0)
+            #region Gravity and wall sliding
+            //If player is touching a wall, and they're not moving towards it
+            if ((isTouchingAnyWall && !isMovingTowardsWall))
             {
-                rb.velocity *= new Vector2(1, 0.92f);
+                // If they're touching a wall, they're not moving towards it, and they're going UP the wall, then fake some friction (slow them down sliding up the wall)
+                if (rb.velocity.y > 0)
+                {
+                    rb.velocity *= new Vector2(1, 0.92f);
+                }
+
+                //Basically if we're touching a wall and we're not moving towards a wall
+                //Apply slower gravity
+                //rb.AddForce(new Vector2(0, wallSlidingGravity)); // Old way of adding slow gravity
+                rb.velocity = Vector2.Lerp(rb.velocity, new Vector2(0, wallSlideSpeed), 0.1f);
             }
-
-            //Basically if we're touching a wall and we're not moving towards a wall
-            //Apply slower gravity
-            //rb.AddForce(new Vector2(0, wallSlidingGravity)); // Old way of adding slow gravity
-            rb.velocity = Vector2.Lerp(rb.velocity, new Vector2(0, wallSlideSpeed), 0.1f);
-        }
-        else if (isTouchingAnyWall && isMovingTowardsWall)
-        {
-            rb.velocity = rb.velocity * new Vector2(1, 0.7f); // If space was not down, and we're touching any wall, and we're moving towards a wall, slow down the y velocity to 0
-        }
-        else // Apply gravity
-        {
-            rb.AddForce(new Vector2(0, gravity));
-            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -maxFallSpeed, Mathf.Infinity));
-        }
-        #endregion
-
-        #region Wall jumping
-        //If the player can wall jump, the wall jump key is pressed, and the player is not grounded, then wall jump
-        if (mayWallJump > 0 && wallJumpKeyPressed && !isGrounded) // Wall jump
-        {
-            var wallJumpXVelocity = IsTouchingLeftWall() == true ? wallJumpVelocity.x : -wallJumpVelocity.x;
-            if (mayWallJump != wallJumpCoyoteTime)
+            else if ((isTouchingAnyWall && isMovingTowardsWall))
             {
-                wallJumpXVelocity = moveHorizontalRaw > 0 == true ? wallJumpVelocity.x : -wallJumpVelocity.x;
+                rb.velocity = rb.velocity * new Vector2(1, 0.7f); // If space was not down, and we're touching any wall, and we're moving towards a wall, slow down the y velocity to 0
             }
-            StartCoroutine( WallJump(new Vector2(wallJumpXVelocity, wallJumpVelocity.y)) );
-            mayWallJump = 0;
+            else // Apply gravity
+            {
+                if (rb.velocity.y > 0 && !jumpKeyDown)
+                {
+                    rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+                }
+                rb.AddForce(new Vector2(0, gravity));
+                rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -maxFallSpeed, Mathf.Infinity));
+            }
+            #endregion
+
+            #region Wall jumping
+            //If the player can wall jump, the wall jump key is pressed, and the player is not grounded, then wall jump
+            if ((mayWallJump > 0 && wallJumpKeyPressed && !isGrounded)) // Wall jump
+            {
+                jumpKeyDown = true;
+                var wallJumpXVelocity = IsTouchingLeftWall() == true ? wallJumpVelocity.x : -wallJumpVelocity.x;
+                if (mayWallJump != wallJumpCoyoteTime)
+                {
+                    wallJumpXVelocity = moveHorizontalRaw > 0 == true ? wallJumpVelocity.x : -wallJumpVelocity.x;
+                }
+                StartCoroutine(WallJump(new Vector2(wallJumpXVelocity, wallJumpVelocity.y)));
+                mayWallJump = 0;
+            }
+            #endregion
+
+            UpdateParticles(moveHorizontalRaw);
+            UpdateAnimation(moveHorizontal);
+
+            jumpKeyPressedStamp -= Time.deltaTime / Time.timeScale;
+            mayJump -= Time.deltaTime / Time.timeScale;
+            mayWallJump -= Time.deltaTime / Time.timeScale;
+            lastVerticalVelocity = rb.velocity;
         }
-        #endregion
-
-        UpdateParticles(moveHorizontalRaw);
-        UpdateAnimation(moveHorizontal);
-
-        jumpKeyPressedStamp -= Time.deltaTime / Time.timeScale;
-        mayJump -= Time.deltaTime / Time.timeScale;
-        mayWallJump -= Time.deltaTime / Time.timeScale;
-        lastVerticalVelocity = rb.velocity;
     }
     private void LateUpdate()
     {
         if ((IsTouchingAnyWall() || mayWallJump > 0) && Input.GetButtonDown("Jump")) wallJumpKeyPressed = true;
-        if (Input.GetButtonDown("Jump")) jumpKeyPressedStamp = 0.2f; ;
+        if (Input.GetButtonDown("Jump")) jumpKeyPressedStamp = 0.2f;
+        if (Input.GetButtonUp("Jump") && jumpKeyDown) jumpKeyDown = false;
+
 
     }
 
@@ -253,13 +340,16 @@ public class PlayerMovement : MonoBehaviour
     bool IsTouchingRightWall()
     {
         //return Physics2D.Raycast(transform.position, -Vector2.up, distToGround + 0.1f).collider != null;
-        return Physics2D.BoxCast(transform.position + new Vector3(1, 1, 0), new Vector2(0.05f, 1.8f), 0, Vector2.right, 0, ~ignoreRaycastLayers).collider != null;
+        Collider2D collider = Physics2D.BoxCast(transform.position + new Vector3(1, 1, 0), new Vector2(0.05f, 1.8f), 0, Vector2.right, 0, ~ignoreRaycastLayers).collider;
+
+        return wallJumpEnabled && collider != null && !collider.usedByEffector; //Physics2D.BoxCast(transform.position + new Vector3(1, 1, 0), new Vector2(0.05f, 1.8f), 0, Vector2.right, 0, ~ignoreRaycastLayers).collider != null;
     }
 
     bool IsTouchingLeftWall()
     {
         //return Physics2D.Raycast(transform.position, -Vector2.up, distToGround + 0.1f).collider != null;
-        return Physics2D.BoxCast(transform.position + new Vector3(-1, 1, 0), new Vector2(0.05f, 1.8f), 0, Vector2.right, 0, ~ignoreRaycastLayers).collider != null;
+        Collider2D collider = Physics2D.BoxCast(transform.position + new Vector3(-1, 1, 0), new Vector2(0.05f, 1.8f), 0, Vector2.right, 0, ~ignoreRaycastLayers).collider;
+        return wallJumpEnabled && collider != null && !collider.usedByEffector;
     }
 
     bool IsTouchingAnyWall()

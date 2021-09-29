@@ -5,10 +5,22 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: Assets/Scenes/old scenes/level1_Wasteland1.unity
+    guid: a072c50df652f1c4fb3ba971dbb46aea
   - enabled: 1
-    path: Assets/Scenes/TestScene2 1.unity
-    guid: f74049ae632d6aa48bff8d577aa98b0f
+    path: Assets/Scenes/load.unity
+    guid: 56cfb10d950aa9c40ab59740cf0baea2
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/mm.unity
+    guid: 5be7ed3e4e2f64d4882c97660bc0a6db
+  - enabled: 1
+    path: Assets/Scenes/level1_Wasteland2.unity
+    guid: aa6bed28522551146bde6cb477ec983d
   m_configObjects: {}

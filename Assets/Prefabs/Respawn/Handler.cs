@@ -19,8 +19,10 @@ namespace Player.Respawn
         void Start()
         {
             player = GameObject.FindGameObjectWithTag("Player");
+            playerPrefab = Instantiate(player);
+            playerPrefab.SetActive(false);
             respawnPosition = player.transform.position;
-            player.GetComponent<PlayerDeathHandler>().onDied.AddListener(() => Invoke("OnPlayerDied", 1));
+            player.GetComponent<PlayerDeathHandler>().onDied.AddListener(() => Invoke("OnPlayerDied", 2));
         }
 
         void OnPlayerDied()
@@ -33,9 +35,11 @@ namespace Player.Respawn
                 respawnPosition = PlayerMovement.lastGroundedPosition;
             }
 
-
+            Destroy(player);
             player = Instantiate(playerPrefab, respawnPosition, Quaternion.identity);
-            player.GetComponent<PlayerDeathHandler>().onDied.AddListener(() => Invoke("OnPlayerDied", 1));
+            player.transform.position = respawnPosition;
+            player.SetActive(true);
+            player.GetComponent<PlayerDeathHandler>().onDied.AddListener(() => Invoke("OnPlayerDied", 2));
         }
     }
 }

@@ -43,11 +43,11 @@ public class DimensionSwapping : MonoBehaviour
     }
 
 
-
+    bool axisWasDown = false;
     // Update is called once per frame. Just in case you forgot
     void Update()
     {
-        previewingDimension = Input.GetButton("PreviewDimension");
+        previewingDimension = Input.GetButton("PreviewDimension") || Input.GetAxisRaw("PreviewDimension") > 0;
 
         currentLerpTime += lerpSpeed * Time.deltaTime / Time.timeScale;
         currentLerpTime = Mathf.Clamp(currentLerpTime, 0, lerpTime);
@@ -77,9 +77,10 @@ public class DimensionSwapping : MonoBehaviour
             lerpSpeed = -Mathf.Abs(lerpSpeed);
         }
 
-        if (Input.GetButtonUp("PreviewDimension"))
+        if (Input.GetButtonUp("PreviewDimension") || (axisWasDown && Input.GetAxisRaw("PreviewDimension") == 0))
         {
             changed = true;
+            axisWasDown = false;
             SwapDimension();
         }
         if (changed)
@@ -87,6 +88,10 @@ public class DimensionSwapping : MonoBehaviour
             UpdateAllMaterials();
         }
 
+        if (Input.GetAxisRaw("PreviewDimension") > 0)
+        {
+            axisWasDown = true;
+        }
     }
 
     void SwapDimension()
