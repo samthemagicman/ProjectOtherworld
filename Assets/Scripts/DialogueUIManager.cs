@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using Yarn;
 using Yarn.Unity;
 public class DialogueUIManager : MonoBehaviour
 {
-    public Text characterName;
+    public TMP_Text characterName;
     Animator setBool;
 
     public void Awake()
