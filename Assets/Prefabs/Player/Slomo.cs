@@ -7,7 +7,6 @@ public class Slomo : MonoBehaviour
     public float speed = 0.3f;
     void Update()
     {
-        if (GameManager.isPaused) return;
         if (
             (Input.GetButton("PreviewDimension")
             && !Input.GetButtonDown("PreviewDimension")

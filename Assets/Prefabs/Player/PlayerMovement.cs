@@ -290,11 +290,11 @@ public class PlayerMovement : MonoBehaviour
     }
     private void LateUpdate()
     {
-        if (GameManager.isPaused) return;
         if ((IsTouchingAnyWall() || mayWallJump > 0) && Input.GetButtonDown("Jump")) wallJumpKeyPressed = true;
         if (Input.GetButtonDown("Jump")) jumpKeyPressedStamp = 0.2f;
         if (Input.GetButtonUp("Jump") && jumpKeyDown) jumpKeyDown = false;
-        
+
+
     }
 
     #region Wall Jumping
