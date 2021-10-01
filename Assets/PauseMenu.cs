@@ -27,13 +27,13 @@ public class PauseMenu : MonoBehaviour
     void ActivateMenu()
     {
         pauseMenuUI.SetActive(true);
-        Time.timeScale = 0;
+        GameManager.PauseGame();
     }
 
     void DeactivateMenu()
     {
         pauseMenuUI.SetActive(false);
-        Time.timeScale = 1;
+        GameManager.UnPauseGame();
 
     }
 }
