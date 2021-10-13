@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 1837ad6fe3d8ce046850840399eef373
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 94073015eacc34c1d8fc6786e43d60ca, type: 3}
+  baseLanguageID: en-US
+  stringIDs:
+  - DimSwapNote-DimSwapNote.Start-0
+  - DimSwapNote-DimSwapNote.Start-1
+  compilationStatus: 1
+  isSuccesfullyCompiled: 1
+  compilationErrorMessage: 
+  baseLanguage: {fileID: 7128917941130120860, guid: 1837ad6fe3d8ce046850840399eef373, type: 3}
+  localizations: []
