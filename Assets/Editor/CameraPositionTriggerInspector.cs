@@ -51,7 +51,6 @@ public class CameraPositionTriggerInspector : Editor
         {
             trigEvent = obj.AddComponent<OnTriggerEvent>();
         }
-        Debug.Log(spriteRenderer.size);
         coll2d.size = spriteRenderer.size;
         coll2d.isTrigger = true;
     }
