@@ -27,14 +27,16 @@ public class PlayerInteractorHandler : MonoBehaviour
     {
         Interactable interactable;
         collision.gameObject.TryGetComponent<Interactable>(out interactable);
-        currentInteractable = interactable;
-        if (currentInteractable != null) interactableInRange.Invoke();
+        if (interactable)
+        {
+            currentInteractable = interactable;
+            if (currentInteractable != null) interactableInRange.Invoke();
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Interactable interactable;
-        collision.gameObject.TryGetComponent<Interactable>(out interactable);
+        Interactable interactable = collision.gameObject.GetComponent<Interactable>();
         if (interactable == currentInteractable)// currentNPCDialogue && currentNPCDialogue.GetComponent<Collider2D>() && collision == currentNPCDialogue.GetComponent<Collider2D>())
         {
             currentInteractable = null;
