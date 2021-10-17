@@ -57,6 +57,68 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &1856867768712478525
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2865486512799494660}
+  - component: {fileID: 1600866529759800588}
+  - component: {fileID: 171936189236724567}
+  m_Layer: 2
+  m_Name: DialogueInteractor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2865486512799494660
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856867768712478525}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 124, y: 672, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4572557801684133971}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1600866529759800588
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856867768712478525}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.78}
+  serializedVersion: 2
+  m_Radius: 5
+--- !u!114 &171936189236724567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856867768712478525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02f29b066910cf64e81fd8dc989074cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactPromptUI: {fileID: 0}
+  currentInteractable: {fileID: 0}
 --- !u!1 &4572557801344103445
 GameObject:
   m_ObjectHideFlags: 0
@@ -4951,7 +5013,6 @@ GameObject:
   - component: {fileID: 1028194999}
   - component: {fileID: 1028194988}
   - component: {fileID: 216432777576549674}
-  - component: {fileID: 1028194994}
   m_Layer: 2
   m_Name: Player
   m_TagString: Player
@@ -4972,6 +5033,7 @@ Transform:
   m_Children:
   - {fileID: 4572557802025454758}
   - {fileID: 218500004}
+  - {fileID: 2865486512799494660}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5024,6 +5086,7 @@ MonoBehaviour:
   wallJumpMoveDelay: 0.15
   wallUnstickTime: 0.05
   wallJumpVelocity: {x: 20, y: 40}
+  horizontalControlScale: {x: 1, y: 1}
 --- !u!114 &637157008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5080,6 +5143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01483722b7ef29846820662500fcdace, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 0.3
 --- !u!114 &216432777576549674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5092,23 +5156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01483722b7ef29846820662500fcdace, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1028194994
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4572557801684133966}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5dbb6981ab5a8074abbf00c37ef49363, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackDebugVisualization: {fileID: 2247854002199177527, guid: c09b2fe7e6b7dcf46983c370b19435cb, type: 3}
-  ignoreLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  attackHitbox: {fileID: 413676368936272718, guid: 0c2b0729da341f441bd41feeae1f807f, type: 3}
+  speed: 0.3
 --- !u!1 &4572557802025454759
 GameObject:
   m_ObjectHideFlags: 0
@@ -5266,8 +5314,8 @@ MonoBehaviour:
   - {fileID: 4572557801562239260}
   - {fileID: 4572557802507917192}
   m_Bounds:
-    m_Center: {x: 0.0073034763, y: 0.00026869774, z: 0}
-    m_Extent: {x: 1.0075474, y: 1.0075474, z: 0}
+    m_Center: {x: 0.007303238, y: 0.000269413, z: 0}
+    m_Extent: {x: 1.0075474, y: 1.007546, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!95 &4572557802371348571

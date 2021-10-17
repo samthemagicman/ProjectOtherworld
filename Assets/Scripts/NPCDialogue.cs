@@ -35,7 +35,7 @@ public class NPCDialogue : Interactable
 
    public static void SetTalking(bool talking)
     {
-        NPCDialogue curDialogue = (NPCDialogue) PlayerDialogueInteractor.singleton.currentInteractable;
+        NPCDialogue curDialogue = (NPCDialogue) PlayerInteractorHandler.singleton.currentInteractable;
         curDialogue.isTalking = talking;
         NPCVoice voice = curDialogue.GetComponent<NPCVoice>();
         if (voice)
@@ -52,7 +52,7 @@ public class NPCDialogue : Interactable
 
     public static void SetBeingInteractedWith(bool interactingWith)
     {
-        NPCDialogue curDialogue = (NPCDialogue) PlayerDialogueInteractor.singleton.currentInteractable;
+        NPCDialogue curDialogue = (NPCDialogue) PlayerInteractorHandler.singleton.currentInteractable;
         curDialogue.isBeingInteractedWith = interactingWith;
     }
 }
