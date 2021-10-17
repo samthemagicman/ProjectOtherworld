@@ -6,7 +6,7 @@ public class PlayerDialogueInteractor : MonoBehaviour
 {
     public RectTransform interactPromptUI;
     [HideInInspector]
-    public NPCDialogue currentNPCDialogue;
+    public Interactable currentInteractable;
     DialogueRunner dialogueRunner;
     public static PlayerDialogueInteractor singleton;
 
@@ -22,11 +22,11 @@ public class PlayerDialogueInteractor : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        NPCDialogue npcDial;
-        collision.gameObject.TryGetComponent<NPCDialogue>(out npcDial);
+        Interactable npcDial;
+        collision.gameObject.TryGetComponent<Interactable>(out npcDial);
         if (npcDial && !dialogueRunner.IsDialogueRunning)
         {
-            currentNPCDialogue = npcDial;
+            currentInteractable = npcDial;
             interactPromptUI.gameObject.SetActive(true);
             //Debug.Log(currentNPCDialogue.yarnDialogue.GetProgram().Nodes["String.Paul"].Tags);
         }
@@ -38,18 +38,18 @@ public class PlayerDialogueInteractor : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        NPCDialogue npcDial;
-        collision.gameObject.TryGetComponent<NPCDialogue>(out npcDial);
-        if (npcDial == currentNPCDialogue)// currentNPCDialogue && currentNPCDialogue.GetComponent<Collider2D>() && collision == currentNPCDialogue.GetComponent<Collider2D>())
+        Interactable interactable;
+        collision.gameObject.TryGetComponent<Interactable>(out interactable);
+        if (interactable == currentInteractable)// currentNPCDialogue && currentNPCDialogue.GetComponent<Collider2D>() && collision == currentNPCDialogue.GetComponent<Collider2D>())
         {
             interactPromptUI.gameObject.SetActive(false);
-            currentNPCDialogue = null;
+            currentInteractable = null;
         }
     }
 
     void OnInteractButton()
     {
-        if (!FindObjectOfType<DialogueRunner>().IsDialogueRunning)
+        /*if (!FindObjectOfType<DialogueRunner>().IsDialogueRunning)
         {
             interactPromptUI.gameObject.SetActive(false);
             if (currentNPCDialogue != null)
@@ -60,14 +60,16 @@ public class PlayerDialogueInteractor : MonoBehaviour
         else
         {
             FindObjectOfType<DialogueUI>().MarkLineComplete();
-        }
+        }*/
+        interactPromptUI.gameObject.SetActive(false);
+        currentInteractable.Activate();
     }
 
     void Update()
     {
-        if (currentNPCDialogue != null)
+        if (currentInteractable != null)
         {
-            interactPromptUI.position = RectTransformUtility.WorldToScreenPoint(Camera.main, currentNPCDialogue.transform.position + currentNPCDialogue.interactUIOffset);
+            interactPromptUI.position = RectTransformUtility.WorldToScreenPoint(Camera.main, currentInteractable.transform.position + currentInteractable.interactUIOffset);
         }
         if (Input.GetButtonDown("Interact"))
         {

@@ -4,17 +4,28 @@ using UnityEngine;
 using Yarn.Unity;
 
 [ RequireComponent( typeof( Collider2D ) ) ]
-public class NPCDialogue : MonoBehaviour
+public class NPCDialogue : Interactable
 {
     public string nodeTitle;
     public YarnProgram yarnDialogue;
-    public Vector3 interactUIOffset;
     bool isTalking = false;
     bool isBeingInteractedWith = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        onInteractectedWith.AddListener(() =>
+        {
+            if (!FindObjectOfType<DialogueRunner>().IsDialogueRunning)
+            {
+                FindObjectOfType<DialogueRunner>().StartDialogue(nodeTitle);
+            }
+            else
+            {
+                FindObjectOfType<DialogueUI>().MarkLineComplete();
+            }
+        });
+
         if (yarnDialogue != null)
         {
             DialogueRunner dialogueRunner = FindObjectOfType<Yarn.Unity.DialogueRunner>();
@@ -22,9 +33,9 @@ public class NPCDialogue : MonoBehaviour
         }
     }
 
-    public static void SetTalking(bool talking)
+   public static void SetTalking(bool talking)
     {
-        NPCDialogue curDialogue = PlayerDialogueInteractor.singleton.currentNPCDialogue;
+        NPCDialogue curDialogue = (NPCDialogue) PlayerDialogueInteractor.singleton.currentInteractable;
         curDialogue.isTalking = talking;
         NPCVoice voice = curDialogue.GetComponent<NPCVoice>();
         if (voice)
@@ -41,17 +52,7 @@ public class NPCDialogue : MonoBehaviour
 
     public static void SetBeingInteractedWith(bool interactingWith)
     {
-        NPCDialogue curDialogue = PlayerDialogueInteractor.singleton.currentNPCDialogue;
+        NPCDialogue curDialogue = (NPCDialogue) PlayerDialogueInteractor.singleton.currentInteractable;
         curDialogue.isBeingInteractedWith = interactingWith;
     }
-
-#if UNITY_EDITOR
-    private void OnDrawGizmos()
-    {
-        if (UnityEditor.Selection.activeGameObject != this.gameObject) return;
-        Gizmos.DrawCube(transform.position + interactUIOffset, new Vector3(1.5f, 0.5f, 1));
-        Gizmos.color = Color.red;
-        Gizmos.DrawCube(transform.position + interactUIOffset, new Vector3(1.5f, 0.1f, 1));
-    }
-#endif
 }

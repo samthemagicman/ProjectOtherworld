@@ -28,7 +28,7 @@ public class DialogueUIManager : MonoBehaviour
         string op = parameters[0].AsString.ToLower();
         if (op == "setbool")
         {
-            NPCDialogue curNpc = PlayerDialogueInteractor.singleton.currentNPCDialogue;
+            NPCDialogue curNpc = (NPCDialogue) PlayerDialogueInteractor.singleton.currentInteractable;
             if (curNpc != null)
             {
                 Animator animator = curNpc.GetComponent<Animator>();
