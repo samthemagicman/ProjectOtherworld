@@ -1,22 +1,28 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Collections;
+using UnityEngine.Events;
 
 public class InputHandler : MonoBehaviour
 {
-
+    public static InputHandler singleton;
     public FadeOut fader;
 
     public bool isController;
     public bool isKeyboard;
     public eInputState lastInputType = eInputState.MouseKeyboard;
 
+    public UnityEvent inputChanged = new UnityEvent();
+
     public enum eInputState
     {
         MouseKeyboard,
         Controller
     };
-
+    private void Awake()
+    {
+        singleton = this;
+    }
     private eInputState m_State = eInputState.MouseKeyboard;
 
     void OnGUI()
@@ -29,6 +35,7 @@ public class InputHandler : MonoBehaviour
                     m_State = eInputState.Controller;
                     isController = true;
                     isKeyboard = false;
+                    inputChanged.Invoke();
                 }
                 break;
             case eInputState.Controller:
@@ -37,6 +44,8 @@ public class InputHandler : MonoBehaviour
                     m_State = eInputState.MouseKeyboard;
                     isKeyboard = true;
                     isController = false;
+                    inputChanged.Invoke();
+
                 }
                 break;
         }
@@ -66,11 +75,10 @@ public class InputHandler : MonoBehaviour
 
     private bool isControllerInput()
     {
-        
+
         /*string[] names = Input.GetJoystickNames();
         foreach (string n in names) if (n.Length > 0) return true;
         return false;*/
-
         // joystick buttons
         if (Input.GetKey(KeyCode.Joystick1Button0) ||
            Input.GetKey(KeyCode.Joystick1Button1) ||
@@ -92,8 +100,8 @@ public class InputHandler : MonoBehaviour
            Input.GetKey(KeyCode.Joystick1Button17) ||
            Input.GetKey(KeyCode.Joystick1Button18) ||
            Input.GetKey(KeyCode.Joystick1Button19) ||
-           Input.GetAxis("Horizontal") != 0.0f     ||
-           Input.GetAxis("Vertical") != 0.0f)
+           Input.GetAxis("ControllerHorizontal") != 0.0f     ||
+           Input.GetAxis("ControllerVertical") != 0.0f)
         {
             return true;
         }
