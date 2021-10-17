@@ -68,9 +68,9 @@ public class InputHandler : MonoBehaviour
     private bool isControllerInput()
     {
         
-        string[] names = Input.GetJoystickNames();
+        /*string[] names = Input.GetJoystickNames();
         foreach (string n in names) if (n.Length > 0) return true;
-        return false;
+        return false;*/
 
         // joystick buttons
         if (Input.GetKey(KeyCode.Joystick1Button0) ||
