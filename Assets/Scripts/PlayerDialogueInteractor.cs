@@ -47,6 +47,22 @@ public class PlayerDialogueInteractor : MonoBehaviour
         }
     }
 
+    void OnInteractButton()
+    {
+        if (!FindObjectOfType<DialogueRunner>().IsDialogueRunning)
+        {
+            interactPromptUI.gameObject.SetActive(false);
+            if (currentNPCDialogue != null)
+            {
+                FindObjectOfType<DialogueRunner>().StartDialogue(currentNPCDialogue.nodeTitle);
+            }
+        }
+        else
+        {
+            FindObjectOfType<DialogueUI>().MarkLineComplete();
+        }
+    }
+
     void Update()
     {
         if (currentNPCDialogue != null)
@@ -55,18 +71,7 @@ public class PlayerDialogueInteractor : MonoBehaviour
         }
         if (Input.GetButtonDown("Interact"))
         {
-            if (!FindObjectOfType<DialogueRunner>().IsDialogueRunning)
-            {
-                interactPromptUI.gameObject.SetActive(false);
-                if (currentNPCDialogue != null)
-                {
-                    FindObjectOfType<DialogueRunner>().StartDialogue(currentNPCDialogue.nodeTitle);
-
-                }
-            } else
-            {
-                FindObjectOfType<DialogueUI>().MarkLineComplete();
-            }
+            OnInteractButton();
         }
     }
 }

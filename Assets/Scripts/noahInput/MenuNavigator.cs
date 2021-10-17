@@ -58,6 +58,14 @@ public class MenuNavigator : MonoBehaviour
         SwitchMenu(menu, false);
     }
 
+    public void SetFirstButtonAsActive()
+    {
+        if (!inputHandler.isController)
+        {
+            SetFirstButtonAsActive(current);
+        }
+    }
+
     private void SetFirstButtonAsActive(GameObject parent)
     {
         EventSystem.current.SetSelectedGameObject(findFirstSelectable(current));

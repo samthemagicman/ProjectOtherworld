@@ -9,6 +9,7 @@ public class InputHandler : MonoBehaviour
 
     public bool isController;
     public bool isKeyboard;
+    public eInputState lastInputType = eInputState.MouseKeyboard;
 
     public enum eInputState
     {
@@ -28,7 +29,6 @@ public class InputHandler : MonoBehaviour
                     m_State = eInputState.Controller;
                     isController = true;
                     isKeyboard = false;
-                    //print("Controller: " + isController);
                 }
                 break;
             case eInputState.Controller:
@@ -37,7 +37,6 @@ public class InputHandler : MonoBehaviour
                     m_State = eInputState.MouseKeyboard;
                     isKeyboard = true;
                     isController = false;
-                    //print("mkb: "+ isKeyboard);
                 }
                 break;
         }

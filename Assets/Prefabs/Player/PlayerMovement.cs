@@ -104,7 +104,7 @@ public class PlayerMovement : MonoBehaviour
     float control = 15;
     void FixedUpdate()
     {
-        if (controlsEnabled)
+        if (true)
         {
             float moveHorizontal = Input.GetAxis("Horizontal");
             float moveHorizontalRaw = Input.GetAxisRaw("Horizontal");
@@ -142,6 +142,13 @@ public class PlayerMovement : MonoBehaviour
             else if (!isMovingAwayFromWall)
             {
                 startedMovingTimeStamp = 0;
+            }
+
+            if (!controlsEnabled)
+            {
+                moveHorizontal = 0;
+                moveHorizontalRaw = 0;
+                jumpKeyPressedStamp = 0;
             }
 
             #region Handle walking and moving in air
