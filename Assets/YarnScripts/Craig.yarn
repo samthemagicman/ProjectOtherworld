@@ -1,8 +1,37 @@
-title: Craig.Secret
+title: Craig.Intro
 tags: 
 colorID: 0
 position: 601,8
 ---
+<<name ???>>
+<<if not $visited_craig>>
+<<set $visited_craig to true>>
+Who you?
+-> ...
+    You no talk?
+    Here, Craig give present
 <<name Craig>>
-Ook
+Work?
+-> Yes
+-> No
+Huah huah. Craig happy work. 
+But Craig no happy work. 
+You get?
+-> Yes 
+-> No 
+<<endif>>
+<<name Craig>>
+Okay Craig see you later.
+===
+
+title: Craig.Secret
+---
+<<name Craig>>
+Me like Trash
+No me no like trash
+But me like Trash
+You get? 
+-> Yes 
+-> No
+Okay Craig see you later.
 ===

@@ -1,9 +1,62 @@
-title: Trash.Secret
+title: Trash.Intro
 tags: 
 colorID: 0
 position: 650,52
 ---
-<<name Trash>>
-This isnt a fire but im
-HOT !
+<<if not $visited_trash>>
+<<set $visited_trash to true>>
+<<name ???>>
+Oh- ah oh- hello!
+My name's TRASH who's ya?
+<<name TRASH>>
+-> Yes 
+-> No
+WOAH! THAT'S SUCH A COOL NAME!
+What's ya doing here?
+-> Yes
+-> No
+WOAH!! ME TOO!!
+Wow you're really cool! 
+Wanna be friends?
+[[Yes|Trash.Friend]]
+[[No|Trash.Why]]
+<<endif>>
+===
+
+title: Trash.Friend
+---
+<<name TRASH>>
+AWESOME! My FIRST friend!!
+I gotta get back to work, but I'll see you later!
+Goodbye new friend!
+===
+
+title: Trash.Why
+---
+<<name TRASH>>
+Why...
+Why would you say that...
+===
+
+title: Trash.Secret
+---
+<<name TRASH>>
+So as I was saying, I met this new FRIEND
+HE IS SOOO COOL! 
+He's like, box shaped which I think is AWESOME! 
+OH- HELLO! NEW FRIEND! 
+What's ya here for?
+-> Yes
+-> No
+WOAHHHH!!! ME TOO!!!
+...
+Nahhh not really! I's just kiddin' ya
+Me and Craig are just hanging out skippin' work ya kno 
+YOU SHOULD JOIN US!
+-> Yes
+    Nahhh not really, I's just kiddin' ya. 
+-> No
+    Awwww Okay...
+You've got more important stuff to do I's is sure. 
+Goodluck new FRIEND!
 ===
